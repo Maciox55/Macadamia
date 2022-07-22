@@ -67,6 +67,15 @@ namespace WinPEImager
             foreach (Client client in clients)
             {
                 Console.WriteLine(client.name);
+                imageDetailListView.Groups.Add(new ListViewGroup("Client", client.name));
+                imageDetailListView.ShowGroups =  true; 
+
+                foreach (Image image in client.GetImages()) {
+                    imageDetailListView.Items.Add(image.imagePath);
+
+
+                }
+
             }
 
             string text = File.ReadAllText(Path.Combine(config.GetMasterPath(), "test.txt"));

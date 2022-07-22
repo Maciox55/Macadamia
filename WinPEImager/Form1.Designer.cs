@@ -101,6 +101,7 @@
             this.imageDetailListView.Size = new System.Drawing.Size(332, 392);
             this.imageDetailListView.TabIndex = 6;
             this.imageDetailListView.UseCompatibleStateImageBehavior = false;
+            this.imageDetailListView.View = System.Windows.Forms.View.List;
             // 
             // label1
             // 
