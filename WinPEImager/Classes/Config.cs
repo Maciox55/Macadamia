@@ -18,8 +18,8 @@ namespace WinPEImager.Classes
         private Config() {
             Console.WriteLine("Initialized Config Singleton");
             string text = File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Config.xml"));
-            XElement booksFromFile = XElement.Load(@"Config.xml");
-            ParseConfigFile(booksFromFile);
+            XElement configstring = XElement.Load(@"Config.xml");
+            ParseConfigFile(configstring);
             
         }
 

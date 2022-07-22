@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WinPEImager.Classes
 {
-    internal class Task
+    public class Task
     {
         public string command;
     }

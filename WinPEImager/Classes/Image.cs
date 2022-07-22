@@ -7,13 +7,19 @@ using WinPEImager.Classes;
 
 namespace WinPEImager.Classes
 {
-    internal class Image
+    public class Image
     {
         public string imagePath;
-        public Task[] tasks;
+        public List<Task> tasks;
 
-        public Image(){
-         
-        }   
+        public Image(string imageLoc){
+            imagePath = imageLoc;
+            tasks = new List<Task>();
+        }
+
+        public void AddTask(Task newTask)
+        {
+            tasks.Add(newTask);
+        }
     }
 }

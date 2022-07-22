@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Client.cs" />
     <Compile Include="Classes\Config.cs" />
     <Compile Include="Classes\Image.cs" />
     <Compile Include="Classes\Task.cs" />
