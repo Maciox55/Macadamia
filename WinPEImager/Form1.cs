@@ -20,6 +20,13 @@ namespace WinPEImager
         public XMLParser parser = new XMLParser();
         public List<Client> clients = new List<Client>();
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            this.TopMost = true;
+            this.FormBorderStyle = FormBorderStyle.None;
+            this.WindowState = FormWindowState.Maximized;
+        }
+
         public Form1()
         {
             InitializeComponent();
