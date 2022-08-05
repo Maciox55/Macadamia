@@ -10,7 +10,8 @@ using System.Windows.Forms;
 using System.IO;
 using System.Xml;
 using WinPEImager.Classes;
-using Image = WinPEImager.Classes.Image;
+using cImage = WinPEImager.Classes.Image;
+using Image = System.Drawing.Image;
 
 namespace WinPEImager
 {
@@ -38,26 +39,56 @@ namespace WinPEImager
         {
             fileTree.Nodes.Clear();
             clientSel.Items.Clear();
+            imageDetailListView.Clear();
+
+
+            ImageList myImageList = new ImageList();
+            myImageList.Images.Add(Image.FromFile("./Assets/Images/icons-png/folders.png"));
+            myImageList.Images.Add(Image.FromFile("./Assets/Images/icons-png/folder.png"));
+            myImageList.Images.Add(Image.FromFile("./Assets/Images/icons-png/file.png"));
+            myImageList.Images.Add(Image.FromFile("./Assets/Images/icons-png/file-settings.png"));
+            myImageList.Images.Add(Image.FromFile("./Assets/Images/icons-png/select.png"));
+
+            fileTree.ImageList = myImageList;
+
+            fileTree.ImageIndex = 0;
+            fileTree.SelectedImageIndex = 0;
+
+            /* Set the index of image from the 
+            ImageList for selected and unselected tree nodes.*/
+            //this.rootImageIndex = 2;
+            //this.selectedCustomerImageIndex = 3;
+            //this.unselectedCustomerImageIndex = 4;
+            //this.selectedOrderImageIndex = 5;
+            //this.unselectedOrderImageIndex = 6;
+
+
+            //Get master directory info from config that points to location of all installation files.
             DirectoryInfo dir = new DirectoryInfo(config.GetMasterPath());
+            //Get all directories in the master directory
             DirectoryInfo[] dirs = dir.GetDirectories();
 
             //Console.WriteLine(files.Length);
             //string text = File.ReadAllText(files[0].FullName);
 
+            //TODO: make this recursive for better dynamic parsing
+
+            //Goes through each directory and map contents
             foreach (DirectoryInfo d in dirs){
                 TreeNode node = new TreeNode(d.Name);
                 DirectoryInfo[] subDir = d.GetDirectories();
                 Client client = new Client(d.Name);
                
+                //Get all partnumber subfolders for each mfg
                 foreach (DirectoryInfo sd in subDir) {
-                    TreeNode subNode = new TreeNode(sd.Name);
+                    TreeNode subNode = new TreeNode(sd.Name,1,1);
                     node.Nodes.Add(subNode);
                     FileInfo[] files = sd.GetFiles("*.xml");
-
+                    //Get all of the files within the partnumber folder
                     foreach (FileInfo file in files)
                     {
-                        client.AddImage(new Image(file.FullName));
-                        TreeNode n = new TreeNode(file.Name);
+                        client.AddImage(new cImage(file.FullName));
+                        CustomTreeNode n = new CustomTreeNode(file.Name,file.FullName,2,4);
                         subNode.Nodes.Add(n);
                     }
 
@@ -71,19 +102,6 @@ namespace WinPEImager
                 fileTree.Nodes.Add(node);
             }
 
-            foreach (Client client in clients)
-            {
-                Console.WriteLine(client.name);
-                imageDetailListView.Groups.Add(new ListViewGroup("Client", client.name));
-                imageDetailListView.ShowGroups =  true; 
-
-                foreach (Image image in client.GetImages()) {
-                    imageDetailListView.Items.Add(image.imagePath);
-
-
-                }
-
-            }
 
             string text = File.ReadAllText(Path.Combine(config.GetMasterPath(), "test.txt"));
             Console.WriteLine(text);
@@ -94,11 +112,26 @@ namespace WinPEImager
            
         }
 
+        private void fileTree_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e) {
+            if (e.Node is CustomTreeNode)
+            {
+                CustomTreeNode cnode = (CustomTreeNode)e.Node;
+                Console.WriteLine(cnode.path);
+                // parser.Parse(config.GetMasterPath()+e.Node.FullPath);
+
+            }
+
+        }
+
         private void fileTree_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            if (e.Node.NextNode == null)
+            if (e.Node is CustomTreeNode)
             {
-                parser.Parse(config.GetMasterPath()+e.Node.FullPath);
+                CustomTreeNode cnode = (CustomTreeNode)e.Node;
+                Console.WriteLine(cnode.path);
+               Image cImage = parser.parseImageFromXML(cnode.path);
+
+
 
             }
         }
@@ -106,6 +139,11 @@ namespace WinPEImager
         private void refreshBtn_Click(object sender, EventArgs e)
         {
             findConfig();
+        }
+
+        private void startButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

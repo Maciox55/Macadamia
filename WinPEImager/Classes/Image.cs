@@ -16,6 +16,11 @@ namespace WinPEImager.Classes
             imagePath = imageLoc;
             tasks = new List<Task>();
         }
+        public Image(string imageLoc, List<Task> tasks)
+        {
+            imagePath = imageLoc;
+            this.tasks = tasks;
+        }
 
         public void AddTask(Task newTask)
         {

@@ -9,5 +9,9 @@ namespace WinPEImager.Classes
     public class Task
     {
         public string command;
+
+        public Task(string command) {
+            this.command = command;
+        } 
     }
 }

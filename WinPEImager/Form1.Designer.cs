@@ -37,13 +37,13 @@
             this.imageDetailListView = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
             this.leftPanel = new System.Windows.Forms.Panel();
+            this.startButton = new System.Windows.Forms.Button();
             this.centerPanel = new System.Windows.Forms.Panel();
             this.rightPanel = new System.Windows.Forms.Panel();
             this.tasksLabel = new System.Windows.Forms.Label();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.masterPathLabel = new System.Windows.Forms.Label();
-            this.startButton = new System.Windows.Forms.Button();
             this.leftPanel.SuspendLayout();
             this.centerPanel.SuspendLayout();
             this.rightPanel.SuspendLayout();
@@ -78,7 +78,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.fileTree.Location = new System.Drawing.Point(3, 22);
             this.fileTree.Name = "fileTree";
-            this.fileTree.Size = new System.Drawing.Size(206, 413);
+            this.fileTree.Size = new System.Drawing.Size(209, 413);
             this.fileTree.TabIndex = 2;
             this.fileTree.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.fileTree_NodeMouseDoubleClick);
             // 
@@ -119,9 +119,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.imageDetailListView.HideSelection = false;
-            this.imageDetailListView.Location = new System.Drawing.Point(6, 22);
+            this.imageDetailListView.Location = new System.Drawing.Point(3, 22);
             this.imageDetailListView.Name = "imageDetailListView";
-            this.imageDetailListView.Size = new System.Drawing.Size(628, 413);
+            this.imageDetailListView.Size = new System.Drawing.Size(631, 413);
             this.imageDetailListView.TabIndex = 6;
             this.imageDetailListView.UseCompatibleStateImageBehavior = false;
             this.imageDetailListView.View = System.Windows.Forms.View.List;
@@ -151,6 +151,18 @@
             this.leftPanel.Name = "leftPanel";
             this.leftPanel.Size = new System.Drawing.Size(201, 438);
             this.leftPanel.TabIndex = 9;
+            // 
+            // startButton
+            // 
+            this.startButton.BackColor = System.Drawing.Color.White;
+            this.startButton.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.startButton.Location = new System.Drawing.Point(0, 392);
+            this.startButton.Name = "startButton";
+            this.startButton.Size = new System.Drawing.Size(201, 46);
+            this.startButton.TabIndex = 6;
+            this.startButton.Text = "START";
+            this.startButton.UseVisualStyleBackColor = false;
+            this.startButton.Click += new System.EventHandler(this.startButton_Click);
             // 
             // centerPanel
             // 
@@ -214,17 +226,6 @@
             this.masterPathLabel.Size = new System.Drawing.Size(35, 13);
             this.masterPathLabel.TabIndex = 0;
             this.masterPathLabel.Text = "label2";
-            // 
-            // startButton
-            // 
-            this.startButton.BackColor = System.Drawing.Color.White;
-            this.startButton.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.startButton.Location = new System.Drawing.Point(0, 392);
-            this.startButton.Name = "startButton";
-            this.startButton.Size = new System.Drawing.Size(201, 46);
-            this.startButton.TabIndex = 6;
-            this.startButton.Text = "START";
-            this.startButton.UseVisualStyleBackColor = false;
             // 
             // Form1
             // 
