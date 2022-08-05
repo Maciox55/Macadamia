@@ -129,7 +129,7 @@ namespace WinPEImager
             {
                 CustomTreeNode cnode = (CustomTreeNode)e.Node;
                 Console.WriteLine(cnode.path);
-               Image cImage = parser.parseImageFromXML(cnode.path);
+               cImage image = parser.parseImageFromXML(cnode.path);
 
 
 
