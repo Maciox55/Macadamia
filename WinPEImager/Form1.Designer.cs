@@ -80,6 +80,7 @@
             this.fileTree.Name = "fileTree";
             this.fileTree.Size = new System.Drawing.Size(209, 413);
             this.fileTree.TabIndex = 2;
+            this.fileTree.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.fileTree_NodeMouseClick);
             this.fileTree.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.fileTree_NodeMouseDoubleClick);
             // 
             // pnSelLabel
@@ -237,6 +238,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "Form1";
             this.Text = "WinPE Imager";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.leftPanel.ResumeLayout(false);
             this.leftPanel.PerformLayout();
             this.centerPanel.ResumeLayout(false);
