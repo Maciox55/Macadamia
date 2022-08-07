@@ -54,6 +54,8 @@ namespace WinPEImager
             fileTree.ImageIndex = 0;
             fileTree.SelectedImageIndex = 0;
 
+            
+
             /* Set the index of image from the 
             ImageList for selected and unselected tree nodes.*/
             //this.rootImageIndex = 2;
@@ -68,43 +70,71 @@ namespace WinPEImager
             //Get all directories in the master directory
             DirectoryInfo[] dirs = dir.GetDirectories();
 
+            TreeNode root = new TreeNode();
+
+            foreach (DirectoryInfo d in dirs)
+            {
+                FileInfo[] files = d.GetFiles();
+
+                if (files.Length == 0)
+                {
+                    fileTree.Nodes.Add(MapDirectory(d));
+                }
+               
+            }
+
+                
+            
+
+
+
+
             //Console.WriteLine(files.Length);
             //string text = File.ReadAllText(files[0].FullName);
 
             //TODO: make this recursive for better dynamic parsing
+            
 
-            //Goes through each directory and map contents
-            foreach (DirectoryInfo d in dirs){
-                TreeNode node = new TreeNode(d.Name);
-                DirectoryInfo[] subDir = d.GetDirectories();
-                Client client = new Client(d.Name);
+
+
+
+
+
+
+
+
+            ////Goes through each directory and map contents
+            //foreach (DirectoryInfo d in dirs){
+            //    TreeNode node = new TreeNode(d.Name);
+            //    DirectoryInfo[] subDir = d.GetDirectories();
+            //    Client client = new Client(d.Name);
                
-                //Get all partnumber subfolders for each mfg
-                foreach (DirectoryInfo sd in subDir) {
-                    TreeNode subNode = new TreeNode(sd.Name,1,1);
-                    node.Nodes.Add(subNode);
-                    FileInfo[] files = sd.GetFiles("*.xml");
-                    //Get all of the files within the partnumber folder
-                    foreach (FileInfo file in files)
-                    {
-                        client.AddImage(new cImage(file.FullName));
-                        CustomTreeNode n = new CustomTreeNode(file.Name,file.FullName,2,4);
-                        subNode.Nodes.Add(n);
-                    }
+            //    //Get all partnumber subfolders for each mfg
+            //    foreach (DirectoryInfo sd in subDir) {
+            //        TreeNode subNode = new TreeNode(sd.Name,1,1);
+            //        node.Nodes.Add(subNode);
+            //        FileInfo[] files = sd.GetFiles("*.xml");
+            //        //Get all of the files within the partnumber folder
+            //        foreach (FileInfo file in files)
+            //        {
+            //            client.AddImage(new cImage(file.FullName));
+            //            CustomTreeNode n = new CustomTreeNode(file.Name,file.FullName,2,4);
+            //            subNode.Nodes.Add(n);
+            //        }
 
 
-                }
-                clients.Add(client);
+            //    }
+            //    clients.Add(client);
 
 
-                clientSel.Items.Add(d.Name);
+            //    clientSel.Items.Add(d.Name);
 
-                fileTree.Nodes.Add(node);
-            }
+            //    fileTree.Nodes.Add(node);
+            //}
 
 
-            string text = File.ReadAllText(Path.Combine(config.GetMasterPath(), "test.txt"));
-            Console.WriteLine(text);
+            //string text = File.ReadAllText(Path.Combine(config.GetMasterPath(), "test.txt"));
+            //Console.WriteLine(text);
         }
 
         private void clientSel_SelectedIndexChanged(object sender, EventArgs e)
@@ -129,9 +159,7 @@ namespace WinPEImager
             {
                 CustomTreeNode cnode = (CustomTreeNode)e.Node;
                 Console.WriteLine(cnode.path);
-               cImage image = parser.parseImageFromXML(cnode.path);
-
-
+                cImage image = parser.parseImageFromXML(cnode.path);
 
             }
         }
@@ -144,6 +172,23 @@ namespace WinPEImager
         private void startButton_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private TreeNode MapDirectory(DirectoryInfo path) { 
+            TreeNode node = new TreeNode(path.Name);
+            FileInfo[] files = path.GetFiles("*.xml");
+
+            DirectoryInfo[] subdirs = path.GetDirectories();
+            foreach (DirectoryInfo subdir in subdirs)
+            { 
+               node.Nodes.Add( MapDirectory(subdir));
+            }
+            foreach (FileInfo file in files) {
+                node.Nodes.Add(new CustomTreeNode(file.Name,file.Name,2,4));
+            }
+
+            return node;
+        
         }
     }
 }
