@@ -44,9 +44,16 @@ namespace WinPEImager.Classes
         {
             foreach (Task task in tasks)
             {
-                currentTask = task;
                 Console.WriteLine(task.GetStatus() + " : " + task.command);
+                currentTask = task;
+                task.SetStatus(STATUS.Processing);
                 
+                Console.WriteLine(task.GetStatus() + " : " + task.command);
+
+                task.SetStatus(STATUS.Sucessful);
+
+                Console.WriteLine(task.GetStatus() + " : " + task.command);
+
 
             }
 
