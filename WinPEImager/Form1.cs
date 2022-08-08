@@ -9,8 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Xml;
+using System.Diagnostics;
 using WinPEImager.Classes;
 using cImage = WinPEImager.Classes.Image;
+using ImageTask = WinPEImager.Classes.Task;
 using Image = System.Drawing.Image;
 
 namespace WinPEImager
@@ -20,16 +22,18 @@ namespace WinPEImager
         private Config config;
         public XMLParser parser = new XMLParser();
         public List<Client> clients = new List<Client>();
+        cImage currentSelectedImage;
 
-        string clickedNode;
+        CustomTreeNode clickedNode;
 
-        MenuItem myMenuItem = new MenuItem("Show Me");
+        MenuItem detailsManuItem = new MenuItem("Details");
+        MenuItem editMenuItem = new MenuItem("Edit");
         ContextMenu mnu = new ContextMenu();
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.TopMost = true;
-            this.WindowState = FormWindowState.Maximized;
+            //this.TopMost = true;
+            //this.WindowState = FormWindowState.Maximized;
         }
 
         public Form1()
@@ -40,8 +44,20 @@ namespace WinPEImager
 
 
 
-            mnu.MenuItems.Add(myMenuItem);
-            myMenuItem.Click += new EventHandler(myMenuItem_Click);
+            mnu.MenuItems.Add(detailsManuItem);
+            mnu.MenuItems.Add(editMenuItem);
+            detailsManuItem.Click += new EventHandler(detailMenuItem_Click);
+            editMenuItem.Click += new EventHandler(editMenuItem_Click);
+
+            imageDetailListView.SmallImageList = new ImageList();
+
+
+            imageDetailListView.SmallImageList.Images.Add(Image.FromFile("./Assets/Images/icons-png/circle.png"));
+            imageDetailListView.SmallImageList.Images.Add(Image.FromFile("./Assets/Images/icons-png/circle-dotted.png"));
+            imageDetailListView.SmallImageList.Images.Add(Image.FromFile("./Assets/Images/icons-png/circle-check.png"));
+            imageDetailListView.SmallImageList.Images.Add(Image.FromFile("./Assets/Images/icons-png/circle-x.png"));
+
+
         }
 
         private void findConfig()
@@ -102,44 +118,84 @@ namespace WinPEImager
 
 
 
-        void myMenuItem_Click(object sender, EventArgs e)
+        void detailMenuItem_Click(object sender, EventArgs e)
         {
             Form frm = new Form();
-            frm.Text = clickedNode;
-            frm.ShowDialog(this);
-            clickedNode = "";
+
+            clickedNode = null;
+        }
+        void editMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("notepad.exe", clickedNode.path);
+            clickedNode = null;
+
         }
 
 
         private void fileTree_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e) {
-           
-
-            if (e.Node is CustomTreeNode)
+            imageDetailListView.Clear();
+            masterPathLabel.Text = "Image Path: ";
+            fileTree.SelectedNode = e.Node;
+            try
             {
-
-                if (e.Button == MouseButtons.Right)
+                if (e.Node is CustomTreeNode)
                 {
-                    clickedNode = e.Node.Name;
-                    mnu.Show(fileTree, e.Location);
+
+                    if (e.Button == MouseButtons.Right)
+                    {
+                        clickedNode = (CustomTreeNode)e.Node;
+                        mnu.Show(fileTree, e.Location);
+                    }
+                    else {
+                       
+                        if (e.Node is CustomTreeNode)
+                        {
+                            CustomTreeNode cnode = (CustomTreeNode)e.Node;
+                            Console.WriteLine(cnode.FullPath);
+                            cImage image = parser.parseImageFromXML(cnode.path);
+                            masterPathLabel.Text = "Image Path: " + image.imagePath;
+
+                            foreach (ImageTask task in image.tasks)
+                            {
+                                imageDetailListView.Items.Add(task.ToListItem());
+
+                            }
+                            currentSelectedImage = image;
+
+                        }
+                    }
+                
+                  
                 }
 
-                CustomTreeNode cnode = (CustomTreeNode)e.Node;
-                Console.WriteLine(cnode.path);
+
                 // parser.Parse(config.GetMasterPath()+e.Node.FullPath);
 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR OCCURED: " + ex.Message);
+                 
             }
 
         }
 
         private void fileTree_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            if (e.Node is CustomTreeNode)
+            try
             {
-                CustomTreeNode cnode = (CustomTreeNode)e.Node;
-                Console.WriteLine(cnode.FullPath);
-                cImage image = parser.parseImageFromXML(cnode.path);
+                if (e.Node is CustomTreeNode)
+                {
+                   
 
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR OCCURED: " + ex.Message);
+            
+            }
+            
         }
 
         private void refreshBtn_Click(object sender, EventArgs e)
@@ -149,7 +205,10 @@ namespace WinPEImager
 
         private void startButton_Click(object sender, EventArgs e)
         {
-
+            if (currentSelectedImage != null)
+            {
+                currentSelectedImage.Start();
+            }
         }
 
         private TreeNode MapDirectory(DirectoryInfo path) { 

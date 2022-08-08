@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WinPEImager.Classes;
+using WinPEImager.Classes.Enums;
 
 namespace WinPEImager.Classes
 {
@@ -11,6 +12,9 @@ namespace WinPEImager.Classes
     {
         public string imagePath;
         public List<Task> tasks;
+
+        private Task currentTask;
+
 
         public Image(string imageLoc){
             imagePath = imageLoc;
@@ -25,6 +29,27 @@ namespace WinPEImager.Classes
         public void AddTask(Task newTask)
         {
             tasks.Add(newTask);
+        }
+
+        public void SetTaskStatus(int index, STATUS newStatus) 
+        {
+            tasks[index].SetStatus(newStatus);
+        }
+
+        public Task GetCurrentTask() {
+            return currentTask;
+        }
+
+        public void Start()
+        {
+            foreach (Task task in tasks)
+            {
+                currentTask = task;
+                Console.WriteLine(task.GetStatus() + " : " + task.command);
+                
+
+            }
+
         }
     }
 }

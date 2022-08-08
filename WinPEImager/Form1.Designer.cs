@@ -222,11 +222,10 @@
             // masterPathLabel
             // 
             this.masterPathLabel.AutoSize = true;
-            this.masterPathLabel.Location = new System.Drawing.Point(3, 6);
+            this.masterPathLabel.Location = new System.Drawing.Point(416, 3);
             this.masterPathLabel.Name = "masterPathLabel";
-            this.masterPathLabel.Size = new System.Drawing.Size(35, 13);
+            this.masterPathLabel.Size = new System.Drawing.Size(0, 13);
             this.masterPathLabel.TabIndex = 0;
-            this.masterPathLabel.Text = "label2";
             // 
             // Form1
             // 

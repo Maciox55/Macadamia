@@ -19,43 +19,35 @@ namespace WinPEImager.Classes
 
         public void Parse(string xmlfile) {
 
-            
-
-
         }
 
         public Image parseImageFromXML(string xmlFile) {
+            try
+            {
+                List<Task> tasks = new List<Task>();
+                XDocument xdoc;
 
-            List<Task> tasks = new List<Task>();
-            XDocument xdoc;
-                
-            xdoc = XDocument.Load(xmlFile);
+                xdoc = XDocument.Load(xmlFile);
+                //TODO: Potentially make it more dynamic, for now its hard coded for testing purposes.
+                string imagePath = xdoc.Root.Element("IMAGE").Attribute("imagePath").Value;
 
-            XElement elements = xdoc.Elements("TASK");
-            Console.WriteLine("TEST " + xdoc.Elements("TASK"));
+                IEnumerable<XElement> elements = xdoc.Root.Element("TASKS").Elements("TASK");
+                Console.WriteLine("TEST " + xdoc.Root.Element("TASKS").Elements("TASK").ToList().Count);
 
-            //Console.WriteLine("DOCUMENT "+ xdoc.Element("TASKS").Value);
+                foreach (XElement element in elements)
+                {
+                    Console.WriteLine(element.Attribute("command").Value);
+                    tasks.Add(new Task(element.Attribute("command").Value));
+                }
 
-            //Console.WriteLine("PARSING: " + xmlFile);
-            //XElement imageConfig = XElement.Load(xmlFile);
-            //Console.WriteLine("TESTING: " + imageConfig.Value);
+                Image image = new Image(imagePath, tasks);
 
+                return image;
 
-            //var elements = imageConfig.Elements("TASK");
-            //foreach (XElement element in elements)
-            //{
-            //    Console.WriteLine(element.Value);
-            //    tasks.Add(new Task(element.Value));
-            //}
-            //Console.WriteLine(imageConfig.Element("TASKS").Elements("TASK").First().Attribute("command").Value);
-            //string path = imageConfig.Element("IMAGE").Value;
-
-            //Console.WriteLine("Image path: " + imageConfig.Element("IMAGE").Attribute("imagePath").Value);
-
-            Image image = new Image("");
-
-            return image;
-
+            }
+            catch(Exception e) {
+                throw e;
+            }
         }
 
         

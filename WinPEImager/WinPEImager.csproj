@@ -12,6 +12,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>x64</PlatformTarget>
@@ -55,6 +56,7 @@
     <Compile Include="Classes\Client.cs" />
     <Compile Include="Classes\Config.cs" />
     <Compile Include="Classes\CustomTreeNode.cs" />
+    <Compile Include="Classes\Enums\STATUS.cs" />
     <Compile Include="Classes\Image.cs" />
     <Compile Include="Classes\ImageObjBuilder.cs" />
     <Compile Include="Classes\Task.cs" />
@@ -78,6 +80,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Assets\Images\icons-png\LICENSE">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
