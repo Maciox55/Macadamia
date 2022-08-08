@@ -1,0 +1,7 @@
+<IMAGING>
+	<IMAGE imagePath="\\TEMPSERVER\Images\Magnetic Analysis\FD5 Image Stick Backup\images\FD5A78.WIM"/>
+	<TASKS>
+		<TASK command="diskpart /s disk.txt"/>
+		<TASK command="Required\imaging.bat" />
+	</TASKS>
+</IMAGING>
