@@ -25,24 +25,34 @@ namespace WinPEImager.Classes
         }
 
         public Image parseImageFromXML(string xmlFile) {
-            Console.WriteLine(xmlFile);
 
             List<Task> tasks = new List<Task>();
+            XDocument xdoc;
+                
+            xdoc = XDocument.Load(xmlFile);
+
+            XElement elements = xdoc.Elements("TASK");
+            Console.WriteLine("TEST " + xdoc.Elements("TASK"));
+
+            //Console.WriteLine("DOCUMENT "+ xdoc.Element("TASKS").Value);
+
+            //Console.WriteLine("PARSING: " + xmlFile);
+            //XElement imageConfig = XElement.Load(xmlFile);
+            //Console.WriteLine("TESTING: " + imageConfig.Value);
 
 
-            XElement imageConfig = XElement.Load(xmlFile);
-            var elements = imageConfig.Elements("TASK");
-            foreach (XElement element in elements)
-            {
-                Console.WriteLine(element.Value);
-                tasks.Add(new Task(element.Value));
-            }
+            //var elements = imageConfig.Elements("TASK");
+            //foreach (XElement element in elements)
+            //{
+            //    Console.WriteLine(element.Value);
+            //    tasks.Add(new Task(element.Value));
+            //}
             //Console.WriteLine(imageConfig.Element("TASKS").Elements("TASK").First().Attribute("command").Value);
-            string path = imageConfig.Element("IMAGE").Attribute("imagePath").Value;
+            //string path = imageConfig.Element("IMAGE").Value;
 
-            Console.WriteLine("Image path: " + imageConfig.Element("IMAGE").Attribute("imagePath").Value);
+            //Console.WriteLine("Image path: " + imageConfig.Element("IMAGE").Attribute("imagePath").Value);
 
-            Image image = new Image(path, tasks);
+            Image image = new Image("");
 
             return image;
 
