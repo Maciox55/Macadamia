@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+
+using AsyncTask =  System.Threading.Tasks.Task;
 using WinPEImager.Classes.Enums;
 
 namespace WinPEImager.Classes
@@ -22,12 +23,6 @@ namespace WinPEImager.Classes
             currentStatus = STATUS.Idle;
             Console.WriteLine("TASK STATUS: " + (int)currentStatus + "   " + currentStatus);
         }
-
-        internal static Task<Image> Run(Func<Task<Image>> p)
-        {
-            throw new NotImplementedException();
-        }
-
         public void SetStatus(STATUS newStatus)
         { 
             currentStatus = newStatus;
@@ -46,7 +41,8 @@ namespace WinPEImager.Classes
             return item;
         }
 
-        public async void Execute() {
+        public async AsyncTask Execute() {
+
             try
             {
                 if (this.currentStatus != STATUS.Sucessful)
@@ -74,12 +70,11 @@ namespace WinPEImager.Classes
                         this.currentStatus = STATUS.Sucessful;
                         Console.WriteLine(this.currentStatus);
                     }
-
+                    await AsyncTask.Delay(1000);
                 }
                 else {
                     MessageBox.Show("Task: " + this.command + " Has already been executed");
                 }
-
 
             }
             catch (Exception e) {

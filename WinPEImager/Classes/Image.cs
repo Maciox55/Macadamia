@@ -54,7 +54,7 @@ namespace WinPEImager.Classes
             return currentTask;
         }
 
-        public void Start()
+        public async void Start()
         {
             List<Task> taskList = tasks;
 
@@ -62,8 +62,8 @@ namespace WinPEImager.Classes
 
             foreach (Task task in taskList)
             {
-                task.Execute();
-                listview.FindItemWithText(task.command).ImageIndex = ((int)task.GetStatus());
+                await task.Execute();
+                listview.Invoke(new MethodInvoker (delegate { listview.FindItemWithText(task.command).ImageIndex = ((int)task.GetStatus()); }));
                 
             }
         }
