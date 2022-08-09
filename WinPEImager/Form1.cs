@@ -51,6 +51,7 @@ namespace WinPEImager
             editMenuItem.Click += new EventHandler(editMenuItem_Click);
 
             imageDetailListView.SmallImageList = new ImageList();
+            imageDetailListView.SmallImageList.ImageSize = new Size(24, 24);
 
 
             imageDetailListView.SmallImageList.Images.Add(Image.FromFile("./Assets/Images/icons-png/circle.png"));
@@ -136,7 +137,7 @@ namespace WinPEImager
         private async void fileTree_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e) {
            await Task.Run(async () =>
             {
-                imageDetailListView.Invoke(new MethodInvoker(delegate { imageDetailListView.Clear(); }));
+                
                 //masterPathLabel.Invoke(new MethodInvoker(delegate { masterPathLabel.Text = "Image Path: " + e.Node.FullPath; }));
                 fileTree.Invoke(new MethodInvoker(delegate { fileTree.SelectedNode = e.Node; }));
                 //fileTree.SelectedNode = e.Node;
@@ -148,12 +149,19 @@ namespace WinPEImager
                         if (e.Button == MouseButtons.Right)
                         {
                             clickedNode = (CustomTreeNode)e.Node;
-                            _ = new MethodInvoker(delegate { mnu.Show(fileTree, e.Location); });
+
+                            this.Invoke(new MethodInvoker(delegate
+                            {
+                                mnu.Show(fileTree, e.Location);
+                            }));
+                        
 
 
                         }
                         else {
-                       
+
+                            imageDetailListView.Invoke(new MethodInvoker(delegate { imageDetailListView.Clear(); }));
+
                             if (e.Node is CustomTreeNode)
                             {
                                 CustomTreeNode cnode = (CustomTreeNode)e.Node;

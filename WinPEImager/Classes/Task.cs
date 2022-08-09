@@ -54,15 +54,12 @@ namespace WinPEImager.Classes
                     Process someProcess = Process.Start(startInfo);
                     this.error = someProcess.StandardError.ReadToEnd();
                     this.currentStatus = STATUS.Processing;
-                    Console.WriteLine(this.currentStatus);
 
                     if (error != string.Empty)
                     {
                         Console.WriteLine("ERRORS: " + error);
                         this.currentStatus = STATUS.Failed;
-
                         Console.WriteLine(this.currentStatus);
-
                     }
                     else
                     {
@@ -74,11 +71,13 @@ namespace WinPEImager.Classes
                 }
                 else {
                     MessageBox.Show("Task: " + this.command + " Has already been executed");
+                    
                 }
 
             }
             catch (Exception e) {
                 Console.WriteLine("Exception: "+e);
+                this.currentStatus = STATUS.Failed;
             }
 
 
