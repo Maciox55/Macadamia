@@ -2,3 +2,7 @@
 <APPCONFIG>
 	<MASTERPATH>G:\Software Projects\Windows PE test path</MASTERPATH>
 </APPCONFIG>
+
+<APPCONFIG>
+	<MASTERPATH>\\TEMPSERVER\Images\Mactest\</MASTERPATH>
+</APPCONFIG>

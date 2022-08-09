@@ -6579,6 +6579,9 @@
     <Content Include="Assets\Images\icons-png\zzz.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Localconfig.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="disk.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

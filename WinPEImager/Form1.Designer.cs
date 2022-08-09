@@ -44,6 +44,7 @@
             this.mainPanel = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.masterPathLabel = new System.Windows.Forms.Label();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
             this.leftPanel.SuspendLayout();
             this.centerPanel.SuspendLayout();
             this.rightPanel.SuspendLayout();
@@ -106,7 +107,7 @@
             // 
             this.refreshBtn.BackColor = System.Drawing.Color.White;
             this.refreshBtn.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.refreshBtn.Location = new System.Drawing.Point(0, 347);
+            this.refreshBtn.Location = new System.Drawing.Point(0, 322);
             this.refreshBtn.Name = "refreshBtn";
             this.refreshBtn.Size = new System.Drawing.Size(201, 45);
             this.refreshBtn.TabIndex = 5;
@@ -147,6 +148,7 @@
             this.leftPanel.Controls.Add(this.clientSelLabel);
             this.leftPanel.Controls.Add(this.pnSelLabel);
             this.leftPanel.Controls.Add(this.pnSel);
+            this.leftPanel.Controls.Add(this.progressBar);
             this.leftPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.leftPanel.Location = new System.Drawing.Point(0, 0);
             this.leftPanel.Name = "leftPanel";
@@ -157,7 +159,7 @@
             // 
             this.startButton.BackColor = System.Drawing.Color.White;
             this.startButton.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.startButton.Location = new System.Drawing.Point(0, 392);
+            this.startButton.Location = new System.Drawing.Point(0, 367);
             this.startButton.Name = "startButton";
             this.startButton.Size = new System.Drawing.Size(201, 46);
             this.startButton.TabIndex = 6;
@@ -227,6 +229,16 @@
             this.masterPathLabel.Size = new System.Drawing.Size(0, 13);
             this.masterPathLabel.TabIndex = 0;
             // 
+            // progressBar
+            // 
+            this.progressBar.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.progressBar.Location = new System.Drawing.Point(0, 413);
+            this.progressBar.Margin = new System.Windows.Forms.Padding(30);
+            this.progressBar.MaximumSize = new System.Drawing.Size(0, 25);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(201, 25);
+            this.progressBar.TabIndex = 1;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -269,6 +281,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label masterPathLabel;
         private System.Windows.Forms.Button startButton;
+        private System.Windows.Forms.ProgressBar progressBar;
     }
 
     

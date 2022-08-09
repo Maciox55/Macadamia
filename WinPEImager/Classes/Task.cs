@@ -21,6 +21,11 @@ namespace WinPEImager.Classes
             Console.WriteLine("TASK STATUS: " + (int)currentStatus + "   " + currentStatus);
         }
 
+        internal static Task<Image> Run(Func<Task<Image>> p)
+        {
+            throw new NotImplementedException();
+        }
+
         public void SetStatus(STATUS newStatus)
         { 
             currentStatus = newStatus;

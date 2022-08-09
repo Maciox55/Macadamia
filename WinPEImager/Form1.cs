@@ -14,6 +14,7 @@ using WinPEImager.Classes;
 using cImage = WinPEImager.Classes.Image;
 using ImageTask = WinPEImager.Classes.Task;
 using Image = System.Drawing.Image;
+using Task = System.Threading.Tasks.Task;
 
 namespace WinPEImager
 {
@@ -40,7 +41,7 @@ namespace WinPEImager
         {
             InitializeComponent();
             config = Config.Instance();
-            findConfig();
+            findConfigAsync();
 
 
 
@@ -60,7 +61,7 @@ namespace WinPEImager
 
         }
 
-        private void findConfig()
+        private async Task findConfigAsync()
         {
             fileTree.Nodes.Clear();
             clientSel.Items.Clear();
@@ -103,7 +104,7 @@ namespace WinPEImager
 
                 if (files.Length == 0)
                 {
-                    fileTree.Nodes.Add(MapDirectory(d));
+                     fileTree.Nodes.Add(await MapDirectory(d));
                 }
                
             }
@@ -132,52 +133,54 @@ namespace WinPEImager
         }
 
 
-        private void fileTree_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e) {
-            imageDetailListView.Clear();
-            masterPathLabel.Text = "Image Path: ";
-            fileTree.SelectedNode = e.Node;
-            try
+        private async void fileTree_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e) {
+           await Task.Run(async () =>
             {
-                if (e.Node is CustomTreeNode)
+                imageDetailListView.Invoke(new MethodInvoker(delegate { imageDetailListView.Clear(); }));
+                masterPathLabel.Invoke(new MethodInvoker(delegate { Text = "Image Path: "; }));
+                fileTree.Invoke(new MethodInvoker(delegate { fileTree.SelectedNode = e.Node; }));
+                //fileTree.SelectedNode = e.Node;
+                try
                 {
-
-                    if (e.Button == MouseButtons.Right)
+                    if (e.Node is CustomTreeNode)
                     {
-                        clickedNode = (CustomTreeNode)e.Node;
-                        mnu.Show(fileTree, e.Location);
-                    }
-                    else {
-                       
-                        if (e.Node is CustomTreeNode)
-                        {
-                            CustomTreeNode cnode = (CustomTreeNode)e.Node;
-                            Console.WriteLine(cnode.FullPath);
-                            cImage image = parser.parseImageFromXML(cnode.path);
-                            masterPathLabel.Text = "Image Path: " + image.imagePath;
 
-                            foreach (ImageTask task in image.tasks)
+                        if (e.Button == MouseButtons.Right)
+                        {
+                            clickedNode = (CustomTreeNode)e.Node;
+                            mnu.Show(fileTree, e.Location);
+                        }
+                        else {
+                       
+                            if (e.Node is CustomTreeNode)
                             {
-                                imageDetailListView.Items.Add(task.ToListItem());
+                                CustomTreeNode cnode = (CustomTreeNode)e.Node;
+                                Console.WriteLine(cnode.FullPath);
+                                cImage image = parser.parseImageFromXML(cnode.path);
+                                masterPathLabel.Invoke(new MethodInvoker(delegate { Text = "Image Path: " + image.imagePath; }));
+
+                                foreach (ImageTask task in image.tasks)
+                                {
+                                    imageDetailListView.Invoke(new MethodInvoker(delegate { imageDetailListView.Items.Add(task.ToListItem()); }));
+                                    //imageDetailListView.Items.Add(task.ToListItem());
+
+                                }
+                                currentSelectedImage = image;
 
                             }
-                            currentSelectedImage = image;
-
                         }
                     }
-                
-                  
+
+
+                    // parser.Parse(config.GetMasterPath()+e.Node.FullPath);
+
                 }
-
-
-                // parser.Parse(config.GetMasterPath()+e.Node.FullPath);
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("ERROR OCCURED: " + ex.Message);
+                catch (Exception ex)
+                {
+                    MessageBox.Show("ERROR OCCURED: " + ex.Message);
                  
-            }
-
+                }
+            });
         }
 
         private void fileTree_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
@@ -198,9 +201,9 @@ namespace WinPEImager
             
         }
 
-        private void refreshBtn_Click(object sender, EventArgs e)
+        private async void refreshBtn_Click(object sender, EventArgs e)
         {
-            findConfig();
+           await findConfigAsync();
         }
 
         private void startButton_Click(object sender, EventArgs e)
@@ -211,21 +214,24 @@ namespace WinPEImager
             }
         }
 
-        private TreeNode MapDirectory(DirectoryInfo path) { 
-            TreeNode node = new TreeNode(path.Name);
-            FileInfo[] files = path.GetFiles("*.xml");
+        private async Task<TreeNode> MapDirectory(DirectoryInfo path) {
 
-            DirectoryInfo[] subdirs = path.GetDirectories();
-            foreach (DirectoryInfo subdir in subdirs)
-            { 
-               node.Nodes.Add( MapDirectory(subdir));
-            }
-            foreach (FileInfo file in files) {
-                node.Nodes.Add(new CustomTreeNode(file.Name,file.FullName,2,4));
-            }
+            return await Task.Run(async () =>
+            {
+                TreeNode node = new TreeNode(path.Name);
+                FileInfo[] files = path.GetFiles("*.xml");
 
-            return node;
-        
+                DirectoryInfo[] subdirs = path.GetDirectories();
+                foreach (DirectoryInfo subdir in subdirs)
+                { 
+                   node.Nodes.Add(await MapDirectory(subdir));
+                }
+                foreach (FileInfo file in files) {
+                    node.Nodes.Add(new CustomTreeNode(file.Name,file.FullName,2,4));
+                }
+
+                return node;
+            });
         }
     }
 }
