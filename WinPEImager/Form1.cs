@@ -137,7 +137,7 @@ namespace WinPEImager
            await Task.Run(async () =>
             {
                 imageDetailListView.Invoke(new MethodInvoker(delegate { imageDetailListView.Clear(); }));
-                masterPathLabel.Invoke(new MethodInvoker(delegate { Text = "Image Path: "; }));
+                //masterPathLabel.Invoke(new MethodInvoker(delegate { masterPathLabel.Text = "Image Path: " + e.Node.FullPath; }));
                 fileTree.Invoke(new MethodInvoker(delegate { fileTree.SelectedNode = e.Node; }));
                 //fileTree.SelectedNode = e.Node;
                 try
@@ -148,7 +148,9 @@ namespace WinPEImager
                         if (e.Button == MouseButtons.Right)
                         {
                             clickedNode = (CustomTreeNode)e.Node;
-                            mnu.Show(fileTree, e.Location);
+                            _ = new MethodInvoker(delegate { mnu.Show(fileTree, e.Location); });
+
+
                         }
                         else {
                        
@@ -157,8 +159,8 @@ namespace WinPEImager
                                 CustomTreeNode cnode = (CustomTreeNode)e.Node;
                                 Console.WriteLine(cnode.FullPath);
                                 cImage image = parser.parseImageFromXML(cnode.path);
-                                masterPathLabel.Invoke(new MethodInvoker(delegate { Text = "Image Path: " + image.imagePath; }));
-
+                                masterPathLabel.Invoke(new MethodInvoker(delegate { masterPathLabel.Text = "Image Path: " + image.imagePath; }));
+                                image.SetList(imageDetailListView);
                                 foreach (ImageTask task in image.tasks)
                                 {
                                     imageDetailListView.Invoke(new MethodInvoker(delegate { imageDetailListView.Items.Add(task.ToListItem()); }));
@@ -201,9 +203,17 @@ namespace WinPEImager
             
         }
 
+
         private async void refreshBtn_Click(object sender, EventArgs e)
         {
-           await findConfigAsync();
+            try
+            {
+                await findConfigAsync();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR OCCURED: " + ex.Message);
+            }
         }
 
         private void startButton_Click(object sender, EventArgs e)
@@ -232,6 +242,11 @@ namespace WinPEImager
 
                 return node;
             });
+        }
+
+        private void imageDetailListView_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+           
         }
     }
 }

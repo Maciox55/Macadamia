@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ namespace WinPEImager.Classes
     public class Task
     {
         public string command;
+        private string error;
 
 
         private STATUS currentStatus;
@@ -42,6 +44,52 @@ namespace WinPEImager.Classes
             ListViewItem item = new ListViewItem(command, (int)currentStatus);
 
             return item;
+        }
+
+        public async void Execute() {
+            try
+            {
+                if (this.currentStatus != STATUS.Sucessful)
+                {
+                    ProcessStartInfo startInfo = new ProcessStartInfo("cmd.exe", "/C " + this.command);
+                    startInfo.UseShellExecute = false;
+                    startInfo.RedirectStandardOutput = true;
+                    startInfo.RedirectStandardError = true;
+                    Process someProcess = Process.Start(startInfo);
+                    this.error = someProcess.StandardError.ReadToEnd();
+                    this.currentStatus = STATUS.Processing;
+                    Console.WriteLine(this.currentStatus);
+
+                    if (error != string.Empty)
+                    {
+                        Console.WriteLine("ERRORS: " + error);
+                        this.currentStatus = STATUS.Failed;
+
+                        Console.WriteLine(this.currentStatus);
+
+                    }
+                    else
+                    {
+                        Console.WriteLine(someProcess.StandardOutput.ReadToEnd());
+                        this.currentStatus = STATUS.Sucessful;
+                        Console.WriteLine(this.currentStatus);
+                    }
+
+                }
+                else {
+                    MessageBox.Show("Task: " + this.command + " Has already been executed");
+                }
+
+
+            }
+            catch (Exception e) {
+                Console.WriteLine("Exception: "+e);
+            }
+
+
+
+
+
         }
 
     }

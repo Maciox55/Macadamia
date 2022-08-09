@@ -38,13 +38,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.leftPanel = new System.Windows.Forms.Panel();
             this.startButton = new System.Windows.Forms.Button();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
             this.centerPanel = new System.Windows.Forms.Panel();
             this.rightPanel = new System.Windows.Forms.Panel();
             this.tasksLabel = new System.Windows.Forms.Label();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.masterPathLabel = new System.Windows.Forms.Label();
-            this.progressBar = new System.Windows.Forms.ProgressBar();
             this.leftPanel.SuspendLayout();
             this.centerPanel.SuspendLayout();
             this.rightPanel.SuspendLayout();
@@ -127,6 +127,7 @@
             this.imageDetailListView.TabIndex = 6;
             this.imageDetailListView.UseCompatibleStateImageBehavior = false;
             this.imageDetailListView.View = System.Windows.Forms.View.List;
+            this.imageDetailListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.imageDetailListView_MouseDoubleClick);
             // 
             // label1
             // 
@@ -166,6 +167,16 @@
             this.startButton.Text = "START";
             this.startButton.UseVisualStyleBackColor = false;
             this.startButton.Click += new System.EventHandler(this.startButton_Click);
+            // 
+            // progressBar
+            // 
+            this.progressBar.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.progressBar.Location = new System.Drawing.Point(0, 413);
+            this.progressBar.Margin = new System.Windows.Forms.Padding(30);
+            this.progressBar.MaximumSize = new System.Drawing.Size(0, 25);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(201, 25);
+            this.progressBar.TabIndex = 1;
             // 
             // centerPanel
             // 
@@ -226,18 +237,9 @@
             this.masterPathLabel.AutoSize = true;
             this.masterPathLabel.Location = new System.Drawing.Point(416, 3);
             this.masterPathLabel.Name = "masterPathLabel";
-            this.masterPathLabel.Size = new System.Drawing.Size(0, 13);
+            this.masterPathLabel.Size = new System.Drawing.Size(64, 13);
             this.masterPathLabel.TabIndex = 0;
-            // 
-            // progressBar
-            // 
-            this.progressBar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.progressBar.Location = new System.Drawing.Point(0, 413);
-            this.progressBar.Margin = new System.Windows.Forms.Padding(30);
-            this.progressBar.MaximumSize = new System.Drawing.Size(0, 25);
-            this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(201, 25);
-            this.progressBar.TabIndex = 1;
+            this.masterPathLabel.Text = "Image Path:";
             // 
             // Form1
             // 
