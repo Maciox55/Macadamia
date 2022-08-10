@@ -14,8 +14,9 @@ namespace WinPEImager.Classes
     {
         public string command;
         private string error;
+        private string path;
 
-
+        private bool sucessful;
         private STATUS currentStatus;
 
         public Task(string command) {
@@ -41,21 +42,27 @@ namespace WinPEImager.Classes
             return item;
         }
 
+        public Task AddPath(string p)
+        {
+            this.path = p;
+            return this;
+        }
+
         public async AsyncTask Execute() {
 
             try
             {
+                //Check if the status is not Sucessful, otherwise skip the operation.
                 if (this.currentStatus != STATUS.Sucessful)
                 {
-                    ProcessStartInfo startInfo = new ProcessStartInfo("cmd.exe", "/C " + this.command);
-                    startInfo.UseShellExecute = false;
-                    startInfo.RedirectStandardOutput = true;
-                    startInfo.RedirectStandardError = true;
-                    Process someProcess = Process.Start(startInfo);
-                    this.error = someProcess.StandardError.ReadToEnd();
+    
                     this.currentStatus = STATUS.Processing;
 
-                    if (error != string.Empty)
+                    sucessful = CMDR.GetProcess().RunCommand(this.command);
+
+
+
+                    if (!sucessful)
                     {
                         Console.WriteLine("ERRORS: " + error);
                         this.currentStatus = STATUS.Failed;
@@ -63,7 +70,7 @@ namespace WinPEImager.Classes
                     }
                     else
                     {
-                        Console.WriteLine(someProcess.StandardOutput.ReadToEnd());
+                        
                         this.currentStatus = STATUS.Sucessful;
                         Console.WriteLine(this.currentStatus);
                     }

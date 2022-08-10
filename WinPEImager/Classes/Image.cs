@@ -14,7 +14,6 @@ namespace WinPEImager.Classes
         public string imagePath;
         public List<Task> tasks;
 
-        private Task currentTask;
 
         private ListView listview;
 
@@ -50,21 +49,21 @@ namespace WinPEImager.Classes
             this.listview = lv;
         }
 
-        public Task GetCurrentTask() {
-            return currentTask;
-        }
-
+        //Start executing the tasks
         public async void Start()
         {
+            //temporary list, in case list manipulation will need to happen in the future (proper queue system)
             List<Task> taskList = tasks;
 
 
 
             foreach (Task task in taskList)
             {
+                //Call execute the task
                 await task.Execute();
+                //change the image indes of the task in the list view
                 listview.Invoke(new MethodInvoker (delegate { listview.FindItemWithText(task.command).ImageIndex = ((int)task.GetStatus()); }));
-                
+              
             }
         }
     }

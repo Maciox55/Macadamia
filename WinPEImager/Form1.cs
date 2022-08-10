@@ -165,16 +165,22 @@ namespace WinPEImager
                             if (e.Node is CustomTreeNode)
                             {
                                 CustomTreeNode cnode = (CustomTreeNode)e.Node;
-                                Console.WriteLine(cnode.FullPath);
+
+                                //Console.WriteLine(cnode.FullPath);
+                                //Parse XML at the nodes path into an image file
                                 cImage image = parser.parseImageFromXML(cnode.path);
+                                //Set the master path label with the path of the image file.
                                 masterPathLabel.Invoke(new MethodInvoker(delegate { masterPathLabel.Text = "Image Path: " + image.imagePath; }));
+                                //Set reference to listview
                                 image.SetList(imageDetailListView);
+                                //Iterate over each task in image and add it to the list
                                 foreach (ImageTask task in image.tasks)
                                 {
                                     imageDetailListView.Invoke(new MethodInvoker(delegate { imageDetailListView.Items.Add(task.ToListItem()); }));
                                     //imageDetailListView.Items.Add(task.ToListItem());
 
                                 }
+                                //Set currently selected image
                                 currentSelectedImage = image;
 
                             }

@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Client.cs" />
+    <Compile Include="Classes\CMDR.cs" />
     <Compile Include="Classes\Config.cs" />
     <Compile Include="Classes\CustomTreeNode.cs" />
     <Compile Include="Classes\Enums\STATUS.cs" />
