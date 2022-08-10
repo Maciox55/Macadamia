@@ -12,23 +12,47 @@ namespace WinPEImager.Classes
     {
 
         private static object locker = new object();
-        private Process process;
+        public Process process;
         static CMDR instance;
+
+        private List<string> values = new List<string>();
 
         private ProcessStartInfo startInfo;
         private string error;
 
         protected CMDR() {
-           startInfo = new ProcessStartInfo("cmd.exe");
-           startInfo.UseShellExecute = false;
-           startInfo.RedirectStandardOutput = true;
-           startInfo.RedirectStandardInput = true;
-           
-           startInfo.RedirectStandardError = true;
 
-           process = Process.Start(startInfo);
-           //this.error = process.StandardError.ReadToEnd();
+            process = new Process();
+            process.StartInfo.FileName = "cmd.exe";
+            process.StartInfo.UseShellExecute = false;
+            process.StartInfo.RedirectStandardOutput = true;
+            process.StartInfo.RedirectStandardInput = true;
+            process.StartInfo.RedirectStandardError = true;
 
+
+            process.ErrorDataReceived += (s, e) => {
+                lock (values)
+                {
+                    values.Add("! > " + e.Data);
+                }
+            };
+
+            process.OutputDataReceived += new DataReceivedEventHandler((sender, e) =>
+            {
+
+                if (!String.IsNullOrEmpty(e.Data))
+                {
+                               
+                    Console.WriteLine(e.Data);
+
+                }
+            });
+
+            process.Start();
+            process.BeginErrorReadLine();
+            process.BeginOutputReadLine();
+
+            //this.error = process.StandardError.ReadToEnd();
         }
 
         public static CMDR GetProcess()
@@ -46,37 +70,28 @@ namespace WinPEImager.Classes
             return instance;
         }
 
-        public bool RunCommand(string command)
+        public async Task<bool> RunCommand(string command)
         {
-
-            //startInfo.Arguments = "/C " + command;
-            //process = Process.Start(startInfo);
-           
-
-            //using (StreamWriter sw = process.StandardInput)
-            //{
-            //    if (sw.BaseStream.CanWrite)
-            //    {
-            //        sw.WriteLine(command);
-                    
-            //    }
-            //}
-
-            error = process.StandardError.ReadToEnd();
-
-            if (error != string.Empty)
-            {
-                Console.WriteLine("ERRORS: " + error);
-                return false;
-            }
-            else
-            {
-                Console.WriteLine("ERRORS: " + error);
-                return true;
-            }
-
+            values.Clear();
+            StreamWriter CMDInput = process.StandardInput;
             
-        
+            string InputString = "CMD.exe /C "+ command;
+
+
+            CMDInput.WriteLine(InputString);
+            process.WaitForExit();
+
+                if (values.Count() != 0)
+                {
+                    Console.WriteLine("ERRORS: " + values.Count());
+                    return false;
+                }
+                else
+                {
+                    Console.WriteLine("Success: " + error);
+                    return true;
+                }
+
         }
     }
 }
