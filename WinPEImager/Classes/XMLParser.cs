@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WinPEImager.Classes;
+using WinPEImager.Classes.Enums;
 
 namespace WinPEImager.Classes
 {
@@ -34,10 +35,21 @@ namespace WinPEImager.Classes
                 IEnumerable<XElement> elements = xdoc.Root.Element("TASKS").Elements("TASK");
                 Console.WriteLine("TEST " + xdoc.Root.Element("TASKS").Elements("TASK").ToList().Count);
 
+
                 foreach (XElement element in elements)
                 {
-                    Console.WriteLine(element.Attribute("command").Value);
-                    tasks.Add(new Task(element.Attribute("command").Value));
+                    string type = element.Attribute("type").Value.ToLower();
+                    if (type == "command")
+                    {
+                        tasks.Add(new Task(element.Attribute("command").Value, TYPE.Command));
+                    }
+                    else if (type == "bat")
+                    {
+                        tasks.Add(new Task(element.Attribute("command").Value, TYPE.Bat));
+                    }
+
+
+                    //Console.WriteLine(element.Attribute("command").Value);
                 }
 
                 Image image = new Image(imagePath, tasks);

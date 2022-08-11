@@ -15,6 +15,7 @@ namespace WinPEImager.Classes
         public string command;
         private string error;
         private string path;
+        private TYPE type;
 
         private bool sucessful;
         private STATUS currentStatus;
@@ -22,7 +23,19 @@ namespace WinPEImager.Classes
         public Task(string command) {
             this.command = command;
             currentStatus = STATUS.Idle;
-            Console.WriteLine("TASK STATUS: " + (int)currentStatus + "   " + currentStatus);
+        }
+        public Task(string command, TYPE t)
+        {
+            this.command = command;
+            this.type = t;
+            currentStatus = STATUS.Idle;
+        }
+        public Task(string command,string p, TYPE t)
+        {
+            this.command = command;
+            this.path = p;
+            this.type = t;
+            currentStatus = STATUS.Idle;
         }
         public void SetStatus(STATUS newStatus)
         { 
@@ -58,7 +71,7 @@ namespace WinPEImager.Classes
     
                     this.currentStatus = STATUS.Processing;
 
-                    sucessful = await AsyncTask.Run(()=> CMDR.GetProcess().RunCommand(this.command));
+                    sucessful = await AsyncTask.Run(()=> CMDR.GetProcess().RunCommand(this));
 
 
 
@@ -86,12 +99,6 @@ namespace WinPEImager.Classes
                 Console.WriteLine("Exception: "+e);
                 this.currentStatus = STATUS.Failed;
             }
-
-
-
-
-
         }
-
     }
 }

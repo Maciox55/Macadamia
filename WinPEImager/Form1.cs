@@ -169,8 +169,9 @@ namespace WinPEImager
                                 //Console.WriteLine(cnode.FullPath);
                                 //Parse XML at the nodes path into an image file
                                 cImage image = parser.parseImageFromXML(cnode.path);
+                                image.path = cnode.dirPath;
                                 //Set the master path label with the path of the image file.
-                                masterPathLabel.Invoke(new MethodInvoker(delegate { masterPathLabel.Text = "Image Path: " + image.imagePath; }));
+                                masterPathLabel.Invoke(new MethodInvoker(delegate { masterPathLabel.Text = "Image Path: " + image.path; }));
                                 //Set reference to listview
                                 image.SetList(imageDetailListView);
                                 //Iterate over each task in image and add it to the list
@@ -178,7 +179,6 @@ namespace WinPEImager
                                 {
                                     imageDetailListView.Invoke(new MethodInvoker(delegate { imageDetailListView.Items.Add(task.ToListItem()); }));
                                     //imageDetailListView.Items.Add(task.ToListItem());
-
                                 }
                                 //Set currently selected image
                                 currentSelectedImage = image;
@@ -251,7 +251,7 @@ namespace WinPEImager
                    node.Nodes.Add(await MapDirectory(subdir));
                 }
                 foreach (FileInfo file in files) {
-                    node.Nodes.Add(new CustomTreeNode(file.Name,file.FullName,2,4));
+                    node.Nodes.Add(new CustomTreeNode(file.Name,file.FullName,file.Directory.FullName,2,4));
                 }
 
                 return node;

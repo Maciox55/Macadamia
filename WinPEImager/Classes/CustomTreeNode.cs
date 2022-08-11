@@ -10,6 +10,7 @@ namespace WinPEImager.Classes
     public class CustomTreeNode : TreeNode
     {
         public string path;
+        public string dirPath;
         public CustomTreeNode(string text) {
             Text = text;
         
@@ -20,10 +21,11 @@ namespace WinPEImager.Classes
             this.path = path;
 
         }
-        public CustomTreeNode(string text, string path, int imageIndex, int selectionImageIndex)
+        public CustomTreeNode(string text, string path,string dir, int imageIndex, int selectionImageIndex)
         {
             Text = text;
             this.path = path;
+            dirPath = dir;
             ImageIndex = imageIndex;
             SelectedImageIndex = selectionImageIndex;
 

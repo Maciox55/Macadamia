@@ -14,6 +14,7 @@ namespace WinPEImager.Classes
     {
         private static readonly Config instance = new Config();
         private string masterPath;
+        private string workingdrive;
 
         private Config() {
             Console.WriteLine("Initialized Config Singleton");
@@ -31,10 +32,15 @@ namespace WinPEImager.Classes
             return masterPath;
         }
 
+        public string GetWorkingDir() {
+            return workingdrive;
+        }
+
         private void ParseConfigFile(XElement xmlContent) {
             masterPath = xmlContent.Element("MASTERPATH").Value;
+            workingdrive = xmlContent.Element("WORKINGDRIVE").Value;
             Console.WriteLine(masterPath);
-            
+
         }
     }
 }

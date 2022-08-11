@@ -70,18 +70,22 @@ namespace WinPEImager.Classes
             return instance;
         }
 
-        public async Task<bool> RunCommand(string command)
+        public async Task<bool> RunCommand(Task task)
         {
             values.Clear();
+       
+            //process.BeginErrorReadLine();
+            //process.BeginOutputReadLine();
+
             StreamWriter CMDInput = process.StandardInput;
             
-            string InputString = "CMD.exe /C "+ command;
-
-
+            string InputString = "CMD.exe /C "+ task.command;
             CMDInput.WriteLine(InputString);
-            process.WaitForExit();
 
-                if (values.Count() != 0)
+
+
+
+            if (values.Count() != 0)
                 {
                     Console.WriteLine("ERRORS: " + values.Count());
                     return false;
@@ -91,6 +95,7 @@ namespace WinPEImager.Classes
                     Console.WriteLine("Success: " + error);
                     return true;
                 }
+
 
         }
     }
