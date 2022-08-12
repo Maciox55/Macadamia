@@ -262,5 +262,10 @@ namespace WinPEImager
         {
            
         }
+
+        private void consoleClearButton_Click(object sender, EventArgs e)
+        {
+            consoleOutputTextBox.Clear();
+        }
     }
 }

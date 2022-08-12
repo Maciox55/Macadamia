@@ -222,6 +222,7 @@
             this.consoleClearButton.TabIndex = 9;
             this.consoleClearButton.Text = "Clear";
             this.consoleClearButton.UseVisualStyleBackColor = true;
+            this.consoleClearButton.Click += new System.EventHandler(this.consoleClearButton_Click);
             // 
             // Form1
             // 
@@ -258,11 +259,11 @@
         private System.Windows.Forms.Label tasksLabel;
         private System.Windows.Forms.Panel mainPanel;
         private System.Windows.Forms.Button startButton;
-        private System.Windows.Forms.TextBox consoleOutputTextBox;
         private System.Windows.Forms.Label masterPathLabel;
         private System.Windows.Forms.Panel bottomPanel;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button consoleClearButton;
+        public System.Windows.Forms.TextBox consoleOutputTextBox;
     }
 
     

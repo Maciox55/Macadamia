@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 using WinPEImager.Classes.Enums;
+using System.Drawing;
 
 namespace WinPEImager.Classes
 {
@@ -35,7 +36,7 @@ namespace WinPEImager.Classes
                 if (!String.IsNullOrEmpty(e.Data))
                 {
                     values.Add("! > " + e.Data);
-                    consoleOutput.Invoke(new MethodInvoker(delegate { consoleOutput.AppendText("ERROR > "+e.Data); consoleOutput.AppendText(Environment.NewLine); }));
+                    consoleOutput.Invoke(new MethodInvoker(delegate {consoleOutput.AppendText("ERROR > "+e.Data); consoleOutput.AppendText(Environment.NewLine); }));
                     Console.WriteLine(e.Data);
                 }
             };
@@ -45,7 +46,7 @@ namespace WinPEImager.Classes
 
                 if (!String.IsNullOrEmpty(e.Data))
                 {
-                    consoleOutput.Invoke(new MethodInvoker(delegate { consoleOutput.AppendText(e.Data); consoleOutput.AppendText(Environment.NewLine); }));
+                    consoleOutput.Invoke(new MethodInvoker(delegate {consoleOutput.AppendText(e.Data); consoleOutput.AppendText(Environment.NewLine); }));
                     Console.WriteLine(e.Data);
 
                 }
