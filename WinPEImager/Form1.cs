@@ -65,7 +65,6 @@ namespace WinPEImager
         private async Task findConfigAsync()
         {
             fileTree.Nodes.Clear();
-            clientSel.Items.Clear();
             imageDetailListView.Clear();
 
 

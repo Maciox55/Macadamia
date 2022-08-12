@@ -28,11 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.clientSel = new System.Windows.Forms.ComboBox();
-            this.clientSelLabel = new System.Windows.Forms.Label();
             this.fileTree = new System.Windows.Forms.TreeView();
-            this.pnSelLabel = new System.Windows.Forms.Label();
-            this.pnSel = new System.Windows.Forms.ComboBox();
             this.refreshBtn = new System.Windows.Forms.Button();
             this.imageDetailListView = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
@@ -43,34 +39,13 @@
             this.rightPanel = new System.Windows.Forms.Panel();
             this.tasksLabel = new System.Windows.Forms.Label();
             this.mainPanel = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.consoleOutputTextBox = new System.Windows.Forms.TextBox();
             this.masterPathLabel = new System.Windows.Forms.Label();
             this.leftPanel.SuspendLayout();
             this.centerPanel.SuspendLayout();
             this.rightPanel.SuspendLayout();
             this.mainPanel.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // clientSel
-            // 
-            this.clientSel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.clientSel.FormattingEnabled = true;
-            this.clientSel.Location = new System.Drawing.Point(6, 22);
-            this.clientSel.Name = "clientSel";
-            this.clientSel.Size = new System.Drawing.Size(192, 21);
-            this.clientSel.TabIndex = 0;
-            this.clientSel.SelectedIndexChanged += new System.EventHandler(this.clientSel_SelectedIndexChanged);
-            // 
-            // clientSelLabel
-            // 
-            this.clientSelLabel.AutoSize = true;
-            this.clientSelLabel.Location = new System.Drawing.Point(3, 6);
-            this.clientSelLabel.Name = "clientSelLabel";
-            this.clientSelLabel.Size = new System.Drawing.Size(33, 13);
-            this.clientSelLabel.TabIndex = 1;
-            this.clientSelLabel.Text = "Client";
             // 
             // fileTree
             // 
@@ -79,37 +54,18 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.fileTree.Location = new System.Drawing.Point(3, 22);
             this.fileTree.Name = "fileTree";
-            this.fileTree.Size = new System.Drawing.Size(209, 413);
+            this.fileTree.Size = new System.Drawing.Size(242, 413);
             this.fileTree.TabIndex = 2;
             this.fileTree.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.fileTree_NodeMouseClick);
             this.fileTree.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.fileTree_NodeMouseDoubleClick);
-            // 
-            // pnSelLabel
-            // 
-            this.pnSelLabel.AutoSize = true;
-            this.pnSelLabel.Location = new System.Drawing.Point(3, 58);
-            this.pnSelLabel.Name = "pnSelLabel";
-            this.pnSelLabel.Size = new System.Drawing.Size(66, 13);
-            this.pnSelLabel.TabIndex = 3;
-            this.pnSelLabel.Text = "Part Number";
-            // 
-            // pnSel
-            // 
-            this.pnSel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnSel.FormattingEnabled = true;
-            this.pnSel.Location = new System.Drawing.Point(6, 76);
-            this.pnSel.Name = "pnSel";
-            this.pnSel.Size = new System.Drawing.Size(192, 21);
-            this.pnSel.TabIndex = 4;
             // 
             // refreshBtn
             // 
             this.refreshBtn.BackColor = System.Drawing.Color.White;
             this.refreshBtn.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.refreshBtn.Location = new System.Drawing.Point(0, 322);
+            this.refreshBtn.Location = new System.Drawing.Point(0, 347);
             this.refreshBtn.Name = "refreshBtn";
-            this.refreshBtn.Size = new System.Drawing.Size(201, 45);
+            this.refreshBtn.Size = new System.Drawing.Size(413, 45);
             this.refreshBtn.TabIndex = 5;
             this.refreshBtn.Text = "Refresh";
             this.refreshBtn.UseVisualStyleBackColor = false;
@@ -123,7 +79,7 @@
             this.imageDetailListView.HideSelection = false;
             this.imageDetailListView.Location = new System.Drawing.Point(3, 22);
             this.imageDetailListView.Name = "imageDetailListView";
-            this.imageDetailListView.Size = new System.Drawing.Size(631, 413);
+            this.imageDetailListView.Size = new System.Drawing.Size(377, 413);
             this.imageDetailListView.TabIndex = 6;
             this.imageDetailListView.UseCompatibleStateImageBehavior = false;
             this.imageDetailListView.View = System.Windows.Forms.View.List;
@@ -143,26 +99,23 @@
             // leftPanel
             // 
             this.leftPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.leftPanel.Controls.Add(this.consoleOutputTextBox);
             this.leftPanel.Controls.Add(this.refreshBtn);
             this.leftPanel.Controls.Add(this.startButton);
-            this.leftPanel.Controls.Add(this.clientSel);
-            this.leftPanel.Controls.Add(this.clientSelLabel);
-            this.leftPanel.Controls.Add(this.pnSelLabel);
-            this.leftPanel.Controls.Add(this.pnSel);
             this.leftPanel.Controls.Add(this.progressBar);
             this.leftPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.leftPanel.Location = new System.Drawing.Point(0, 0);
             this.leftPanel.Name = "leftPanel";
-            this.leftPanel.Size = new System.Drawing.Size(201, 438);
+            this.leftPanel.Size = new System.Drawing.Size(413, 463);
             this.leftPanel.TabIndex = 9;
             // 
             // startButton
             // 
             this.startButton.BackColor = System.Drawing.Color.White;
             this.startButton.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.startButton.Location = new System.Drawing.Point(0, 367);
+            this.startButton.Location = new System.Drawing.Point(0, 392);
             this.startButton.Name = "startButton";
-            this.startButton.Size = new System.Drawing.Size(201, 46);
+            this.startButton.Size = new System.Drawing.Size(413, 46);
             this.startButton.TabIndex = 6;
             this.startButton.Text = "START";
             this.startButton.UseVisualStyleBackColor = false;
@@ -171,11 +124,11 @@
             // progressBar
             // 
             this.progressBar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.progressBar.Location = new System.Drawing.Point(0, 413);
+            this.progressBar.Location = new System.Drawing.Point(0, 438);
             this.progressBar.Margin = new System.Windows.Forms.Padding(30);
             this.progressBar.MaximumSize = new System.Drawing.Size(0, 25);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(201, 25);
+            this.progressBar.Size = new System.Drawing.Size(413, 25);
             this.progressBar.TabIndex = 1;
             // 
             // centerPanel
@@ -185,9 +138,9 @@
             this.centerPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.centerPanel.Controls.Add(this.fileTree);
             this.centerPanel.Controls.Add(this.label1);
-            this.centerPanel.Location = new System.Drawing.Point(201, 0);
+            this.centerPanel.Location = new System.Drawing.Point(419, 0);
             this.centerPanel.Name = "centerPanel";
-            this.centerPanel.Size = new System.Drawing.Size(215, 438);
+            this.centerPanel.Size = new System.Drawing.Size(248, 438);
             this.centerPanel.TabIndex = 20;
             // 
             // rightPanel
@@ -197,9 +150,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rightPanel.Controls.Add(this.imageDetailListView);
             this.rightPanel.Controls.Add(this.tasksLabel);
-            this.rightPanel.Location = new System.Drawing.Point(416, 0);
+            this.rightPanel.Location = new System.Drawing.Point(670, 0);
             this.rightPanel.Name = "rightPanel";
-            this.rightPanel.Size = new System.Drawing.Size(637, 438);
+            this.rightPanel.Size = new System.Drawing.Size(383, 438);
             this.rightPanel.TabIndex = 10;
             // 
             // tasksLabel
@@ -214,31 +167,34 @@
             // 
             // mainPanel
             // 
+            this.mainPanel.Controls.Add(this.masterPathLabel);
             this.mainPanel.Controls.Add(this.centerPanel);
             this.mainPanel.Controls.Add(this.rightPanel);
             this.mainPanel.Controls.Add(this.leftPanel);
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPanel.Location = new System.Drawing.Point(0, 0);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(1053, 438);
+            this.mainPanel.Size = new System.Drawing.Size(1053, 463);
             this.mainPanel.TabIndex = 150;
             // 
-            // panel1
+            // consoleOutputTextBox
             // 
-            this.panel1.Controls.Add(this.masterPathLabel);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 438);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1053, 25);
-            this.panel1.TabIndex = 6;
+            this.consoleOutputTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.consoleOutputTextBox.Location = new System.Drawing.Point(3, 3);
+            this.consoleOutputTextBox.MaxLength = 2147483647;
+            this.consoleOutputTextBox.Multiline = true;
+            this.consoleOutputTextBox.Name = "consoleOutputTextBox";
+            this.consoleOutputTextBox.ReadOnly = true;
+            this.consoleOutputTextBox.Size = new System.Drawing.Size(407, 338);
+            this.consoleOutputTextBox.TabIndex = 7;
             // 
             // masterPathLabel
             // 
             this.masterPathLabel.AutoSize = true;
-            this.masterPathLabel.Location = new System.Drawing.Point(416, 3);
+            this.masterPathLabel.Location = new System.Drawing.Point(419, 441);
             this.masterPathLabel.Name = "masterPathLabel";
             this.masterPathLabel.Size = new System.Drawing.Size(64, 13);
-            this.masterPathLabel.TabIndex = 0;
+            this.masterPathLabel.TabIndex = 21;
             this.masterPathLabel.Text = "Image Path:";
             // 
             // Form1
@@ -248,7 +204,6 @@
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(1053, 463);
             this.Controls.Add(this.mainPanel);
-            this.Controls.Add(this.panel1);
             this.Name = "Form1";
             this.Text = "WinPE Imager";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -259,19 +214,13 @@
             this.rightPanel.ResumeLayout(false);
             this.rightPanel.PerformLayout();
             this.mainPanel.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.mainPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.ComboBox clientSel;
-        private System.Windows.Forms.Label clientSelLabel;
         private System.Windows.Forms.TreeView fileTree;
-        private System.Windows.Forms.Label pnSelLabel;
-        private System.Windows.Forms.ComboBox pnSel;
         private System.Windows.Forms.Button refreshBtn;
         private System.Windows.Forms.ListView imageDetailListView;
         private System.Windows.Forms.Label label1;
@@ -280,10 +229,10 @@
         private System.Windows.Forms.Panel rightPanel;
         private System.Windows.Forms.Label tasksLabel;
         private System.Windows.Forms.Panel mainPanel;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label masterPathLabel;
         private System.Windows.Forms.Button startButton;
         private System.Windows.Forms.ProgressBar progressBar;
+        private System.Windows.Forms.TextBox consoleOutputTextBox;
+        private System.Windows.Forms.Label masterPathLabel;
     }
 
     

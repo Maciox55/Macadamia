@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using AsyncTask = System.Threading.Tasks;
 using System.Diagnostics;
 using System.IO;
+using WinPEImager.Classes.Enums;
 
 namespace WinPEImager.Classes
 {
@@ -18,7 +19,6 @@ namespace WinPEImager.Classes
         private List<string> values = new List<string>();
 
         private ProcessStartInfo startInfo;
-        private string error;
 
         protected CMDR() {
 
@@ -31,9 +31,10 @@ namespace WinPEImager.Classes
 
 
             process.ErrorDataReceived += (s, e) => {
-                lock (values)
+                if (!String.IsNullOrEmpty(e.Data))
                 {
                     values.Add("! > " + e.Data);
+                    Console.WriteLine(e.Data);
                 }
             };
 
@@ -48,9 +49,7 @@ namespace WinPEImager.Classes
                 }
             });
 
-            process.Start();
-            process.BeginErrorReadLine();
-            process.BeginOutputReadLine();
+           
 
             //this.error = process.StandardError.ReadToEnd();
         }
@@ -70,17 +69,46 @@ namespace WinPEImager.Classes
             return instance;
         }
 
-        public async Task<bool> RunCommand(Task task)
+        public async AsyncTask.Task<bool> RunCommand(Task task)
         {
-            values.Clear();
-       
-            //process.BeginErrorReadLine();
-            //process.BeginOutputReadLine();
 
-            StreamWriter CMDInput = process.StandardInput;
-            
-            string InputString = "CMD.exe /C "+ task.command;
-            CMDInput.WriteLine(InputString);
+
+
+            values.Clear();
+
+
+            if (task.GetTaskType() == TYPE.Command)
+            {
+                process.StartInfo.FileName = "cmd.exe";
+                process.StartInfo.WorkingDirectory = @"C:\";
+                process.StartInfo.Arguments = "/C " + task.command;
+
+
+                
+            }
+            if (task.GetTaskType() == TYPE.Bat)
+            {
+                //process.StartInfo.FileName = "cmd.exe";
+                //process.StartInfo.WorkingDirectory = Config.Instance().GetWorkingDir() + @"\Required\";
+                //process.StartInfo.Arguments =  task.command;
+                //Console.WriteLine(process.StartInfo.WorkingDirectory);
+                process.StartInfo.Arguments = "/C "+Config.Instance().GetWorkingDir() + @"\Required\" + task.command;
+
+
+
+            }
+            process.Start();
+            process.BeginErrorReadLine();
+            process.BeginOutputReadLine();
+
+
+
+            await AsyncTask.Task.Delay(1000);
+
+            process.WaitForExit();
+
+            process.CancelErrorRead();
+            process.CancelOutputRead();
 
 
 
@@ -92,7 +120,7 @@ namespace WinPEImager.Classes
                 }
                 else
                 {
-                    Console.WriteLine("Success: " + error);
+                    Console.WriteLine("Success");
                     return true;
                 }
 

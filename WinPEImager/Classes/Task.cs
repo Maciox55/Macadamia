@@ -15,6 +15,7 @@ namespace WinPEImager.Classes
         public string command;
         private string error;
         private string path;
+        private Image parentImage;
         private TYPE type;
 
         private bool sucessful;
@@ -30,11 +31,12 @@ namespace WinPEImager.Classes
             this.type = t;
             currentStatus = STATUS.Idle;
         }
-        public Task(string command,string p, TYPE t)
+        public Task(string command,string p,Image pimage, TYPE t)
         {
             this.command = command;
             this.path = p;
             this.type = t;
+            this.parentImage = pimage;
             currentStatus = STATUS.Idle;
         }
         public void SetStatus(STATUS newStatus)
@@ -47,6 +49,15 @@ namespace WinPEImager.Classes
         {
             return currentStatus;
         }
+        public TYPE GetTaskType()
+        {
+            return type;
+        }
+
+        public Image GetParentImage() {
+            return parentImage;
+        }
+
 
         public ListViewItem ToListItem() {
 
