@@ -5,6 +5,7 @@ using System.Text;
 using AsyncTask = System.Threading.Tasks;
 using System.Diagnostics;
 using System.IO;
+using System.Windows.Forms;
 using WinPEImager.Classes.Enums;
 
 namespace WinPEImager.Classes
@@ -15,7 +16,7 @@ namespace WinPEImager.Classes
         private static object locker = new object();
         public Process process;
         static CMDR instance;
-
+        private TextBox consoleOutput;
         private List<string> values = new List<string>();
 
         private ProcessStartInfo startInfo;
@@ -34,6 +35,7 @@ namespace WinPEImager.Classes
                 if (!String.IsNullOrEmpty(e.Data))
                 {
                     values.Add("! > " + e.Data);
+                    consoleOutput.Invoke(new MethodInvoker(delegate { consoleOutput.AppendText("ERROR > "+e.Data); consoleOutput.AppendText(Environment.NewLine); }));
                     Console.WriteLine(e.Data);
                 }
             };
@@ -43,7 +45,7 @@ namespace WinPEImager.Classes
 
                 if (!String.IsNullOrEmpty(e.Data))
                 {
-                               
+                    consoleOutput.Invoke(new MethodInvoker(delegate { consoleOutput.AppendText(e.Data); consoleOutput.AppendText(Environment.NewLine); }));
                     Console.WriteLine(e.Data);
 
                 }
@@ -68,7 +70,11 @@ namespace WinPEImager.Classes
             }
             return instance;
         }
-
+        public CMDR SetConsoleOutput(TextBox f)
+        {
+            consoleOutput = f;
+            return this;
+        }
         public async AsyncTask.Task<bool> RunCommand(Task task)
         {
 

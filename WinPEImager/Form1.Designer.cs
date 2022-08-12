@@ -34,27 +34,28 @@
             this.label1 = new System.Windows.Forms.Label();
             this.leftPanel = new System.Windows.Forms.Panel();
             this.startButton = new System.Windows.Forms.Button();
-            this.progressBar = new System.Windows.Forms.ProgressBar();
             this.centerPanel = new System.Windows.Forms.Panel();
             this.rightPanel = new System.Windows.Forms.Panel();
             this.tasksLabel = new System.Windows.Forms.Label();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.consoleOutputTextBox = new System.Windows.Forms.TextBox();
             this.masterPathLabel = new System.Windows.Forms.Label();
+            this.bottomPanel = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.consoleClearButton = new System.Windows.Forms.Button();
             this.leftPanel.SuspendLayout();
             this.centerPanel.SuspendLayout();
             this.rightPanel.SuspendLayout();
             this.mainPanel.SuspendLayout();
+            this.bottomPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // fileTree
             // 
-            this.fileTree.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.fileTree.Location = new System.Drawing.Point(3, 22);
+            this.fileTree.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fileTree.Location = new System.Drawing.Point(0, 13);
             this.fileTree.Name = "fileTree";
-            this.fileTree.Size = new System.Drawing.Size(242, 413);
+            this.fileTree.Size = new System.Drawing.Size(283, 425);
             this.fileTree.TabIndex = 2;
             this.fileTree.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.fileTree_NodeMouseClick);
             this.fileTree.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.fileTree_NodeMouseDoubleClick);
@@ -73,13 +74,11 @@
             // 
             // imageDetailListView
             // 
-            this.imageDetailListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.imageDetailListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.imageDetailListView.HideSelection = false;
-            this.imageDetailListView.Location = new System.Drawing.Point(3, 22);
+            this.imageDetailListView.Location = new System.Drawing.Point(0, 13);
             this.imageDetailListView.Name = "imageDetailListView";
-            this.imageDetailListView.Size = new System.Drawing.Size(377, 413);
+            this.imageDetailListView.Size = new System.Drawing.Size(342, 425);
             this.imageDetailListView.TabIndex = 6;
             this.imageDetailListView.UseCompatibleStateImageBehavior = false;
             this.imageDetailListView.View = System.Windows.Forms.View.List;
@@ -99,14 +98,15 @@
             // leftPanel
             // 
             this.leftPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.leftPanel.Controls.Add(this.consoleClearButton);
+            this.leftPanel.Controls.Add(this.label2);
             this.leftPanel.Controls.Add(this.consoleOutputTextBox);
             this.leftPanel.Controls.Add(this.refreshBtn);
             this.leftPanel.Controls.Add(this.startButton);
-            this.leftPanel.Controls.Add(this.progressBar);
             this.leftPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.leftPanel.Location = new System.Drawing.Point(0, 0);
             this.leftPanel.Name = "leftPanel";
-            this.leftPanel.Size = new System.Drawing.Size(413, 463);
+            this.leftPanel.Size = new System.Drawing.Size(413, 438);
             this.leftPanel.TabIndex = 9;
             // 
             // startButton
@@ -121,16 +121,6 @@
             this.startButton.UseVisualStyleBackColor = false;
             this.startButton.Click += new System.EventHandler(this.startButton_Click);
             // 
-            // progressBar
-            // 
-            this.progressBar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.progressBar.Location = new System.Drawing.Point(0, 438);
-            this.progressBar.Margin = new System.Windows.Forms.Padding(30);
-            this.progressBar.MaximumSize = new System.Drawing.Size(0, 25);
-            this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(413, 25);
-            this.progressBar.TabIndex = 1;
-            // 
             // centerPanel
             // 
             this.centerPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -140,7 +130,7 @@
             this.centerPanel.Controls.Add(this.label1);
             this.centerPanel.Location = new System.Drawing.Point(419, 0);
             this.centerPanel.Name = "centerPanel";
-            this.centerPanel.Size = new System.Drawing.Size(248, 438);
+            this.centerPanel.Size = new System.Drawing.Size(283, 438);
             this.centerPanel.TabIndex = 20;
             // 
             // rightPanel
@@ -150,9 +140,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rightPanel.Controls.Add(this.imageDetailListView);
             this.rightPanel.Controls.Add(this.tasksLabel);
-            this.rightPanel.Location = new System.Drawing.Point(670, 0);
+            this.rightPanel.Location = new System.Drawing.Point(708, 0);
             this.rightPanel.Name = "rightPanel";
-            this.rightPanel.Size = new System.Drawing.Size(383, 438);
+            this.rightPanel.Size = new System.Drawing.Size(342, 438);
             this.rightPanel.TabIndex = 10;
             // 
             // tasksLabel
@@ -167,35 +157,71 @@
             // 
             // mainPanel
             // 
-            this.mainPanel.Controls.Add(this.masterPathLabel);
+            this.mainPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.mainPanel.Controls.Add(this.centerPanel);
             this.mainPanel.Controls.Add(this.rightPanel);
             this.mainPanel.Controls.Add(this.leftPanel);
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPanel.Location = new System.Drawing.Point(0, 0);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(1053, 463);
+            this.mainPanel.Size = new System.Drawing.Size(1053, 438);
             this.mainPanel.TabIndex = 150;
             // 
             // consoleOutputTextBox
             // 
+            this.consoleOutputTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.consoleOutputTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.consoleOutputTextBox.Location = new System.Drawing.Point(3, 3);
+            this.consoleOutputTextBox.Location = new System.Drawing.Point(6, 22);
             this.consoleOutputTextBox.MaxLength = 2147483647;
             this.consoleOutputTextBox.Multiline = true;
             this.consoleOutputTextBox.Name = "consoleOutputTextBox";
             this.consoleOutputTextBox.ReadOnly = true;
-            this.consoleOutputTextBox.Size = new System.Drawing.Size(407, 338);
+            this.consoleOutputTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.consoleOutputTextBox.Size = new System.Drawing.Size(404, 296);
             this.consoleOutputTextBox.TabIndex = 7;
             // 
             // masterPathLabel
             // 
+            this.masterPathLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.masterPathLabel.AutoSize = true;
-            this.masterPathLabel.Location = new System.Drawing.Point(419, 441);
+            this.masterPathLabel.Location = new System.Drawing.Point(3, 3);
             this.masterPathLabel.Name = "masterPathLabel";
             this.masterPathLabel.Size = new System.Drawing.Size(64, 13);
             this.masterPathLabel.TabIndex = 21;
             this.masterPathLabel.Text = "Image Path:";
+            // 
+            // bottomPanel
+            // 
+            this.bottomPanel.Controls.Add(this.masterPathLabel);
+            this.bottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.bottomPanel.Location = new System.Drawing.Point(0, 438);
+            this.bottomPanel.Name = "bottomPanel";
+            this.bottomPanel.Size = new System.Drawing.Size(1053, 25);
+            this.bottomPanel.TabIndex = 22;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label2.Location = new System.Drawing.Point(0, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(80, 13);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Console Output";
+            // 
+            // consoleClearButton
+            // 
+            this.consoleClearButton.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.consoleClearButton.Location = new System.Drawing.Point(0, 324);
+            this.consoleClearButton.Name = "consoleClearButton";
+            this.consoleClearButton.Size = new System.Drawing.Size(413, 23);
+            this.consoleClearButton.TabIndex = 9;
+            this.consoleClearButton.Text = "Clear";
+            this.consoleClearButton.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -204,6 +230,7 @@
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(1053, 463);
             this.Controls.Add(this.mainPanel);
+            this.Controls.Add(this.bottomPanel);
             this.Name = "Form1";
             this.Text = "WinPE Imager";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -214,7 +241,8 @@
             this.rightPanel.ResumeLayout(false);
             this.rightPanel.PerformLayout();
             this.mainPanel.ResumeLayout(false);
-            this.mainPanel.PerformLayout();
+            this.bottomPanel.ResumeLayout(false);
+            this.bottomPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -230,9 +258,11 @@
         private System.Windows.Forms.Label tasksLabel;
         private System.Windows.Forms.Panel mainPanel;
         private System.Windows.Forms.Button startButton;
-        private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.TextBox consoleOutputTextBox;
         private System.Windows.Forms.Label masterPathLabel;
+        private System.Windows.Forms.Panel bottomPanel;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button consoleClearButton;
     }
 
     

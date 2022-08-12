@@ -41,6 +41,7 @@ namespace WinPEImager
         {
             InitializeComponent();
             config = Config.Instance();
+            CMDR.GetProcess().SetConsoleOutput(consoleOutputTextBox);
             findConfigAsync();
 
 
