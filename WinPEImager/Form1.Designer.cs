@@ -43,11 +43,17 @@
             this.bottomPanel = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.consoleClearButton = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.cmdInputField = new System.Windows.Forms.TextBox();
+            this.cmdInputSubmitButton = new System.Windows.Forms.Button();
+            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fileBrowserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.leftPanel.SuspendLayout();
             this.centerPanel.SuspendLayout();
             this.rightPanel.SuspendLayout();
             this.mainPanel.SuspendLayout();
             this.bottomPanel.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // fileTree
@@ -55,7 +61,7 @@
             this.fileTree.Dock = System.Windows.Forms.DockStyle.Fill;
             this.fileTree.Location = new System.Drawing.Point(0, 13);
             this.fileTree.Name = "fileTree";
-            this.fileTree.Size = new System.Drawing.Size(283, 425);
+            this.fileTree.Size = new System.Drawing.Size(283, 401);
             this.fileTree.TabIndex = 2;
             this.fileTree.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.fileTree_NodeMouseClick);
             this.fileTree.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.fileTree_NodeMouseDoubleClick);
@@ -64,7 +70,7 @@
             // 
             this.refreshBtn.BackColor = System.Drawing.Color.White;
             this.refreshBtn.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.refreshBtn.Location = new System.Drawing.Point(0, 347);
+            this.refreshBtn.Location = new System.Drawing.Point(0, 323);
             this.refreshBtn.Name = "refreshBtn";
             this.refreshBtn.Size = new System.Drawing.Size(413, 45);
             this.refreshBtn.TabIndex = 5;
@@ -78,7 +84,7 @@
             this.imageDetailListView.HideSelection = false;
             this.imageDetailListView.Location = new System.Drawing.Point(0, 13);
             this.imageDetailListView.Name = "imageDetailListView";
-            this.imageDetailListView.Size = new System.Drawing.Size(342, 425);
+            this.imageDetailListView.Size = new System.Drawing.Size(342, 401);
             this.imageDetailListView.TabIndex = 6;
             this.imageDetailListView.UseCompatibleStateImageBehavior = false;
             this.imageDetailListView.View = System.Windows.Forms.View.List;
@@ -98,6 +104,8 @@
             // leftPanel
             // 
             this.leftPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.leftPanel.Controls.Add(this.cmdInputSubmitButton);
+            this.leftPanel.Controls.Add(this.cmdInputField);
             this.leftPanel.Controls.Add(this.consoleClearButton);
             this.leftPanel.Controls.Add(this.label2);
             this.leftPanel.Controls.Add(this.consoleOutputTextBox);
@@ -106,14 +114,14 @@
             this.leftPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.leftPanel.Location = new System.Drawing.Point(0, 0);
             this.leftPanel.Name = "leftPanel";
-            this.leftPanel.Size = new System.Drawing.Size(413, 438);
+            this.leftPanel.Size = new System.Drawing.Size(413, 414);
             this.leftPanel.TabIndex = 9;
             // 
             // startButton
             // 
             this.startButton.BackColor = System.Drawing.Color.White;
             this.startButton.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.startButton.Location = new System.Drawing.Point(0, 392);
+            this.startButton.Location = new System.Drawing.Point(0, 368);
             this.startButton.Name = "startButton";
             this.startButton.Size = new System.Drawing.Size(413, 46);
             this.startButton.TabIndex = 6;
@@ -130,7 +138,7 @@
             this.centerPanel.Controls.Add(this.label1);
             this.centerPanel.Location = new System.Drawing.Point(419, 0);
             this.centerPanel.Name = "centerPanel";
-            this.centerPanel.Size = new System.Drawing.Size(283, 438);
+            this.centerPanel.Size = new System.Drawing.Size(283, 414);
             this.centerPanel.TabIndex = 20;
             // 
             // rightPanel
@@ -142,7 +150,7 @@
             this.rightPanel.Controls.Add(this.tasksLabel);
             this.rightPanel.Location = new System.Drawing.Point(708, 0);
             this.rightPanel.Name = "rightPanel";
-            this.rightPanel.Size = new System.Drawing.Size(342, 438);
+            this.rightPanel.Size = new System.Drawing.Size(342, 414);
             this.rightPanel.TabIndex = 10;
             // 
             // tasksLabel
@@ -162,9 +170,9 @@
             this.mainPanel.Controls.Add(this.rightPanel);
             this.mainPanel.Controls.Add(this.leftPanel);
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainPanel.Location = new System.Drawing.Point(0, 0);
+            this.mainPanel.Location = new System.Drawing.Point(0, 24);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(1053, 438);
+            this.mainPanel.Size = new System.Drawing.Size(1053, 414);
             this.mainPanel.TabIndex = 150;
             // 
             // consoleOutputTextBox
@@ -179,7 +187,7 @@
             this.consoleOutputTextBox.Name = "consoleOutputTextBox";
             this.consoleOutputTextBox.ReadOnly = true;
             this.consoleOutputTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.consoleOutputTextBox.Size = new System.Drawing.Size(404, 296);
+            this.consoleOutputTextBox.Size = new System.Drawing.Size(404, 252);
             this.consoleOutputTextBox.TabIndex = 7;
             // 
             // masterPathLabel
@@ -216,13 +224,57 @@
             // consoleClearButton
             // 
             this.consoleClearButton.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.consoleClearButton.Location = new System.Drawing.Point(0, 324);
+            this.consoleClearButton.Location = new System.Drawing.Point(0, 300);
+            this.consoleClearButton.Margin = new System.Windows.Forms.Padding(0);
             this.consoleClearButton.Name = "consoleClearButton";
             this.consoleClearButton.Size = new System.Drawing.Size(413, 23);
             this.consoleClearButton.TabIndex = 9;
-            this.consoleClearButton.Text = "Clear";
+            this.consoleClearButton.Text = "CLEAR";
             this.consoleClearButton.UseVisualStyleBackColor = true;
             this.consoleClearButton.Click += new System.EventHandler(this.consoleClearButton_Click);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolsToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1053, 24);
+            this.menuStrip1.TabIndex = 10;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // cmdInputField
+            // 
+            this.cmdInputField.Location = new System.Drawing.Point(6, 277);
+            this.cmdInputField.Name = "cmdInputField";
+            this.cmdInputField.Size = new System.Drawing.Size(326, 20);
+            this.cmdInputField.TabIndex = 10;
+            // 
+            // cmdInputSubmitButton
+            // 
+            this.cmdInputSubmitButton.Location = new System.Drawing.Point(338, 275);
+            this.cmdInputSubmitButton.Margin = new System.Windows.Forms.Padding(0);
+            this.cmdInputSubmitButton.Name = "cmdInputSubmitButton";
+            this.cmdInputSubmitButton.Size = new System.Drawing.Size(71, 23);
+            this.cmdInputSubmitButton.TabIndex = 11;
+            this.cmdInputSubmitButton.Text = "SEND";
+            this.cmdInputSubmitButton.UseVisualStyleBackColor = true;
+            this.cmdInputSubmitButton.Click += new System.EventHandler(this.cmdInputSubmitButton_Click);
+            // 
+            // toolsToolStripMenuItem
+            // 
+            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileBrowserToolStripMenuItem});
+            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
+            this.toolsToolStripMenuItem.Text = "Tools";
+            // 
+            // fileBrowserToolStripMenuItem
+            // 
+            this.fileBrowserToolStripMenuItem.Name = "fileBrowserToolStripMenuItem";
+            this.fileBrowserToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.fileBrowserToolStripMenuItem.Text = "File Browser";
+            this.fileBrowserToolStripMenuItem.Click += new System.EventHandler(this.fileBrowserToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -232,6 +284,8 @@
             this.ClientSize = new System.Drawing.Size(1053, 463);
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.bottomPanel);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "WinPE Imager";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -244,7 +298,10 @@
             this.mainPanel.ResumeLayout(false);
             this.bottomPanel.ResumeLayout(false);
             this.bottomPanel.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -264,6 +321,11 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button consoleClearButton;
         public System.Windows.Forms.TextBox consoleOutputTextBox;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.Button cmdInputSubmitButton;
+        private System.Windows.Forms.TextBox cmdInputField;
+        private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fileBrowserToolStripMenuItem;
     }
 
     

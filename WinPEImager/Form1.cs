@@ -52,6 +52,7 @@ namespace WinPEImager
             editMenuItem.Click += new EventHandler(editMenuItem_Click);
 
             imageDetailListView.SmallImageList = new ImageList();
+            imageDetailListView.SmallImageList.ColorDepth = ColorDepth.Depth32Bit;
             imageDetailListView.SmallImageList.ImageSize = new Size(24, 24);
 
 
@@ -72,9 +73,10 @@ namespace WinPEImager
             ImageList myImageList = new ImageList();
             myImageList.Images.Add(Image.FromFile("./Assets/Images/icons-png/folders.png"));
             myImageList.Images.Add(Image.FromFile("./Assets/Images/icons-png/folder.png"));
-            myImageList.Images.Add(Image.FromFile("./Assets/Images/icons-png/file.png"));
+            myImageList.Images.Add(Image.FromFile("./Assets/Images/icons-png/checklist.png"));
             myImageList.Images.Add(Image.FromFile("./Assets/Images/icons-png/file-settings.png"));
             myImageList.Images.Add(Image.FromFile("./Assets/Images/icons-png/select.png"));
+            myImageList.Images.Add(Image.FromFile("./Assets/Images/icons-png/file.png"));
 
             fileTree.ImageList = myImageList;
 
@@ -243,7 +245,7 @@ namespace WinPEImager
             return await Task.Run(async () =>
             {
                 TreeNode node = new TreeNode(path.Name);
-                FileInfo[] files = path.GetFiles("*.xml");
+                FileInfo[] files = path.GetFiles();
 
                 DirectoryInfo[] subdirs = path.GetDirectories();
                 foreach (DirectoryInfo subdir in subdirs)
@@ -251,7 +253,14 @@ namespace WinPEImager
                    node.Nodes.Add(await MapDirectory(subdir));
                 }
                 foreach (FileInfo file in files) {
-                    node.Nodes.Add(new CustomTreeNode(file.Name,file.FullName,file.Directory.FullName,2,4));
+
+                    if (file.Extension == ".xml")
+                    {
+                        node.Nodes.Add(new CustomTreeNode(file.Name, file.FullName, file.Directory.FullName, 2, 4));
+                    }
+                    else { 
+                        node.Nodes.Add(new CustomTreeNode(file.Name,file.FullName,file.Directory.FullName,5,4));
+                    }
                 }
 
                 return node;
@@ -266,6 +275,16 @@ namespace WinPEImager
         private void consoleClearButton_Click(object sender, EventArgs e)
         {
             consoleOutputTextBox.Clear();
+        }
+
+        private void fileBrowserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void cmdInputSubmitButton_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

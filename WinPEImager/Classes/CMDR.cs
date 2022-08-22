@@ -76,6 +76,7 @@ namespace WinPEImager.Classes
             consoleOutput = f;
             return this;
         }
+
         public async AsyncTask.Task<bool> RunCommand(Task task)
         {
 
