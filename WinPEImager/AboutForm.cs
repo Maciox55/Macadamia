@@ -17,8 +17,7 @@ namespace WinPEImager
             InitializeComponent();
 
             Version version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
-            DateTime buildDate = new DateTime(2000, 1, 1)
-                                    .AddDays(version.Build).AddSeconds(version.Revision * 2);
+            DateTime buildDate = new DateTime(2000, 1, 1).AddDays(version.Build).AddSeconds(version.Revision * 2);
             string displayableVersion = $"{version} ({buildDate})";
             versionLabel.Text = displayableVersion;
 

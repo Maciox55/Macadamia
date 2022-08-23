@@ -54,7 +54,6 @@
             this.fileBrowserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.consoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.asdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.leftPanel.SuspendLayout();
             this.consolePanel.SuspendLayout();
             this.consoleInputPanel.SuspendLayout();
@@ -309,8 +308,7 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolsToolStripMenuItem,
-            this.aboutToolStripMenuItem,
-            this.asdToolStripMenuItem});
+            this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1070, 24);
@@ -345,14 +343,6 @@
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
-            // 
-            // asdToolStripMenuItem
-            // 
-            this.asdToolStripMenuItem.Checked = true;
-            this.asdToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.asdToolStripMenuItem.Name = "asdToolStripMenuItem";
-            this.asdToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.asdToolStripMenuItem.Text = "asd";
             // 
             // Form1
             // 
@@ -417,7 +407,6 @@
         private System.Windows.Forms.Panel consoleInputPanel;
         private System.Windows.Forms.Panel treeView;
         private System.Windows.Forms.Panel taskControl;
-        private System.Windows.Forms.ToolStripMenuItem asdToolStripMenuItem;
     }
 
     
