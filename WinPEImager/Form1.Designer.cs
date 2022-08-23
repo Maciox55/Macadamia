@@ -96,7 +96,7 @@
             this.imageDetailListView.HideSelection = false;
             this.imageDetailListView.Location = new System.Drawing.Point(3, 16);
             this.imageDetailListView.Name = "imageDetailListView";
-            this.imageDetailListView.Size = new System.Drawing.Size(354, 426);
+            this.imageDetailListView.Size = new System.Drawing.Size(360, 426);
             this.imageDetailListView.TabIndex = 6;
             this.imageDetailListView.UseCompatibleStateImageBehavior = false;
             this.imageDetailListView.View = System.Windows.Forms.View.List;
@@ -257,7 +257,7 @@
             this.rightPanel.Location = new System.Drawing.Point(704, 3);
             this.rightPanel.Name = "rightPanel";
             this.rightPanel.Padding = new System.Windows.Forms.Padding(3);
-            this.rightPanel.Size = new System.Drawing.Size(360, 445);
+            this.rightPanel.Size = new System.Drawing.Size(366, 445);
             this.rightPanel.TabIndex = 10;
             // 
             // tasksLabel
