@@ -3,7 +3,7 @@ WinPEImager is a project which hopes to make Windows imaging simple, it is a pur
 
 I wanted to create a highly extensible way of imaging and performing tasks for the various types of computer we integrate at work, as each has a client specific custom Windows image and a set of batch scripts that run before the system is ready.
 
-The tool is in really early stages of development and does not currently actually do anything.
+The tool is in really early stages of development and features are constantly being iterated on.
 
 ## How does it work?
 Currently the tool isn't ready and is in early stages of develpment, therefore there is no concrete functionality implemented. I am working on getting the fundamentals up and running.
