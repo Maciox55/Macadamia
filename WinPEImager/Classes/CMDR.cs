@@ -77,6 +77,19 @@ namespace WinPEImager.Classes
             return this;
         }
 
+        public async void Write(string data)
+        {
+            try
+            {
+                process.StandardInput.WriteLine(data);
+                await AsyncTask.Task.Delay(500);
+            }
+            catch(Exception e) {
+                MessageBox.Show(e.Message);
+            }
+
+        }
+
         public async AsyncTask.Task<bool> RunCommand(Task task)
         {
 

@@ -284,7 +284,13 @@ namespace WinPEImager
 
         private void cmdInputSubmitButton_Click(object sender, EventArgs e)
         {
-            
+            CMDR.GetProcess().Write(cmdInputField.Text);
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutForm about = new AboutForm();
+            about.Show();
         }
     }
 }

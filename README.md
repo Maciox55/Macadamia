@@ -6,17 +6,19 @@ I wanted to create a highly extensible way of imaging and performing tasks for t
 The tool is in really early stages of development and features are constantly being iterated on.
 
 ## How does it work?
-Currently the tool isn't ready and is in early stages of develpment, therefore there is no concrete functionality implemented. I am working on getting the fundamentals up and running.
+
 
 Here is a quick rundown on how this will work.
 
 This tool is intended to be included on a custom WinPE, either by inserting it when creating the WinPE image (with all packages installed for .NET to work), or in my case, `startnet.bat`  copies files from a `net use` mapped drive to the temporary X: partition created by WinPE, which then runs this tool automatically. We all know that mounting, modifying and then unmounting WinPE is really painful and takes too much time, so simply being able to copy the tool dynamically is important for rapid iteration, testing and updating. This side-load method is still being tested for limitations and feasability.
 
-Once WinPE actually copies and runs the tool, the tool will look for a master path from it's config file, the path points to a central location on the network which will have various folders and subfolder along side custom `config.xml` files for each type of available Windows Image.
+Once WinPE actually copies and runs the tool, the tool will look for a master path from it's config file, the path points to a central location on the network which will have various folders and subfolder along side custom `config.xml` files which contain the tasks which will be executed and additional data.
 
 The XML contains an `IMAGE` element with a `imagePath` attribute that points to the location of the image. There is also a `TASKS` element which has an ***n*** number of `TASK` child elements with attribute of `command`, specifying what tasks will be executed by the tool. The command attribute can also be used to call another bat file, which should be located within the "required" folder in the same directory as the XML file.
 
-The `TASKS` will be called one after another by calling a CMD process with the `command` attribute passed as the command parameter.
+`TASK` also contains a `Type` attribute which is how the tool recognizes between `bat` and `command` types. A Command type is executed within the regular process, while the Bat is executed by calling on a specific Required file which has been coped to X: directory.
+
+The `TASKS` will be called one after another by calling a CMD process with the contents of the `command` parameter.
 
 Here is an example of how the directory structure should look like within the Master Path provided to the config file:
 * Client 1/
