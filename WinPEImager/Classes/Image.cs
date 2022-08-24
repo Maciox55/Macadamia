@@ -119,5 +119,25 @@ namespace WinPEImager.Classes
             }
             Console.WriteLine("Files Copied");
         }
+
+        public void ToList() {
+
+            if (listview != null)
+            {
+                listview.Clear();
+
+                foreach (Task task in this.tasks)
+                {
+                    listview.Invoke(new MethodInvoker(delegate { listview.Items.Add(task.ToListItem()); }));
+                    //imageDetailListView.Items.Add(task.ToListItem());
+                }
+
+
+            }
+            else {
+                MessageBox.Show("No list view passed to Image object");
+            }
+
+        }
     }
 }

@@ -163,26 +163,20 @@ namespace WinPEImager
                             imageDetailListView.Invoke(new MethodInvoker(delegate { imageDetailListView.Clear(); }));
 
 
-                            if (e.Node is CustomTreeNode)
+                            if (e.Node is ScriptNode)
                             {
-                                CustomTreeNode cnode = (CustomTreeNode)e.Node;
+                                ScriptNode cnode = (ScriptNode)e.Node;
 
                                 //Console.WriteLine(cnode.FullPath);
                                 //Parse XML at the nodes path into an image file
-                                cImage image = parser.parseImageFromXML(cnode.path);
-                                image.path = cnode.dirPath;
+                                //cImage image = parser.parseImageFromXML(cnode.path);
+                                cnode.image.path = cnode.dirPath;
                                 //Set the master path label with the path of the image file.
-                                masterPathLabel.Invoke(new MethodInvoker(delegate { masterPathLabel.Text = "Image Path: " + image.path; }));
+                                masterPathLabel.Invoke(new MethodInvoker(delegate { masterPathLabel.Text = "Image Path: " + cnode.image.path; }));
                                 //Set reference to listview
-                                image.SetList(imageDetailListView);
-                                //Iterate over each task in image and add it to the list
-                                foreach (ImageTask task in image.tasks)
-                                {
-                                    imageDetailListView.Invoke(new MethodInvoker(delegate { imageDetailListView.Items.Add(task.ToListItem()); }));
-                                    //imageDetailListView.Items.Add(task.ToListItem());
-                                }
-                                //Set currently selected image
-                                currentSelectedImage = image;
+                                cnode.image.SetList(imageDetailListView);
+                                cnode.image.ToList();
+                                currentSelectedImage = cnode.image;
 
                             }
                         }
@@ -255,7 +249,7 @@ namespace WinPEImager
 
                     if (file.Extension == ".xml")
                     {
-                        node.Nodes.Add(new CustomTreeNode(file.Name, file.FullName, file.Directory.FullName, 2, 4));
+                        node.Nodes.Add(new ScriptNode(file.Name, file.FullName, file.Directory.FullName, parser.parseImageFromXML(file.FullName), 2, 4));
                     }
                     else if (file.Extension == ".txt" || file.Extension == ".bat" || file.Extension == ".cmd")
                     {

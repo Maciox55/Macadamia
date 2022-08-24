@@ -45,17 +45,16 @@
             this.treeView = new System.Windows.Forms.Panel();
             this.taskControl = new System.Windows.Forms.Panel();
             this.rightPanel = new System.Windows.Forms.Panel();
+            this.listPanel = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.tasksLabel = new System.Windows.Forms.Label();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.masterPathLabel = new System.Windows.Forms.Label();
             this.bottomPanel = new System.Windows.Forms.Panel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fileBrowserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.consoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.listPanel = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.leftPanel.SuspendLayout();
             this.consolePanel.SuspendLayout();
             this.consoleInputPanel.SuspendLayout();
@@ -63,10 +62,10 @@
             this.treeView.SuspendLayout();
             this.taskControl.SuspendLayout();
             this.rightPanel.SuspendLayout();
+            this.listPanel.SuspendLayout();
             this.mainPanel.SuspendLayout();
             this.bottomPanel.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            this.listPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // fileTree
@@ -264,6 +263,23 @@
             this.rightPanel.Size = new System.Drawing.Size(366, 445);
             this.rightPanel.TabIndex = 10;
             // 
+            // listPanel
+            // 
+            this.listPanel.Controls.Add(this.imageDetailListView);
+            this.listPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listPanel.Location = new System.Drawing.Point(3, 16);
+            this.listPanel.Name = "listPanel";
+            this.listPanel.Size = new System.Drawing.Size(360, 377);
+            this.listPanel.TabIndex = 8;
+            // 
+            // panel1
+            // 
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(3, 393);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(360, 49);
+            this.panel1.TabIndex = 9;
+            // 
             // tasksLabel
             // 
             this.tasksLabel.AutoSize = true;
@@ -322,23 +338,15 @@
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileBrowserToolStripMenuItem,
             this.consoleToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
             // 
-            // fileBrowserToolStripMenuItem
-            // 
-            this.fileBrowserToolStripMenuItem.Name = "fileBrowserToolStripMenuItem";
-            this.fileBrowserToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.fileBrowserToolStripMenuItem.Text = "File Browser";
-            this.fileBrowserToolStripMenuItem.Click += new System.EventHandler(this.fileBrowserToolStripMenuItem_Click);
-            // 
             // consoleToolStripMenuItem
             // 
             this.consoleToolStripMenuItem.Name = "consoleToolStripMenuItem";
-            this.consoleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.consoleToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.consoleToolStripMenuItem.Text = "Console";
             this.consoleToolStripMenuItem.Click += new System.EventHandler(this.consoleToolStripMenuItem_Click);
             // 
@@ -348,23 +356,6 @@
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
-            // 
-            // listPanel
-            // 
-            this.listPanel.Controls.Add(this.imageDetailListView);
-            this.listPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listPanel.Location = new System.Drawing.Point(3, 16);
-            this.listPanel.Name = "listPanel";
-            this.listPanel.Size = new System.Drawing.Size(360, 377);
-            this.listPanel.TabIndex = 8;
-            // 
-            // panel1
-            // 
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(3, 393);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(360, 49);
-            this.panel1.TabIndex = 9;
             // 
             // Form1
             // 
@@ -392,12 +383,12 @@
             this.taskControl.ResumeLayout(false);
             this.rightPanel.ResumeLayout(false);
             this.rightPanel.PerformLayout();
+            this.listPanel.ResumeLayout(false);
             this.mainPanel.ResumeLayout(false);
             this.bottomPanel.ResumeLayout(false);
             this.bottomPanel.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.listPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -423,7 +414,6 @@
         private System.Windows.Forms.Button cmdInputSubmitButton;
         private System.Windows.Forms.TextBox cmdInputField;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem fileBrowserToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem consoleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.Panel consolePanel;
