@@ -38,7 +38,9 @@
             this.consoleInputPanel = new System.Windows.Forms.Panel();
             this.cmdInputSubmitButton = new System.Windows.Forms.Button();
             this.cmdInputField = new System.Windows.Forms.TextBox();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.consoleClearButton = new System.Windows.Forms.Button();
+            this.abortCMD = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.startButton = new System.Windows.Forms.Button();
             this.centerPanel = new System.Windows.Forms.Panel();
@@ -58,6 +60,7 @@
             this.leftPanel.SuspendLayout();
             this.consolePanel.SuspendLayout();
             this.consoleInputPanel.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.centerPanel.SuspendLayout();
             this.treeView.SuspendLayout();
             this.taskControl.SuspendLayout();
@@ -102,6 +105,7 @@
             this.imageDetailListView.TabIndex = 6;
             this.imageDetailListView.UseCompatibleStateImageBehavior = false;
             this.imageDetailListView.View = System.Windows.Forms.View.List;
+            this.imageDetailListView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.imageDetailListView_MouseClick);
             this.imageDetailListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.imageDetailListView_MouseDoubleClick);
             // 
             // label1
@@ -131,7 +135,7 @@
             // 
             this.consolePanel.Controls.Add(this.consoleOutputTextBox);
             this.consolePanel.Controls.Add(this.consoleInputPanel);
-            this.consolePanel.Controls.Add(this.consoleClearButton);
+            this.consolePanel.Controls.Add(this.panel2);
             this.consolePanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.consolePanel.Location = new System.Drawing.Point(3, 16);
             this.consolePanel.Name = "consolePanel";
@@ -148,7 +152,7 @@
             this.consoleOutputTextBox.Name = "consoleOutputTextBox";
             this.consoleOutputTextBox.ReadOnly = true;
             this.consoleOutputTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.consoleOutputTextBox.Size = new System.Drawing.Size(413, 377);
+            this.consoleOutputTextBox.Size = new System.Drawing.Size(413, 370);
             this.consoleOutputTextBox.TabIndex = 7;
             // 
             // consoleInputPanel
@@ -156,7 +160,7 @@
             this.consoleInputPanel.Controls.Add(this.cmdInputSubmitButton);
             this.consoleInputPanel.Controls.Add(this.cmdInputField);
             this.consoleInputPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.consoleInputPanel.Location = new System.Drawing.Point(0, 377);
+            this.consoleInputPanel.Location = new System.Drawing.Point(0, 370);
             this.consoleInputPanel.Name = "consoleInputPanel";
             this.consoleInputPanel.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.consoleInputPanel.Size = new System.Drawing.Size(413, 26);
@@ -182,17 +186,41 @@
             this.cmdInputField.Size = new System.Drawing.Size(339, 20);
             this.cmdInputField.TabIndex = 10;
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.consoleClearButton);
+            this.panel2.Controls.Add(this.abortCMD);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 396);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(413, 30);
+            this.panel2.TabIndex = 8;
+            // 
             // consoleClearButton
             // 
-            this.consoleClearButton.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.consoleClearButton.Location = new System.Drawing.Point(0, 403);
+            this.consoleClearButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.consoleClearButton.Location = new System.Drawing.Point(61, 0);
             this.consoleClearButton.Margin = new System.Windows.Forms.Padding(0);
             this.consoleClearButton.Name = "consoleClearButton";
-            this.consoleClearButton.Size = new System.Drawing.Size(413, 23);
+            this.consoleClearButton.Size = new System.Drawing.Size(352, 30);
             this.consoleClearButton.TabIndex = 9;
             this.consoleClearButton.Text = "CLEAR";
             this.consoleClearButton.UseVisualStyleBackColor = true;
             this.consoleClearButton.Click += new System.EventHandler(this.consoleClearButton_Click);
+            // 
+            // abortCMD
+            // 
+            this.abortCMD.BackColor = System.Drawing.Color.IndianRed;
+            this.abortCMD.Dock = System.Windows.Forms.DockStyle.Left;
+            this.abortCMD.ForeColor = System.Drawing.SystemColors.MenuText;
+            this.abortCMD.Location = new System.Drawing.Point(0, 0);
+            this.abortCMD.Margin = new System.Windows.Forms.Padding(0);
+            this.abortCMD.Name = "abortCMD";
+            this.abortCMD.Size = new System.Drawing.Size(61, 30);
+            this.abortCMD.TabIndex = 7;
+            this.abortCMD.Text = "ABORT";
+            this.abortCMD.UseVisualStyleBackColor = false;
+            this.abortCMD.Click += new System.EventHandler(this.abortCMD_Click);
             // 
             // label2
             // 
@@ -377,6 +405,7 @@
             this.consolePanel.PerformLayout();
             this.consoleInputPanel.ResumeLayout(false);
             this.consoleInputPanel.PerformLayout();
+            this.panel2.ResumeLayout(false);
             this.centerPanel.ResumeLayout(false);
             this.centerPanel.PerformLayout();
             this.treeView.ResumeLayout(false);
@@ -422,6 +451,8 @@
         private System.Windows.Forms.Panel taskControl;
         private System.Windows.Forms.Panel listPanel;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button abortCMD;
     }
 
     

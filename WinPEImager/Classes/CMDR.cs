@@ -91,6 +91,19 @@ namespace WinPEImager.Classes
 
         }
 
+        public async void Abort()
+        {
+            try
+            {
+                process.Kill();
+            }
+            catch (Exception e)
+            { 
+                
+            }
+           
+        }
+
         public async AsyncTask.Task<bool> RunCommand(Task task)
         {
 

@@ -27,9 +27,13 @@ namespace WinPEImager
 
         CustomTreeNode clickedNode;
 
-        MenuItem detailsManuItem = new MenuItem("Details");
+        MenuItem detailsMenuItem = new MenuItem("Details");
         MenuItem editMenuItem = new MenuItem("Edit");
         ContextMenu mnu = new ContextMenu();
+
+        ContextMenu taskMenu = new ContextMenu();
+        MenuItem runTaskItem = new MenuItem("Run");
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -45,22 +49,23 @@ namespace WinPEImager
             findConfigAsync();
 
 
+            taskMenu.MenuItems.Add(runTaskItem);
 
-            mnu.MenuItems.Add(detailsManuItem);
+            runTaskItem.Click += new EventHandler(runTaskItem_Click);
+
+            mnu.MenuItems.Add(detailsMenuItem);
             mnu.MenuItems.Add(editMenuItem);
-            detailsManuItem.Click += new EventHandler(detailMenuItem_Click);
+            detailsMenuItem.Click += new EventHandler(detailMenuItem_Click);
             editMenuItem.Click += new EventHandler(editMenuItem_Click);
 
             imageDetailListView.SmallImageList = new ImageList();
             imageDetailListView.SmallImageList.ColorDepth = ColorDepth.Depth32Bit;
             imageDetailListView.SmallImageList.ImageSize = new Size(24, 24);
 
-
             imageDetailListView.SmallImageList.Images.Add(Image.FromFile("./Assets/Images/icons-png/circle.png"));
             imageDetailListView.SmallImageList.Images.Add(Image.FromFile("./Assets/Images/icons-png/circle-dotted.png"));
             imageDetailListView.SmallImageList.Images.Add(Image.FromFile("./Assets/Images/icons-png/circle-check.png"));
             imageDetailListView.SmallImageList.Images.Add(Image.FromFile("./Assets/Images/icons-png/circle-x.png"));
-
 
         }
 
@@ -84,17 +89,6 @@ namespace WinPEImager
             fileTree.ImageIndex = 0;
             fileTree.SelectedImageIndex = 0;
 
-            
-
-            /* Set the index of image from the 
-            ImageList for selected and unselected tree nodes.*/
-            //this.rootImageIndex = 2;
-            //this.selectedCustomerImageIndex = 3;
-            //this.unselectedCustomerImageIndex = 4;
-            //this.selectedOrderImageIndex = 5;
-            //this.unselectedOrderImageIndex = 6;
-
-
             //Get master directory info from config that points to location of all installation files.
             DirectoryInfo dir = new DirectoryInfo(config.GetMasterPath());
             //Get all directories in the master directory
@@ -109,16 +103,12 @@ namespace WinPEImager
                 fileTree.Nodes.Add(await MapDirectory(d));
 
             }
-
-           
         }
 
         private void clientSel_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+
         }
-
-
 
         void detailMenuItem_Click(object sender, EventArgs e)
         {
@@ -133,39 +123,40 @@ namespace WinPEImager
 
         }
 
+        void taskRun_click(object sender, EventArgs e)
+        {
+
+        }
 
         private async void fileTree_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e) {
-           await Task.Run(async () =>
-            {
-                
+            await Task.Run(async () =>
+             {
+
                 //masterPathLabel.Invoke(new MethodInvoker(delegate { masterPathLabel.Text = "Image Path: " + e.Node.FullPath; }));
                 fileTree.Invoke(new MethodInvoker(delegate { fileTree.SelectedNode = e.Node; }));
                 //fileTree.SelectedNode = e.Node;
                 try
-                {
-                    if (e.Node is CustomTreeNode)
-                    {
+                 {
+                     if (e.Node is CustomTreeNode)
+                     {
 
-                        if (e.Button == MouseButtons.Right)
-                        {
-                            clickedNode = (CustomTreeNode)e.Node;
+                         if (e.Button == MouseButtons.Right)
+                         {
+                             clickedNode = (CustomTreeNode)e.Node;
 
-                            this.Invoke(new MethodInvoker(delegate
-                            {
-                                mnu.Show(fileTree, e.Location);
-                            }));
-                        
+                             this.Invoke(new MethodInvoker(delegate
+                             {
+                                 mnu.Show(fileTree, e.Location);
+                             }));
 
+                         }
+                         else {
 
-                        }
-                        else {
+                             imageDetailListView.Invoke(new MethodInvoker(delegate { imageDetailListView.Clear(); }));
 
-                            imageDetailListView.Invoke(new MethodInvoker(delegate { imageDetailListView.Clear(); }));
-
-
-                            if (e.Node is ScriptNode)
-                            {
-                                ScriptNode cnode = (ScriptNode)e.Node;
+                             if (e.Node is ScriptNode)
+                             {
+                                 ScriptNode cnode = (ScriptNode)e.Node;
 
                                 //Console.WriteLine(cnode.FullPath);
                                 //Parse XML at the nodes path into an image file
@@ -175,23 +166,19 @@ namespace WinPEImager
                                 masterPathLabel.Invoke(new MethodInvoker(delegate { masterPathLabel.Text = "Image Path: " + cnode.image.path; }));
                                 //Set reference to listview
                                 cnode.image.SetList(imageDetailListView);
-                                cnode.image.ToList();
-                                currentSelectedImage = cnode.image;
+                                 cnode.image.ToList();
+                                 currentSelectedImage = cnode.image;
 
-                            }
-                        }
-                    }
-
-
-                    // parser.Parse(config.GetMasterPath()+e.Node.FullPath);
-
+                             }
+                         }
+                     }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("ERROR OCCURED: " + ex.Message);
-                 
-                }
-            });
+                 catch (Exception ex)
+                 {
+                     MessageBox.Show("ERROR OCCURED: " + ex.Message);
+
+                 }
+             });
         }
 
         private void fileTree_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
@@ -200,16 +187,16 @@ namespace WinPEImager
             {
                 if (e.Node is CustomTreeNode)
                 {
-                   
+
 
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("ERROR OCCURED: " + ex.Message);
-            
+
             }
-            
+
         }
 
 
@@ -229,6 +216,7 @@ namespace WinPEImager
         {
             if (currentSelectedImage != null)
             {
+                currentSelectedImage.canStart = true;
                 currentSelectedImage.Start();
             }
         }
@@ -242,8 +230,8 @@ namespace WinPEImager
 
                 DirectoryInfo[] subdirs = path.GetDirectories();
                 foreach (DirectoryInfo subdir in subdirs)
-                { 
-                   node.Nodes.Add(await MapDirectory(subdir));
+                {
+                    node.Nodes.Add(await MapDirectory(subdir));
                 }
                 foreach (FileInfo file in files) {
 
@@ -258,7 +246,7 @@ namespace WinPEImager
                     else if (file.Extension == ".exe")
                     {
                         node.Nodes.Add(new TreeNode(file.Name, 6, 4));
-                    
+
                     }
                 }
 
@@ -268,7 +256,7 @@ namespace WinPEImager
 
         private void imageDetailListView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-           
+
         }
 
         private void consoleClearButton_Click(object sender, EventArgs e)
@@ -278,7 +266,7 @@ namespace WinPEImager
 
         private void fileBrowserToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void cmdInputSubmitButton_Click(object sender, EventArgs e)
@@ -294,14 +282,39 @@ namespace WinPEImager
 
         private void consoleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-          Process proc = new Process();
+            Process proc = new Process();
             proc.StartInfo.FileName = "cmd.exe";
             proc.StartInfo.UseShellExecute = false;
             proc.StartInfo.WorkingDirectory = @"C:";
             proc.Start();
-            
 
 
+
+        }
+
+        private void abortCMD_Click(object sender, EventArgs e)
+        {
+            currentSelectedImage.canStart = false;
+            CMDR.GetProcess().Abort();
+        }
+
+        private void imageDetailListView_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+
+
+                this.Invoke(new MethodInvoker(delegate
+                {
+                    taskMenu.Show(imageDetailListView, e.Location);
+                }));
+
+            }
+
+        }
+        void runTaskItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(e.ToString());
         }
     }
 }

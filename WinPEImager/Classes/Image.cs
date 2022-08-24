@@ -16,6 +16,7 @@ namespace WinPEImager.Classes
         public string path;
         public string imagePath;
         public List<Task> tasks;
+        public bool canStart = false;
 
 
         private ListView listview;
@@ -63,11 +64,13 @@ namespace WinPEImager.Classes
 
             foreach (Task task in taskList)
             {
-                //Call execute the task
-                await task.Execute();
-                //change the image indes of the task in the list view
-                listview.Invoke(new MethodInvoker(delegate { listview.FindItemWithText(task.command).ImageIndex = ((int)task.GetStatus()); }));
-
+                if (canStart == true)
+                {
+                    //Call execute the task
+                    await task.Execute();
+                    //change the image indes of the task in the list view
+                    listview.Invoke(new MethodInvoker(delegate { listview.FindItemWithText(task.command).ImageIndex = ((int)task.GetStatus()); }));
+                }
             }
         }
         //Replace imagePath pattern with value within a COMMAND type only, BAT files not supported yet.
