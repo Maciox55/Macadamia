@@ -101,7 +101,7 @@ namespace WinPEImager.Classes
             if (task.GetTaskType() == TYPE.Command)
             {
                 process.StartInfo.FileName = "cmd.exe";
-                process.StartInfo.WorkingDirectory = @"C:\";
+                //process.StartInfo.WorkingDirectory = @"C:\";
                 process.StartInfo.Arguments = "/C " + task.command;
 
 

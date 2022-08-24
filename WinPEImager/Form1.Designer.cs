@@ -54,6 +54,8 @@
             this.fileBrowserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.consoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listPanel = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.leftPanel.SuspendLayout();
             this.consolePanel.SuspendLayout();
             this.consoleInputPanel.SuspendLayout();
@@ -64,6 +66,7 @@
             this.mainPanel.SuspendLayout();
             this.bottomPanel.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.listPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // fileTree
@@ -71,7 +74,7 @@
             this.fileTree.Dock = System.Windows.Forms.DockStyle.Fill;
             this.fileTree.Location = new System.Drawing.Point(3, 16);
             this.fileTree.Name = "fileTree";
-            this.fileTree.Size = new System.Drawing.Size(277, 393);
+            this.fileTree.Size = new System.Drawing.Size(277, 377);
             this.fileTree.TabIndex = 2;
             this.fileTree.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.fileTree_NodeMouseClick);
             this.fileTree.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.fileTree_NodeMouseDoubleClick);
@@ -94,9 +97,9 @@
             // 
             this.imageDetailListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.imageDetailListView.HideSelection = false;
-            this.imageDetailListView.Location = new System.Drawing.Point(3, 16);
+            this.imageDetailListView.Location = new System.Drawing.Point(0, 0);
             this.imageDetailListView.Name = "imageDetailListView";
-            this.imageDetailListView.Size = new System.Drawing.Size(360, 426);
+            this.imageDetailListView.Size = new System.Drawing.Size(360, 377);
             this.imageDetailListView.TabIndex = 6;
             this.imageDetailListView.UseCompatibleStateImageBehavior = false;
             this.imageDetailListView.View = System.Windows.Forms.View.List;
@@ -232,9 +235,9 @@
             // 
             this.treeView.Controls.Add(this.taskControl);
             this.treeView.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.treeView.Location = new System.Drawing.Point(3, 409);
+            this.treeView.Location = new System.Drawing.Point(3, 393);
             this.treeView.Name = "treeView";
-            this.treeView.Size = new System.Drawing.Size(277, 33);
+            this.treeView.Size = new System.Drawing.Size(277, 49);
             this.treeView.TabIndex = 13;
             // 
             // taskControl
@@ -242,7 +245,7 @@
             this.taskControl.Controls.Add(this.refreshBtn);
             this.taskControl.Controls.Add(this.startButton);
             this.taskControl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.taskControl.Location = new System.Drawing.Point(0, 3);
+            this.taskControl.Location = new System.Drawing.Point(0, 19);
             this.taskControl.Name = "taskControl";
             this.taskControl.Size = new System.Drawing.Size(277, 30);
             this.taskControl.TabIndex = 10;
@@ -252,7 +255,8 @@
             this.rightPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.rightPanel.Controls.Add(this.imageDetailListView);
+            this.rightPanel.Controls.Add(this.listPanel);
+            this.rightPanel.Controls.Add(this.panel1);
             this.rightPanel.Controls.Add(this.tasksLabel);
             this.rightPanel.Location = new System.Drawing.Point(704, 3);
             this.rightPanel.Name = "rightPanel";
@@ -327,15 +331,16 @@
             // fileBrowserToolStripMenuItem
             // 
             this.fileBrowserToolStripMenuItem.Name = "fileBrowserToolStripMenuItem";
-            this.fileBrowserToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.fileBrowserToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.fileBrowserToolStripMenuItem.Text = "File Browser";
             this.fileBrowserToolStripMenuItem.Click += new System.EventHandler(this.fileBrowserToolStripMenuItem_Click);
             // 
             // consoleToolStripMenuItem
             // 
             this.consoleToolStripMenuItem.Name = "consoleToolStripMenuItem";
-            this.consoleToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.consoleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.consoleToolStripMenuItem.Text = "Console";
+            this.consoleToolStripMenuItem.Click += new System.EventHandler(this.consoleToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
@@ -343,6 +348,23 @@
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // listPanel
+            // 
+            this.listPanel.Controls.Add(this.imageDetailListView);
+            this.listPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listPanel.Location = new System.Drawing.Point(3, 16);
+            this.listPanel.Name = "listPanel";
+            this.listPanel.Size = new System.Drawing.Size(360, 377);
+            this.listPanel.TabIndex = 8;
+            // 
+            // panel1
+            // 
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(3, 393);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(360, 49);
+            this.panel1.TabIndex = 9;
             // 
             // Form1
             // 
@@ -375,6 +397,7 @@
             this.bottomPanel.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.listPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -407,6 +430,8 @@
         private System.Windows.Forms.Panel consoleInputPanel;
         private System.Windows.Forms.Panel treeView;
         private System.Windows.Forms.Panel taskControl;
+        private System.Windows.Forms.Panel listPanel;
+        private System.Windows.Forms.Panel panel1;
     }
 
     

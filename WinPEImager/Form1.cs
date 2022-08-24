@@ -77,6 +77,7 @@ namespace WinPEImager
             myImageList.Images.Add(Image.FromFile("./Assets/Images/icons-png/file-settings.png"));
             myImageList.Images.Add(Image.FromFile("./Assets/Images/icons-png/select.png"));
             myImageList.Images.Add(Image.FromFile("./Assets/Images/icons-png/file.png"));
+            myImageList.Images.Add(Image.FromFile("./Assets/Images/icons-png/app-window.png"));
 
             fileTree.ImageList = myImageList;
 
@@ -105,11 +106,8 @@ namespace WinPEImager
             {
                 FileInfo[] files = d.GetFiles();
 
-                if (files.Length == 0)
-                {
-                     fileTree.Nodes.Add(await MapDirectory(d));
-                }
-               
+                fileTree.Nodes.Add(await MapDirectory(d));
+
             }
 
            
@@ -163,6 +161,7 @@ namespace WinPEImager
                         else {
 
                             imageDetailListView.Invoke(new MethodInvoker(delegate { imageDetailListView.Clear(); }));
+
 
                             if (e.Node is CustomTreeNode)
                             {
@@ -258,8 +257,14 @@ namespace WinPEImager
                     {
                         node.Nodes.Add(new CustomTreeNode(file.Name, file.FullName, file.Directory.FullName, 2, 4));
                     }
-                    else { 
-                        node.Nodes.Add(new CustomTreeNode(file.Name,file.FullName,file.Directory.FullName,5,4));
+                    else if (file.Extension == ".txt" || file.Extension == ".bat" || file.Extension == ".cmd")
+                    {
+                        node.Nodes.Add(new CustomTreeNode(file.Name, file.FullName, file.Directory.FullName, 5, 4));
+                    }
+                    else if (file.Extension == ".exe")
+                    {
+                        node.Nodes.Add(new TreeNode(file.Name, 6, 4));
+                    
                     }
                 }
 
@@ -291,6 +296,18 @@ namespace WinPEImager
         {
             AboutForm about = new AboutForm();
             about.Show();
+        }
+
+        private void consoleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+          Process proc = new Process();
+            proc.StartInfo.FileName = "cmd.exe";
+            proc.StartInfo.UseShellExecute = false;
+            proc.StartInfo.WorkingDirectory = @"C:";
+            proc.Start();
+            
+
+
         }
     }
 }
