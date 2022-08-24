@@ -8,5 +8,6 @@ namespace WinPEImager.Classes.Interfaces
 {
     internal interface IParsable
     {
+        Image Parse();
     }
 }

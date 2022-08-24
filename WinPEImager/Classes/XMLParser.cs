@@ -14,6 +14,9 @@ namespace WinPEImager.Classes
 {
     public class XMLParser
     {
+
+        static XMLParser instance;
+        private static object locker = new object();
         public XMLParser(){
 
         }
@@ -62,6 +65,19 @@ namespace WinPEImager.Classes
             }
         }
 
-        
+        public static XMLParser GetInstance()
+        {
+            if (instance == null)
+            {
+                lock (locker)
+                {
+                    if (instance == null)
+                    {
+                        instance = new XMLParser();
+                    }
+                }
+            }
+            return instance;
+        }
     }
 }

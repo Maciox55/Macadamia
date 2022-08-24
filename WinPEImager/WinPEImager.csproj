@@ -68,7 +68,9 @@
     <Compile Include="Classes\Image.cs" />
     <Compile Include="Classes\ImageObjBuilder.cs" />
     <Compile Include="Classes\Interfaces\IContextable.cs" />
+    <Compile Include="Classes\Interfaces\IListable.cs" />
     <Compile Include="Classes\Interfaces\IParsable.cs" />
+    <Compile Include="Classes\ScriptNode.cs" />
     <Compile Include="Classes\Task.cs" />
     <Compile Include="Classes\XMLParser.cs" />
     <Compile Include="Form1.cs">

@@ -11,6 +11,7 @@ using System.IO;
 using System.Xml;
 using System.Diagnostics;
 using WinPEImager.Classes;
+using WinPEImager.Classes.Interfaces;
 using cImage = WinPEImager.Classes.Image;
 using ImageTask = WinPEImager.Classes.Task;
 using Image = System.Drawing.Image;
@@ -21,7 +22,7 @@ namespace WinPEImager
     public partial class Form1 : Form
     {
         private Config config;
-        public XMLParser parser = new XMLParser();
+        public XMLParser parser = XMLParser.GetInstance();
         public List<Client> clients = new List<Client>();
         cImage currentSelectedImage;
 
@@ -154,8 +155,6 @@ namespace WinPEImager
                             {
                                 mnu.Show(fileTree, e.Location);
                             }));
-                        
-
 
                         }
                         else {
@@ -163,10 +162,10 @@ namespace WinPEImager
                             imageDetailListView.Invoke(new MethodInvoker(delegate { imageDetailListView.Clear(); }));
 
 
-                            if (e.Node is CustomTreeNode)
+                            if (e.Node is IParsable)
                             {
-                                CustomTreeNode cnode = (CustomTreeNode)e.Node;
-
+                                IParsable cnode = (IParsable)e.Node;
+                                cnode.Parse();
                                 //Console.WriteLine(cnode.FullPath);
                                 //Parse XML at the nodes path into an image file
                                 cImage image = parser.parseImageFromXML(cnode.path);
@@ -187,10 +186,7 @@ namespace WinPEImager
                             }
                         }
                     }
-
-
                     // parser.Parse(config.GetMasterPath()+e.Node.FullPath);
-
                 }
                 catch (Exception ex)
                 {
@@ -255,7 +251,7 @@ namespace WinPEImager
 
                     if (file.Extension == ".xml")
                     {
-                        node.Nodes.Add(new CustomTreeNode(file.Name, file.FullName, file.Directory.FullName, 2, 4));
+                        node.Nodes.Add(new ScriptNode(file.Name, file.FullName, file.Directory.FullName, 2, 4));
                     }
                     else if (file.Extension == ".txt" || file.Extension == ".bat" || file.Extension == ".cmd")
                     {

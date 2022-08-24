@@ -119,5 +119,10 @@ namespace WinPEImager.Classes
             }
             Console.WriteLine("Files Copied");
         }
+
+        public ListView TaskList() {
+            return this.tasks;
+        
+        }
     }
 }

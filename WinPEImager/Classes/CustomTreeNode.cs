@@ -11,6 +11,11 @@ namespace WinPEImager.Classes
     {
         public string path;
         public string dirPath;
+
+        public CustomTreeNode(){ 
+        
+        }
+
         public CustomTreeNode(string text) {
             Text = text;
         
