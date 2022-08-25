@@ -53,7 +53,7 @@
             this.mainPanel = new System.Windows.Forms.Panel();
             this.masterPathLabel = new System.Windows.Forms.Label();
             this.bottomPanel = new System.Windows.Forms.Panel();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.consoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -68,7 +68,7 @@
             this.listPanel.SuspendLayout();
             this.mainPanel.SuspendLayout();
             this.bottomPanel.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
+            this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // fileTree
@@ -352,16 +352,16 @@
             this.bottomPanel.Size = new System.Drawing.Size(1070, 25);
             this.bottomPanel.TabIndex = 22;
             // 
-            // menuStrip1
+            // menuStrip
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolsToolStripMenuItem,
             this.aboutToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1070, 24);
-            this.menuStrip1.TabIndex = 10;
-            this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip.Name = "menuStrip";
+            this.menuStrip.Size = new System.Drawing.Size(1070, 24);
+            this.menuStrip.TabIndex = 10;
+            this.menuStrip.Text = "menuStrip";
             // 
             // toolsToolStripMenuItem
             // 
@@ -393,8 +393,8 @@
             this.ClientSize = new System.Drawing.Size(1070, 500);
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.bottomPanel);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
+            this.Controls.Add(this.menuStrip);
+            this.MainMenuStrip = this.menuStrip;
             this.MinimumSize = new System.Drawing.Size(1070, 500);
             this.Name = "Form1";
             this.Text = "WinPE Imager";
@@ -416,8 +416,8 @@
             this.mainPanel.ResumeLayout(false);
             this.bottomPanel.ResumeLayout(false);
             this.bottomPanel.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.menuStrip.ResumeLayout(false);
+            this.menuStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -439,7 +439,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button consoleClearButton;
         public System.Windows.Forms.TextBox consoleOutputTextBox;
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.Button cmdInputSubmitButton;
         private System.Windows.Forms.TextBox cmdInputField;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;

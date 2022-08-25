@@ -48,6 +48,13 @@ namespace WinPEImager
             CMDR.GetProcess().SetConsoleOutput(consoleOutputTextBox);
             findConfigAsync();
 
+            if (config.GetNextAppName() != null && config.GetNextAppPath() != null)
+            {
+                ToolStripMenuItem nextAppMenuItem = new ToolStripMenuItem(config.GetNextAppName());
+                nextAppMenuItem.Click += new EventHandler(nextAppMenuItem_Click);
+                menuStrip.Items.Add(nextAppMenuItem);
+            }
+
 
             taskMenu.MenuItems.Add(runTaskItem);
 
@@ -67,6 +74,11 @@ namespace WinPEImager
             imageDetailListView.SmallImageList.Images.Add(Image.FromFile("./Assets/Images/icons-png/circle-check.png"));
             imageDetailListView.SmallImageList.Images.Add(Image.FromFile("./Assets/Images/icons-png/circle-x.png"));
 
+        }
+
+        private void NextAppMenuItem_MouseDown(object sender, MouseEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private async Task findConfigAsync()
@@ -99,9 +111,7 @@ namespace WinPEImager
             foreach (DirectoryInfo d in dirs)
             {
                 FileInfo[] files = d.GetFiles();
-
                 fileTree.Nodes.Add(await MapDirectory(d));
-
             }
         }
 
@@ -126,6 +136,11 @@ namespace WinPEImager
         void taskRun_click(object sender, EventArgs e)
         {
 
+        }
+
+        void nextAppMenuItem_Click(object sender, EventArgs e)
+        {
+            
         }
 
         private async void fileTree_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e) {
@@ -314,7 +329,7 @@ namespace WinPEImager
         }
         void runTaskItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(e.ToString());
+            MessageBox.Show(e.GetType().ToString());
         }
     }
 }

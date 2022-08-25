@@ -2,5 +2,5 @@
 <APPCONFIG>
 	<WORKINGDRIVE>C:</WORKINGDRIVE>
 	<MASTERPATH>\\TEMPSERVER\Images\Mactest\</MASTERPATH>
-	<NEXTAPP></NEXTAPP>
+	<NEXTAPP name="PCDoctor" path="X:\pcdoctor\" appName="pcdgui.exe"/>
 </APPCONFIG>

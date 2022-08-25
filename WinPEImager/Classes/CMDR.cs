@@ -98,10 +98,10 @@ namespace WinPEImager.Classes
                 process.Kill();
             }
             catch (Exception e)
-            { 
-                
+            {
+
             }
-           
+
         }
 
         public async AsyncTask.Task<bool> RunCommand(Task task)
@@ -159,6 +159,27 @@ namespace WinPEImager.Classes
                     return true;
                 }
 
+
+        }
+
+        public void StandaloneCMD() {
+
+            Process proc = new Process();
+            proc.StartInfo.FileName = "cmd.exe";
+            proc.StartInfo.UseShellExecute = false;
+            proc.StartInfo.WorkingDirectory = @"C:";
+            proc.Start();
+
+        }
+
+        public void RunApp(string path)
+        {
+
+            Process proc = new Process();
+            proc.StartInfo.FileName = "cmd.exe";
+            proc.StartInfo.UseShellExecute = false;
+            proc.StartInfo.WorkingDirectory = Config.Instance().GetWorkingDir();
+            proc.Start();
 
         }
     }
