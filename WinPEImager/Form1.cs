@@ -140,6 +140,8 @@ namespace WinPEImager
 
         void nextAppMenuItem_Click(object sender, EventArgs e)
         {
+
+            CMDR.GetProcess().RunApp(config.GetNextAppPath()+config.GetNextApp(),config.GetNextAppParams());
             
         }
 
@@ -233,6 +235,9 @@ namespace WinPEImager
             {
                 currentSelectedImage.canStart = true;
                 currentSelectedImage.Start();
+            }
+            else {
+                MessageBox.Show("Please select a task config file first.");
             }
         }
 

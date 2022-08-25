@@ -177,14 +177,22 @@ namespace WinPEImager.Classes
 
         }
 
-        public void RunApp(string path)
+        public void RunApp(string path, string param)
         {
 
-            Process proc = new Process();
-            proc.StartInfo.FileName = "cmd.exe";
-            proc.StartInfo.UseShellExecute = false;
-            proc.StartInfo.WorkingDirectory = Config.Instance().GetWorkingDir();
-            proc.Start();
+            try
+            {
+                CMDR.GetProcess().WriteToConsole(path + param);
+                Process proc = new Process();
+                proc.StartInfo.FileName = path;
+                proc.StartInfo.Arguments = param;
+                proc.Start();
+            }
+            catch (Exception e)
+            {
+                CMDR.GetProcess().WriteToConsole("Error running next app: "+e.Message);
+            }
+            
 
         }
     }
