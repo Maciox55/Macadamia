@@ -66,8 +66,11 @@ namespace WinPEImager.Classes
             {
                 if (canStart == true)
                 {
+                    CMDR.GetProcess().WriteToConsole("========== RUNNING TASK: " + task.command + " ==========");
                     //Call execute the task
                     await task.Execute();
+
+                    CMDR.GetProcess().WriteToConsole("========== TASK " +task.GetStatus() + " ==========");
                     //change the image indes of the task in the list view
                     listview.Invoke(new MethodInvoker(delegate { listview.FindItemWithText(task.command).ImageIndex = ((int)task.GetStatus()); }));
                 }

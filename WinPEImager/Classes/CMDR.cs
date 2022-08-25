@@ -91,6 +91,11 @@ namespace WinPEImager.Classes
 
         }
 
+        public async void WriteToConsole(string data)
+        {
+            consoleOutput.Invoke(new MethodInvoker(delegate { consoleOutput.AppendText(data); consoleOutput.AppendText(Environment.NewLine); }));
+        }
+
         public async void Abort()
         {
             try
