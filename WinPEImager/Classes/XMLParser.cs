@@ -33,7 +33,6 @@ namespace WinPEImager.Classes
                 string imagePath = xdoc.Root.Element("IMAGE").Attribute("imagePath").Value;
 
                 IEnumerable<XElement> elements = xdoc.Root.Element("TASKS").Elements("TASK");
-                Console.WriteLine("TEST " + xdoc.Root.Element("TASKS").Elements("TASK").ToList().Count);
 
 
                 foreach (XElement element in elements)
@@ -47,9 +46,10 @@ namespace WinPEImager.Classes
                     {
                         tasks.Add(new Task(element.Attribute("command").Value, TYPE.Bat));
                     }
-
-
-                    //Console.WriteLine(element.Attribute("command").Value);
+                    else if (type == "next") 
+                    {
+                        tasks.Add(new Task(TYPE.Next));
+                    }
                 }
 
                 Image image = new Image(imagePath, tasks);

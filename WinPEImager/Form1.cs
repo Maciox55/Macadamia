@@ -48,9 +48,9 @@ namespace WinPEImager
             CMDR.GetProcess().SetConsoleOutput(consoleOutputTextBox);
             findConfigAsync();
 
-            if (config.GetNextAppName() != null && config.GetNextAppPath() != null)
+            if (config.GetNextApp().GetPath() != null && config.GetNextApp().GetParams() != null && config.GetNextApp().GetName() != null)
             {
-                ToolStripMenuItem nextAppMenuItem = new ToolStripMenuItem(config.GetNextAppName());
+                ToolStripMenuItem nextAppMenuItem = new ToolStripMenuItem(config.GetNextApp().GetName());
                 nextAppMenuItem.Click += new EventHandler(nextAppMenuItem_Click);
                 menuStrip.Items.Add(nextAppMenuItem);
             }
@@ -140,8 +140,8 @@ namespace WinPEImager
 
         void nextAppMenuItem_Click(object sender, EventArgs e)
         {
-
-            CMDR.GetProcess().RunApp(config.GetNextAppPath()+config.GetNextApp(),config.GetNextAppParams());
+           
+            config.GetNextApp().Run();
             
         }
 

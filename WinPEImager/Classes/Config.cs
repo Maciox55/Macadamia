@@ -17,10 +17,12 @@ namespace WinPEImager.Classes
         private string workingdrive;
 
         //TODO: Make Next App a separate Class later, for potantial chaining, ease of use, etc.
-        private string nextAppPath;
-        private string nextAppText;
-        private string nextApp;
-        private string nextAppParams;
+        //private string nextAppPath;
+        //private string nextAppText;
+        //private string nextAppName;
+        //private string nextAppParams;
+
+        private NextApp nextApp;
 
         private Config() {
             Console.WriteLine("Initialized Config Singleton");
@@ -42,39 +44,53 @@ namespace WinPEImager.Classes
             return workingdrive;
         }
 
-        public string GetNextAppPath() {
-            return nextAppPath;
-        }
-
-        public string GetNextAppName() {
-            return nextAppText;
-        }
-
-        public string GetNextApp() {
+        public NextApp GetNextApp() {
             return nextApp;
-        
         }
-        public string GetNextAppParams()
-        {
-            return nextAppParams;
 
-        }
+        //public string GetNextAppPath() {
+        //    return nextAppPath;
+        //}
+
+        //public string GetNextAppName() {
+        //    return nextAppText;
+        //}
+
+        //public string GetNextApp() {
+        //    return nextAppName;
+        
+        //}
+        //public string GetNextAppParams()
+        //{
+        //    return nextAppParams;
+
+        //}
 
 
         private void ParseConfigFile(XElement xmlContent) {
-            masterPath = xmlContent.Element("MASTERPATH").Value;
-            workingdrive = xmlContent.Element("WORKINGDRIVE").Value;
-
-            if (xmlContent.Element("NEXTAPP") != null)
+            try
             {
-                nextAppPath = xmlContent.Element("NEXTAPP").Attribute("path").Value;
-                nextAppText = xmlContent.Element("NEXTAPP").Attribute("name").Value;
-                nextApp = xmlContent.Element("NEXTAPP").Attribute("appName").Value;
-                nextAppParams = xmlContent.Element("NEXTAPP").Attribute("appParams").Value;
-            }
+                masterPath = xmlContent.Element("MASTERPATH").Value;
+                workingdrive = xmlContent.Element("WORKINGDRIVE").Value;
 
-            
-            Console.WriteLine(masterPath);
+                if (xmlContent.Element("NEXTAPP") != null)
+                {
+                    string nextAppPath = xmlContent.Element("NEXTAPP").Attribute("path").Value;
+                    string nextAppText = xmlContent.Element("NEXTAPP").Attribute("name").Value;
+                    string nextAppName = xmlContent.Element("NEXTAPP").Attribute("appName").Value;
+                    string nextAppParams = xmlContent.Element("NEXTAPP").Attribute("appParams").Value;
+                    nextApp = new NextApp(nextAppText, nextAppPath, nextAppName, nextAppParams);
+                }
+
+
+                Console.WriteLine(masterPath);
+            }
+            catch (Exception e)
+            {
+                CMDR.GetProcess().WriteToConsole("Error parsing Config file!");
+                CMDR.GetProcess().WriteToConsole(e.Message);
+            }
+          
 
         }
     }

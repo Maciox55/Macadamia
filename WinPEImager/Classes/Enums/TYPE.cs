@@ -3,7 +3,8 @@
     public enum TYPE
     {
         Command,
-        Bat
+        Bat,
+        Next
 
     }
 }

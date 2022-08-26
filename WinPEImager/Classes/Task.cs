@@ -21,22 +21,30 @@ namespace WinPEImager.Classes
         private bool sucessful;
         private STATUS currentStatus;
 
-        public Task(string command) {
-            this.command = command;
+        public Task(string cmd) {
+            command = cmd;
             currentStatus = STATUS.Idle;
         }
-        public Task(string command, TYPE t)
+        public Task(TYPE t)
         {
-            this.command = command;
-            this.type = t;
+            type = t;
+            if (t == TYPE.Next)
+            {
+                command = "Next APP";
+            }
+        }
+        public Task(string cmd, TYPE t)
+        {
+            command = cmd;
+            type = t;
             currentStatus = STATUS.Idle;
         }
-        public Task(string command,string p,Image pimage, TYPE t)
+        public Task(string cmd, string p,Image pimage, TYPE t)
         {
-            this.command = command;
-            this.path = p;
-            this.type = t;
-            this.parentImage = pimage;
+            command = cmd;
+            path = p;
+            type = t;
+            parentImage = pimage;
             currentStatus = STATUS.Idle;
         }
         public void SetStatus(STATUS newStatus)
@@ -76,34 +84,42 @@ namespace WinPEImager.Classes
 
             try
             {
-                //Check if the status is not Sucessful, otherwise skip the operation.
-                if (this.currentStatus != STATUS.Sucessful)
+                if (type != TYPE.Next)
                 {
-    
-                    this.currentStatus = STATUS.Processing;
-
-                    sucessful = await AsyncTask.Run(()=> CMDR.GetProcess().RunCommand(this));
-
-
-
-                    if (!sucessful)
+                    //Check if the status is not Sucessful, otherwise skip the operation.
+                    if (this.currentStatus != STATUS.Sucessful)
                     {
-                        Console.WriteLine("ERRORS: " + error);
-                        this.currentStatus = STATUS.Failed;
-                        Console.WriteLine(this.currentStatus);
+
+                        this.currentStatus = STATUS.Processing;
+
+                        sucessful = await AsyncTask.Run(() => CMDR.GetProcess().RunCommand(this));
+
+
+
+                        if (!sucessful)
+                        {
+                            Console.WriteLine("ERRORS: " + error);
+                            this.currentStatus = STATUS.Failed;
+                            Console.WriteLine(this.currentStatus);
+                        }
+                        else
+                        {
+
+                            this.currentStatus = STATUS.Sucessful;
+                            Console.WriteLine(this.currentStatus);
+                        }
+                        await AsyncTask.Delay(1000);
                     }
                     else
                     {
-                        
-                        this.currentStatus = STATUS.Sucessful;
-                        Console.WriteLine(this.currentStatus);
+                        MessageBox.Show("Task: " + this.command + " Has already been executed");
+
                     }
-                    await AsyncTask.Delay(1000);
                 }
                 else {
-                    MessageBox.Show("Task: " + this.command + " Has already been executed");
-                    
+                    Config.Instance().GetNextApp().Run();
                 }
+               
 
             }
             catch (Exception e) {
