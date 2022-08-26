@@ -76,8 +76,8 @@
             this.fileTree.Dock = System.Windows.Forms.DockStyle.Fill;
             this.fileTree.Location = new System.Drawing.Point(3, 16);
             this.fileTree.Name = "fileTree";
-            this.fileTree.Size = new System.Drawing.Size(277, 377);
-            this.fileTree.TabIndex = 2;
+            this.fileTree.Size = new System.Drawing.Size(277, 338);
+            this.fileTree.TabIndex = 1;
             this.fileTree.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.fileTree_NodeMouseClick);
             this.fileTree.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.fileTree_NodeMouseDoubleClick);
             // 
@@ -101,8 +101,8 @@
             this.imageDetailListView.HideSelection = false;
             this.imageDetailListView.Location = new System.Drawing.Point(0, 0);
             this.imageDetailListView.Name = "imageDetailListView";
-            this.imageDetailListView.Size = new System.Drawing.Size(360, 377);
-            this.imageDetailListView.TabIndex = 6;
+            this.imageDetailListView.Size = new System.Drawing.Size(274, 338);
+            this.imageDetailListView.TabIndex = 9;
             this.imageDetailListView.UseCompatibleStateImageBehavior = false;
             this.imageDetailListView.View = System.Windows.Forms.View.List;
             this.imageDetailListView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.imageDetailListView_MouseClick);
@@ -128,7 +128,7 @@
             this.leftPanel.Location = new System.Drawing.Point(3, 3);
             this.leftPanel.Name = "leftPanel";
             this.leftPanel.Padding = new System.Windows.Forms.Padding(3);
-            this.leftPanel.Size = new System.Drawing.Size(419, 445);
+            this.leftPanel.Size = new System.Drawing.Size(419, 406);
             this.leftPanel.TabIndex = 9;
             // 
             // consolePanel
@@ -139,7 +139,7 @@
             this.consolePanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.consolePanel.Location = new System.Drawing.Point(3, 16);
             this.consolePanel.Name = "consolePanel";
-            this.consolePanel.Size = new System.Drawing.Size(413, 426);
+            this.consolePanel.Size = new System.Drawing.Size(413, 387);
             this.consolePanel.TabIndex = 12;
             // 
             // consoleOutputTextBox
@@ -152,15 +152,15 @@
             this.consoleOutputTextBox.Name = "consoleOutputTextBox";
             this.consoleOutputTextBox.ReadOnly = true;
             this.consoleOutputTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.consoleOutputTextBox.Size = new System.Drawing.Size(413, 370);
-            this.consoleOutputTextBox.TabIndex = 7;
+            this.consoleOutputTextBox.Size = new System.Drawing.Size(413, 331);
+            this.consoleOutputTextBox.TabIndex = 8;
             // 
             // consoleInputPanel
             // 
             this.consoleInputPanel.Controls.Add(this.cmdInputSubmitButton);
             this.consoleInputPanel.Controls.Add(this.cmdInputField);
             this.consoleInputPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.consoleInputPanel.Location = new System.Drawing.Point(0, 370);
+            this.consoleInputPanel.Location = new System.Drawing.Point(0, 331);
             this.consoleInputPanel.Name = "consoleInputPanel";
             this.consoleInputPanel.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.consoleInputPanel.Size = new System.Drawing.Size(413, 26);
@@ -173,7 +173,7 @@
             this.cmdInputSubmitButton.Margin = new System.Windows.Forms.Padding(0);
             this.cmdInputSubmitButton.Name = "cmdInputSubmitButton";
             this.cmdInputSubmitButton.Size = new System.Drawing.Size(71, 23);
-            this.cmdInputSubmitButton.TabIndex = 11;
+            this.cmdInputSubmitButton.TabIndex = 3;
             this.cmdInputSubmitButton.Text = "SEND";
             this.cmdInputSubmitButton.UseVisualStyleBackColor = true;
             this.cmdInputSubmitButton.Click += new System.EventHandler(this.cmdInputSubmitButton_Click);
@@ -184,14 +184,14 @@
             this.cmdInputField.Location = new System.Drawing.Point(0, 3);
             this.cmdInputField.Name = "cmdInputField";
             this.cmdInputField.Size = new System.Drawing.Size(339, 20);
-            this.cmdInputField.TabIndex = 10;
+            this.cmdInputField.TabIndex = 2;
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.consoleClearButton);
             this.panel2.Controls.Add(this.abortCMD);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 396);
+            this.panel2.Location = new System.Drawing.Point(0, 357);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(413, 30);
             this.panel2.TabIndex = 8;
@@ -203,7 +203,7 @@
             this.consoleClearButton.Margin = new System.Windows.Forms.Padding(0);
             this.consoleClearButton.Name = "consoleClearButton";
             this.consoleClearButton.Size = new System.Drawing.Size(352, 30);
-            this.consoleClearButton.TabIndex = 9;
+            this.consoleClearButton.TabIndex = 6;
             this.consoleClearButton.Text = "CLEAR";
             this.consoleClearButton.UseVisualStyleBackColor = true;
             this.consoleClearButton.Click += new System.EventHandler(this.consoleClearButton_Click);
@@ -239,7 +239,7 @@
             this.startButton.Location = new System.Drawing.Point(181, 0);
             this.startButton.Name = "startButton";
             this.startButton.Size = new System.Drawing.Size(96, 30);
-            this.startButton.TabIndex = 6;
+            this.startButton.TabIndex = 4;
             this.startButton.Text = "START";
             this.startButton.UseVisualStyleBackColor = false;
             this.startButton.Click += new System.EventHandler(this.startButton_Click);
@@ -255,14 +255,14 @@
             this.centerPanel.Location = new System.Drawing.Point(422, 3);
             this.centerPanel.Name = "centerPanel";
             this.centerPanel.Padding = new System.Windows.Forms.Padding(3);
-            this.centerPanel.Size = new System.Drawing.Size(283, 445);
+            this.centerPanel.Size = new System.Drawing.Size(283, 406);
             this.centerPanel.TabIndex = 20;
             // 
             // treeView
             // 
             this.treeView.Controls.Add(this.taskControl);
             this.treeView.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.treeView.Location = new System.Drawing.Point(3, 393);
+            this.treeView.Location = new System.Drawing.Point(3, 354);
             this.treeView.Name = "treeView";
             this.treeView.Size = new System.Drawing.Size(277, 49);
             this.treeView.TabIndex = 13;
@@ -288,7 +288,7 @@
             this.rightPanel.Location = new System.Drawing.Point(704, 3);
             this.rightPanel.Name = "rightPanel";
             this.rightPanel.Padding = new System.Windows.Forms.Padding(3);
-            this.rightPanel.Size = new System.Drawing.Size(366, 445);
+            this.rightPanel.Size = new System.Drawing.Size(280, 406);
             this.rightPanel.TabIndex = 10;
             // 
             // listPanel
@@ -297,15 +297,15 @@
             this.listPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listPanel.Location = new System.Drawing.Point(3, 16);
             this.listPanel.Name = "listPanel";
-            this.listPanel.Size = new System.Drawing.Size(360, 377);
+            this.listPanel.Size = new System.Drawing.Size(274, 338);
             this.listPanel.TabIndex = 8;
             // 
             // panel1
             // 
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(3, 393);
+            this.panel1.Location = new System.Drawing.Point(3, 354);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(360, 49);
+            this.panel1.Size = new System.Drawing.Size(274, 49);
             this.panel1.TabIndex = 9;
             // 
             // tasksLabel
@@ -328,7 +328,7 @@
             this.mainPanel.Location = new System.Drawing.Point(0, 24);
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Padding = new System.Windows.Forms.Padding(3);
-            this.mainPanel.Size = new System.Drawing.Size(1070, 451);
+            this.mainPanel.Size = new System.Drawing.Size(984, 412);
             this.mainPanel.TabIndex = 150;
             // 
             // masterPathLabel
@@ -347,9 +347,9 @@
             // 
             this.bottomPanel.Controls.Add(this.masterPathLabel);
             this.bottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.bottomPanel.Location = new System.Drawing.Point(0, 475);
+            this.bottomPanel.Location = new System.Drawing.Point(0, 436);
             this.bottomPanel.Name = "bottomPanel";
-            this.bottomPanel.Size = new System.Drawing.Size(1070, 25);
+            this.bottomPanel.Size = new System.Drawing.Size(984, 25);
             this.bottomPanel.TabIndex = 22;
             // 
             // menuStrip
@@ -359,7 +359,7 @@
             this.aboutToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(1070, 24);
+            this.menuStrip.Size = new System.Drawing.Size(984, 24);
             this.menuStrip.TabIndex = 10;
             this.menuStrip.Text = "menuStrip";
             // 
@@ -390,14 +390,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(1070, 500);
+            this.ClientSize = new System.Drawing.Size(984, 461);
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.bottomPanel);
             this.Controls.Add(this.menuStrip);
             this.MainMenuStrip = this.menuStrip;
-            this.MinimumSize = new System.Drawing.Size(1070, 500);
+            this.MinimumSize = new System.Drawing.Size(1000, 400);
             this.Name = "Form1";
-            this.Text = "WinPE Imager";
+            this.Text = "WinPEImager - System Deployment Automation Utility";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.leftPanel.ResumeLayout(false);
             this.leftPanel.PerformLayout();

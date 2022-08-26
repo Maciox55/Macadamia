@@ -1,7 +1,10 @@
 <IMAGING>
-	<IMAGE imagePath="\\TEMPSERVER\Images\Magnetic Analysis\FD5 Image Stick Backup\images\FD5A78.WIM"/>
+	<IMAGE imagePath="\\TEMPSERVER\Images\Magnetic Analysis\Mag176\176.wim"/>
 	<TASKS>
-		<TASK command="diskpart /s disk.txt"/>
-		<TASK command="Required\imaging.bat" />
+		<TASK type="command" command="echo test"/>
+		<TASK type="bat" command="flashBIOS.cmd"/>
+		<TASK type="bat" command="format.bat"/>
+		<TASK type="bat" command="imaging.bat"/>
+		<TASK type="next"/>
 	</TASKS>
 </IMAGING>
