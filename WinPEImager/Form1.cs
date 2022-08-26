@@ -326,15 +326,21 @@ namespace WinPEImager
 
                 this.Invoke(new MethodInvoker(delegate
                 {
+                    //TODO: FIX THIS NEXT, BROKEN
+                    ListView item = (ListView)sender;
+                    taskMenu.Tag = item.Text;
                     taskMenu.Show(imageDetailListView, e.Location);
                 }));
 
             }
 
         }
-        void runTaskItem_Click(object sender, EventArgs e)
+
+        private void runTaskItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(e.GetType().ToString());
+            MenuItem menuitem = (MenuItem)sender;
+            string tag = menuitem.Tag.ToString();
+            Console.WriteLine(tag);
         }
     }
 }
