@@ -13,6 +13,8 @@ I wanted to create a highly extensible way of imaging and performing tasks for t
 
 The tool is in really early stages of development and features are constantly being iterated on.
 
+![Macadamia Demo Screenshot](https://github.com/Maciox55/Macadamia/blob/master/Images/DemoScreenshot.jpg)
+
   
 
 ## How does it work?
