@@ -1,5 +1,5 @@
 ```
-![Macadamia Banner Image](http://url/to/img.png)
+![Macadamia Banner Image](https://github.com/Maciox55/WinPEImager/blob/master/Images/Macadamia%20Banner.png)
 ```
 
 # Macadamia - Batch Automation Utility
