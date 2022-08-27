@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.fileTree = new System.Windows.Forms.TreeView();
             this.refreshBtn = new System.Windows.Forms.Button();
             this.imageDetailListView = new System.Windows.Forms.ListView();
@@ -394,10 +395,11 @@
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.bottomPanel);
             this.Controls.Add(this.menuStrip);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip;
             this.MinimumSize = new System.Drawing.Size(1000, 400);
             this.Name = "Form1";
-            this.Text = "WinPEImager - System Deployment Automation Utility";
+            this.Text = "Macadamia -Batch Automation Utility";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.leftPanel.ResumeLayout(false);
             this.leftPanel.PerformLayout();
