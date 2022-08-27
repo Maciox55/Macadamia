@@ -1,7 +1,6 @@
 
 ![Macadamia Banner Image](https://github.com/Maciox55/WinPEImager/blob/master/Images/Macadamia%20Banner.png)
 
-
 # Macadamia - Batch Automation Utility
 
 Macadamia is a project which hopes to make Windows imaging simple, it is a purpose built tool for my current employer.
@@ -48,30 +47,18 @@ The `TASKS` will be called one after another by calling a CMD process with the c
 Here is an example of how the directory structure should look like within the Master Path provided to the config file:
 
 * Client 1/
-
-* Product 1/
-
-* Required/
-
-* script.xml
-
+	* Product 1/
+		* Required/
+		* script.xml
 * Client 2/
-
-* Product 1/
-
-* Required/
-
-* script.xml
-
-* Product 2/
-
-* Required/
-
-* biosflasher.exe
-
-* cleandisk.bat
-
-* script.xml
+	* Product 1/
+		* Required/
+		* script.xml
+	* Product 2/
+		* Required/
+			* biosflasher.exe
+			* cleandisk.bat
+		* script.xml
 
   
 
