@@ -2296,6 +2296,7 @@
     <Content Include="Assets\Images\icons-png\zoom-question.png" />
     <Content Include="Assets\Images\icons-png\zoom-reset.png" />
     <Content Include="Assets\Images\icons-png\zzz.png" />
+    <Content Include="Assets\Images\Macadamia.ico" />
     <Content Include="Localconfig.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
