@@ -90,8 +90,6 @@ namespace WinPEImager.Classes
                 CMDR.GetProcess().WriteToConsole("Error parsing Config file!");
                 CMDR.GetProcess().WriteToConsole(e.Message);
             }
-          
-
         }
     }
 }

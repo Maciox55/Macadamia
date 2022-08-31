@@ -2,5 +2,6 @@
 <APPCONFIG>
 	<WORKINGDRIVE>C:</WORKINGDRIVE>
 	<MASTERPATH>\\TEMPSERVER\Images\Mactest\</MASTERPATH>
-	<NEXTAPP name="PCDoctor" path="X:\pcdoctor\" appName="pcdgui.exe" appParams =" -s 10.0.104.245 "/>
+	<!--<NEXTAPP name="PCDoctor" path="X:\pcdoctor\" appName="pcdgui.exe" appParams =" -s 10.0.104.245 "/>-->
+	<NEXTAPP name="PCD Mapper" path="C:\Users\SAI\source\repos\PCDMapper\bin\Debug\" appName="PCDMapper.exe" appParams =""/>
 </APPCONFIG>

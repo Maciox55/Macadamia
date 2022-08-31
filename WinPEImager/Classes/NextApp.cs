@@ -35,7 +35,14 @@ namespace WinPEImager.Classes
         }
 
         public void Run() {
-            CMDR.GetProcess().RunApp(GetPath(), GetParams());
+            if (GetParams() == String.Empty)
+            {
+                CMDR.GetProcess().RunApp(GetPath(), GetParams());
+            }
+            else {
+                CMDR.GetProcess().RunApp(GetPath());
+            }
+            
         }
     }
 }

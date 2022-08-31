@@ -195,5 +195,22 @@ namespace WinPEImager.Classes
             
 
         }
+        public void RunApp(string path)
+        {
+
+            try
+            {
+                CMDR.GetProcess().WriteToConsole(path);
+                Process proc = new Process();
+                proc.StartInfo.FileName = path;
+                proc.Start();
+            }
+            catch (Exception e)
+            {
+                CMDR.GetProcess().WriteToConsole("Error running next app: " + e.Message);
+            }
+
+
+        }
     }
 }
