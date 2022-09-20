@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.fileTree = new System.Windows.Forms.TreeView();
             this.refreshBtn = new System.Windows.Forms.Button();
@@ -58,6 +59,7 @@
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.consoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.leftPanel.SuspendLayout();
             this.consolePanel.SuspendLayout();
             this.consoleInputPanel.SuspendLayout();
@@ -93,6 +95,7 @@
             this.refreshBtn.Name = "refreshBtn";
             this.refreshBtn.Size = new System.Drawing.Size(30, 30);
             this.refreshBtn.TabIndex = 5;
+            this.toolTip1.SetToolTip(this.refreshBtn, "Refresh and rediscover Autmation Scripts in master directory.");
             this.refreshBtn.UseVisualStyleBackColor = false;
             this.refreshBtn.Click += new System.EventHandler(this.refreshBtn_Click);
             // 
@@ -116,9 +119,10 @@
             this.label1.Location = new System.Drawing.Point(3, 3);
             this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 13);
+            this.label1.Size = new System.Drawing.Size(75, 13);
             this.label1.TabIndex = 7;
-            this.label1.Text = "Images";
+            this.label1.Text = "Detected Files";
+            this.toolTip1.SetToolTip(this.label1, "Displays a file tree of detected files in master directory.");
             // 
             // leftPanel
             // 
@@ -176,6 +180,7 @@
             this.cmdInputSubmitButton.Size = new System.Drawing.Size(71, 23);
             this.cmdInputSubmitButton.TabIndex = 3;
             this.cmdInputSubmitButton.Text = "SEND";
+            this.toolTip1.SetToolTip(this.cmdInputSubmitButton, "Sends the command or user input into the console.");
             this.cmdInputSubmitButton.UseVisualStyleBackColor = true;
             this.cmdInputSubmitButton.Click += new System.EventHandler(this.cmdInputSubmitButton_Click);
             // 
@@ -206,6 +211,7 @@
             this.consoleClearButton.Size = new System.Drawing.Size(352, 30);
             this.consoleClearButton.TabIndex = 6;
             this.consoleClearButton.Text = "CLEAR";
+            this.toolTip1.SetToolTip(this.consoleClearButton, "Clear console log.");
             this.consoleClearButton.UseVisualStyleBackColor = true;
             this.consoleClearButton.Click += new System.EventHandler(this.consoleClearButton_Click);
             // 
@@ -220,6 +226,7 @@
             this.abortCMD.Size = new System.Drawing.Size(61, 30);
             this.abortCMD.TabIndex = 7;
             this.abortCMD.Text = "ABORT";
+            this.toolTip1.SetToolTip(this.abortCMD, "Attempts to Abort the current command, may not always work.");
             this.abortCMD.UseVisualStyleBackColor = false;
             this.abortCMD.Click += new System.EventHandler(this.abortCMD_Click);
             // 
@@ -232,6 +239,7 @@
             this.label2.Size = new System.Drawing.Size(80, 13);
             this.label2.TabIndex = 8;
             this.label2.Text = "Console Output";
+            this.toolTip1.SetToolTip(this.label2, "Outputs any Console results");
             // 
             // startButton
             // 
@@ -242,6 +250,7 @@
             this.startButton.Size = new System.Drawing.Size(96, 30);
             this.startButton.TabIndex = 4;
             this.startButton.Text = "START";
+            this.toolTip1.SetToolTip(this.startButton, "Starts selected Automation Script.");
             this.startButton.UseVisualStyleBackColor = false;
             this.startButton.Click += new System.EventHandler(this.startButton_Click);
             // 
@@ -318,6 +327,7 @@
             this.tasksLabel.Size = new System.Drawing.Size(36, 13);
             this.tasksLabel.TabIndex = 7;
             this.tasksLabel.Text = "Tasks";
+            this.toolTip1.SetToolTip(this.tasksLabel, "Displays tasks and their status.");
             // 
             // mainPanel
             // 
@@ -340,9 +350,10 @@
             this.masterPathLabel.AutoSize = true;
             this.masterPathLabel.Location = new System.Drawing.Point(3, 3);
             this.masterPathLabel.Name = "masterPathLabel";
-            this.masterPathLabel.Size = new System.Drawing.Size(64, 13);
+            this.masterPathLabel.Size = new System.Drawing.Size(62, 13);
             this.masterPathLabel.TabIndex = 21;
-            this.masterPathLabel.Text = "Image Path:";
+            this.masterPathLabel.Text = "Script Path:";
+            this.toolTip1.SetToolTip(this.masterPathLabel, "Path for the selected Automation Script");
             // 
             // bottomPanel
             // 
@@ -375,7 +386,7 @@
             // consoleToolStripMenuItem
             // 
             this.consoleToolStripMenuItem.Name = "consoleToolStripMenuItem";
-            this.consoleToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.consoleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.consoleToolStripMenuItem.Text = "Console";
             this.consoleToolStripMenuItem.Click += new System.EventHandler(this.consoleToolStripMenuItem_Click);
             // 
@@ -455,6 +466,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button abortCMD;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 
     

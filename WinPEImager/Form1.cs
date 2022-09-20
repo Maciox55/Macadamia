@@ -11,6 +11,7 @@ using System.IO;
 using System.Xml;
 using System.Diagnostics;
 using WinPEImager.Classes;
+using WinPEImager.Forms;
 using cImage = WinPEImager.Classes.Image;
 using ImageTask = WinPEImager.Classes.Task;
 using Image = System.Drawing.Image;
@@ -60,7 +61,7 @@ namespace WinPEImager
 
             runTaskItem.Click += new EventHandler(runTaskItem_Click);
 
-            mnu.MenuItems.Add(detailsMenuItem);
+            //mnu.MenuItems.Add(detailsMenuItem);
             mnu.MenuItems.Add(editMenuItem);
             detailsMenuItem.Click += new EventHandler(detailMenuItem_Click);
             editMenuItem.Click += new EventHandler(editMenuItem_Click);
@@ -122,8 +123,9 @@ namespace WinPEImager
 
         void detailMenuItem_Click(object sender, EventArgs e)
         {
-            Form frm = new Form();
-
+            Details detailsForm = new Details();
+            detailsForm.node = clickedNode;
+            detailsForm.Show();
             clickedNode = null;
         }
         void editMenuItem_Click(object sender, EventArgs e)
@@ -159,6 +161,7 @@ namespace WinPEImager
 
                          if (e.Button == MouseButtons.Right)
                          {
+
                              clickedNode = (CustomTreeNode)e.Node;
 
                              this.Invoke(new MethodInvoker(delegate
@@ -180,7 +183,7 @@ namespace WinPEImager
                                 //cImage image = parser.parseImageFromXML(cnode.path);
                                 cnode.image.path = cnode.dirPath;
                                 //Set the master path label with the path of the image file.
-                                masterPathLabel.Invoke(new MethodInvoker(delegate { masterPathLabel.Text = "Image Path: " + cnode.image.path; }));
+                                masterPathLabel.Invoke(new MethodInvoker(delegate { masterPathLabel.Text = "Script Path: " + cnode.dirPath; }));
                                 //Set reference to listview
                                 cnode.image.SetList(imageDetailListView);
                                  cnode.image.ToList();
@@ -266,7 +269,6 @@ namespace WinPEImager
                     else if (file.Extension == ".exe")
                     {
                         node.Nodes.Add(new TreeNode(file.Name, 6, 4));
-
                     }
                 }
 
@@ -327,9 +329,9 @@ namespace WinPEImager
                 this.Invoke(new MethodInvoker(delegate
                 {
                     //TODO: FIX THIS NEXT, BROKEN
-                    ListView item = (ListView)sender;
-                    taskMenu.Tag = item.Text;
-                    taskMenu.Show(imageDetailListView, e.Location);
+                    //ListView item = (ListView)sender;
+                    //taskMenu.Tag = item.Text;
+                    //taskMenu.Show(imageDetailListView, e.Location);
                 }));
 
             }

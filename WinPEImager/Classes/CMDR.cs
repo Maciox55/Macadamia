@@ -82,6 +82,7 @@ namespace WinPEImager.Classes
         {
             try
             {
+               
                 process.StandardInput.WriteLine(data);
                 await AsyncTask.Task.Delay(500);
             }
@@ -104,6 +105,7 @@ namespace WinPEImager.Classes
             }
             catch (Exception e)
             {
+                MessageBox.Show("Error stopping the console process: " + e.Message);
 
             }
 
