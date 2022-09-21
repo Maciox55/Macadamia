@@ -309,9 +309,6 @@ namespace WinPEImager
             proc.StartInfo.UseShellExecute = false;
             proc.StartInfo.WorkingDirectory = @"C:";
             proc.Start();
-
-
-
         }
 
         private void abortCMD_Click(object sender, EventArgs e)
@@ -324,8 +321,6 @@ namespace WinPEImager
         {
             if (e.Button == MouseButtons.Right)
             {
-
-
                 this.Invoke(new MethodInvoker(delegate
                 {
                     //TODO: FIX THIS NEXT, BROKEN
@@ -333,9 +328,7 @@ namespace WinPEImager
                     //taskMenu.Tag = item.Text;
                     //taskMenu.Show(imageDetailListView, e.Location);
                 }));
-
             }
-
         }
 
         private void runTaskItem_Click(object sender, EventArgs e)

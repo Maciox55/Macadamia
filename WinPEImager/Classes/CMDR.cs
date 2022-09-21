@@ -53,8 +53,6 @@ namespace WinPEImager.Classes
                 }
             });
 
-           
-
             //this.error = process.StandardError.ReadToEnd();
         }
 
@@ -89,7 +87,6 @@ namespace WinPEImager.Classes
             catch(Exception e) {
                 MessageBox.Show(e.Message);
             }
-
         }
 
         public async void WriteToConsole(string data)
@@ -113,11 +110,7 @@ namespace WinPEImager.Classes
 
         public async AsyncTask.Task<bool> RunCommand(Task task)
         {
-
-
-
             values.Clear();
-
 
             if (task.GetTaskType() == TYPE.Command)
             {
@@ -170,6 +163,7 @@ namespace WinPEImager.Classes
         }
 
         public void StandaloneCMD() {
+
 
             Process proc = new Process();
             proc.StartInfo.FileName = "cmd.exe";
