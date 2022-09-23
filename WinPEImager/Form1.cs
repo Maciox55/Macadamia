@@ -68,7 +68,7 @@ namespace WinPEImager
 
             imageDetailListView.SmallImageList = new ImageList();
             imageDetailListView.SmallImageList.ColorDepth = ColorDepth.Depth32Bit;
-            imageDetailListView.SmallImageList.ImageSize = new Size(24, 24);
+            imageDetailListView.SmallImageList.ImageSize = new Size(16, 16);
 
             imageDetailListView.SmallImageList.Images.Add(Image.FromFile("./Assets/Images/icons-png/circle.png"));
             imageDetailListView.SmallImageList.Images.Add(Image.FromFile("./Assets/Images/icons-png/circle-dotted.png"));
@@ -261,6 +261,7 @@ namespace WinPEImager
                     if (file.Extension == ".xml")
                     {
                         node.Nodes.Add(new ScriptNode(file.Name, file.FullName, file.Directory.FullName, parser.parseImageFromXML(file.FullName), 2, 4));
+                        
                     }
                     else if (file.Extension == ".txt" || file.Extension == ".bat" || file.Extension == ".cmd")
                     {

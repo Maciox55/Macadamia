@@ -14,15 +14,18 @@ namespace WinPEImager.Classes
 {
     public class XMLParser
     {
-        public XMLParser(){
+        public XMLParser()
+        {
 
         }
 
-        public void Parse(string xmlfile) {
+        public void Parse(string xmlfile)
+        {
 
         }
 
-        public Image parseImageFromXML(string xmlFile) {
+        public Image parseImageFromXML(string xmlFile)
+        {
             try
             {
                 List<Task> tasks = new List<Task>();
@@ -46,7 +49,7 @@ namespace WinPEImager.Classes
                     {
                         tasks.Add(new Task(element.Attribute("command").Value, TYPE.Bat));
                     }
-                    else if (type == "next") 
+                    else if (type == "next")
                     {
                         tasks.Add(new Task(TYPE.Next));
                     }
@@ -57,11 +60,12 @@ namespace WinPEImager.Classes
                 return image;
 
             }
-            catch(Exception e) {
+            catch (Exception e)
+            {
                 throw e;
             }
         }
 
-        
+
     }
 }

@@ -21,9 +21,10 @@ namespace WinPEImager.Classes
 
         private ListView listview;
 
-        public Image(string imageLoc){
+        public Image(string imageLoc)
+        {
             imagePath = imageLoc;
-           
+
         }
         public Image(string imageLoc, List<Task> tasks)
         {
@@ -42,7 +43,7 @@ namespace WinPEImager.Classes
             tasks.Add(newTask);
         }
 
-        public void SetTaskStatus(int index, STATUS newStatus) 
+        public void SetTaskStatus(int index, STATUS newStatus)
         {
             tasks[index].SetStatus(newStatus);
         }
@@ -70,7 +71,7 @@ namespace WinPEImager.Classes
                     //Call execute the task
                     await task.Execute();
 
-                    CMDR.GetProcess().WriteToConsole("========== TASK " +task.GetStatus() + " ==========");
+                    CMDR.GetProcess().WriteToConsole("========== TASK " + task.GetStatus() + " ==========");
                     //change the image indes of the task in the list view
                     listview.Invoke(new MethodInvoker(delegate { listview.FindItemWithText(task.command).ImageIndex = ((int)task.GetStatus()); }));
                 }
@@ -93,7 +94,8 @@ namespace WinPEImager.Classes
 
         }
         //Replace imagePath pattern with value within a COMMAND type only, BAT files not supported yet.
-        private List<Task> ReplacePath(List<Task> originalTasks) {
+        private List<Task> ReplacePath(List<Task> originalTasks)
+        {
 
             List<Task> replacedTasks = new List<Task>();
             foreach (Task task in originalTasks)
@@ -104,7 +106,7 @@ namespace WinPEImager.Classes
             }
 
             return replacedTasks;
-        
+
         }
 
 
@@ -127,7 +129,7 @@ namespace WinPEImager.Classes
             foreach (FileInfo file in dir.GetFiles())
             {
                 string targetFilePath = Path.Combine(destinationDir, file.Name);
-                file.CopyTo(targetFilePath,true);
+                file.CopyTo(targetFilePath, true);
             }
 
             // If recursive and copying subdirectories, recursively call this method
@@ -142,7 +144,8 @@ namespace WinPEImager.Classes
             Console.WriteLine("Files Copied");
         }
 
-        public void ToList() {
+        public void ToList()
+        {
 
             if (listview != null)
             {
@@ -156,7 +159,8 @@ namespace WinPEImager.Classes
 
 
             }
-            else {
+            else
+            {
                 MessageBox.Show("No list view passed to Image object");
             }
 

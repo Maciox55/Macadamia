@@ -18,10 +18,11 @@ namespace WinPEImager.Classes
         }
 
         public void AddImage(Image newImage)
-        { 
+        {
             images.Add(newImage);
         }
-        public List<Image> GetImages() {
+        public List<Image> GetImages()
+        {
             return images;
         }
     }

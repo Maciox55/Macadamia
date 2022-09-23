@@ -24,27 +24,32 @@ namespace WinPEImager.Classes
 
         private NextApp nextApp;
 
-        private Config() {
+        private Config()
+        {
             Console.WriteLine("Initialized Config Singleton");
             string text = File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Config.xml"));
             XElement configstring = XElement.Load(@"Config.xml");
             ParseConfigFile(configstring);
-            
+
         }
 
-        public static Config Instance() {
+        public static Config Instance()
+        {
             return instance;
         }
 
-        public string GetMasterPath() {
+        public string GetMasterPath()
+        {
             return masterPath;
         }
 
-        public string GetWorkingDir() {
+        public string GetWorkingDir()
+        {
             return workingdrive;
         }
 
-        public NextApp GetNextApp() {
+        public NextApp GetNextApp()
+        {
             return nextApp;
         }
 
@@ -58,7 +63,7 @@ namespace WinPEImager.Classes
 
         //public string GetNextApp() {
         //    return nextAppName;
-        
+
         //}
         //public string GetNextAppParams()
         //{
@@ -67,7 +72,8 @@ namespace WinPEImager.Classes
         //}
 
 
-        private void ParseConfigFile(XElement xmlContent) {
+        private void ParseConfigFile(XElement xmlContent)
+        {
             try
             {
                 masterPath = xmlContent.Element("MASTERPATH").Value;

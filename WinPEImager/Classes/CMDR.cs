@@ -22,7 +22,8 @@ namespace WinPEImager.Classes
 
         private ProcessStartInfo startInfo;
 
-        protected CMDR() {
+        protected CMDR()
+        {
 
             process = new Process();
             process.StartInfo.FileName = "cmd.exe";
@@ -33,11 +34,12 @@ namespace WinPEImager.Classes
             process.StartInfo.RedirectStandardError = true;
 
 
-            process.ErrorDataReceived += (s, e) => {
+            process.ErrorDataReceived += (s, e) =>
+            {
                 if (!String.IsNullOrEmpty(e.Data))
                 {
                     values.Add("! > " + e.Data);
-                    consoleOutput.Invoke(new MethodInvoker(delegate {consoleOutput.AppendText("ERROR > "+e.Data); consoleOutput.AppendText(Environment.NewLine); }));
+                    consoleOutput.Invoke(new MethodInvoker(delegate { consoleOutput.AppendText("ERROR > " + e.Data); consoleOutput.AppendText(Environment.NewLine); }));
                     Console.WriteLine(e.Data);
                 }
             };
@@ -47,7 +49,7 @@ namespace WinPEImager.Classes
 
                 if (!String.IsNullOrEmpty(e.Data))
                 {
-                    consoleOutput.Invoke(new MethodInvoker(delegate {consoleOutput.AppendText(e.Data); consoleOutput.AppendText(Environment.NewLine); }));
+                    consoleOutput.Invoke(new MethodInvoker(delegate { consoleOutput.AppendText(e.Data); consoleOutput.AppendText(Environment.NewLine); }));
                     Console.WriteLine(e.Data);
 
                 }
@@ -80,11 +82,12 @@ namespace WinPEImager.Classes
         {
             try
             {
-               
+
                 process.StandardInput.WriteLine(data);
                 await AsyncTask.Task.Delay(500);
             }
-            catch(Exception e) {
+            catch (Exception e)
+            {
                 MessageBox.Show(e.Message);
             }
         }
@@ -119,7 +122,7 @@ namespace WinPEImager.Classes
                 process.StartInfo.Arguments = "/C " + task.command;
 
 
-                
+
             }
             if (task.GetTaskType() == TYPE.Bat)
             {
@@ -127,7 +130,7 @@ namespace WinPEImager.Classes
                 //process.StartInfo.WorkingDirectory = Config.Instance().GetWorkingDir() + @"\Required\";
                 //process.StartInfo.Arguments =  task.command;
                 //Console.WriteLine(process.StartInfo.WorkingDirectory);
-                process.StartInfo.Arguments = "/C "+Config.Instance().GetWorkingDir() + @"\Required\" + task.command;
+                process.StartInfo.Arguments = "/C " + Config.Instance().GetWorkingDir() + @"\Required\" + task.command;
 
 
 
@@ -149,20 +152,21 @@ namespace WinPEImager.Classes
 
 
             if (values.Count() != 0)
-                {
-                    Console.WriteLine("ERRORS: " + values.Count());
-                    return false;
-                }
-                else
-                {
-                    Console.WriteLine("Success");
-                    return true;
-                }
+            {
+                Console.WriteLine("ERRORS: " + values.Count());
+                return false;
+            }
+            else
+            {
+                Console.WriteLine("Success");
+                return true;
+            }
 
 
         }
 
-        public void StandaloneCMD() {
+        public void StandaloneCMD()
+        {
 
 
             Process proc = new Process();
@@ -186,9 +190,9 @@ namespace WinPEImager.Classes
             }
             catch (Exception e)
             {
-                CMDR.GetProcess().WriteToConsole("Error running next app: "+e.Message);
+                CMDR.GetProcess().WriteToConsole("Error running next app: " + e.Message);
             }
-            
+
 
         }
         public void RunApp(string path)

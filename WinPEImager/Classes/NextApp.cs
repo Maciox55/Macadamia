@@ -7,8 +7,6 @@ using WinPEImager.Classes;
 
 namespace WinPEImager.Classes
 {
-   
-
     public class NextApp
     {
         private string title;
@@ -16,33 +14,38 @@ namespace WinPEImager.Classes
         private string name;
         private string parameters;
 
-        public NextApp(string appTitle,string appPath, string appName, string appParams)
+        public NextApp(string appTitle, string appPath, string appName, string appParams)
         {
             title = appTitle;
             path = appPath;
             name = appName;
             parameters = appParams;
         }
-        public string GetName() {
+        public string GetName()
+        {
             return title;
         }
-        public string GetPath() {
+        public string GetPath()
+        {
             return path + name;
         }
 
-        public string GetParams() {
+        public string GetParams()
+        {
             return parameters;
         }
 
-        public void Run() {
+        public void Run()
+        {
             if (GetParams() == String.Empty)
             {
                 CMDR.GetProcess().RunApp(GetPath(), GetParams());
             }
-            else {
+            else
+            {
                 CMDR.GetProcess().RunApp(GetPath());
             }
-            
+
         }
     }
 }

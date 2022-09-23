@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-using AsyncTask =  System.Threading.Tasks.Task;
+using AsyncTask = System.Threading.Tasks.Task;
 using WinPEImager.Classes.Enums;
 
 namespace WinPEImager.Classes
@@ -21,10 +21,12 @@ namespace WinPEImager.Classes
         private bool sucessful;
         private STATUS currentStatus;
 
-        public Task(string cmd) {
+        public Task(string cmd)
+        {
             command = cmd;
             currentStatus = STATUS.Idle;
         }
+
         public Task(TYPE t)
         {
             type = t;
@@ -33,13 +35,15 @@ namespace WinPEImager.Classes
                 command = "Next APP";
             }
         }
+
         public Task(string cmd, TYPE t)
         {
             command = cmd;
             type = t;
             currentStatus = STATUS.Idle;
         }
-        public Task(string cmd, string p,Image pimage, TYPE t)
+
+        public Task(string cmd, string p, Image pimage, TYPE t)
         {
             command = cmd;
             path = p;
@@ -47,40 +51,41 @@ namespace WinPEImager.Classes
             parentImage = pimage;
             currentStatus = STATUS.Idle;
         }
+
         public void SetStatus(STATUS newStatus)
-        { 
+        {
             currentStatus = newStatus;
-        
         }
 
         public STATUS GetStatus()
         {
             return currentStatus;
         }
+
         public TYPE GetTaskType()
         {
             return type;
         }
 
-        public Image GetParentImage() {
+        public Image GetParentImage()
+        {
             return parentImage;
         }
 
-
-        public ListViewItem ToListItem() {
+        public ListViewItem ToListItem()
+        {
 
             ListViewItem item = new ListViewItem(command, (int)currentStatus);
-
             return item;
         }
-
         public Task AddPath(string p)
         {
             this.path = p;
             return this;
         }
 
-        public async AsyncTask Execute() {
+        public async AsyncTask Execute()
+        {
 
             try
             {
@@ -91,39 +96,35 @@ namespace WinPEImager.Classes
                     {
 
                         this.currentStatus = STATUS.Processing;
-
                         sucessful = await AsyncTask.Run(() => CMDR.GetProcess().RunCommand(this));
-
-
 
                         if (!sucessful)
                         {
-                            Console.WriteLine("ERRORS: " + error);
                             this.currentStatus = STATUS.Failed;
-                            Console.WriteLine(this.currentStatus);
+                            //Console.WriteLine("ERRORS: " + error);
+                            //Console.WriteLine(this.currentStatus);
                         }
                         else
                         {
-
                             this.currentStatus = STATUS.Sucessful;
-                            Console.WriteLine(this.currentStatus);
+                            //Console.WriteLine(this.currentStatus);
                         }
                         await AsyncTask.Delay(1000);
                     }
                     else
                     {
                         MessageBox.Show("Task: " + this.command + " Has already been executed");
-
                     }
                 }
-                else {
+                else
+                {
                     Config.Instance().GetNextApp().Run();
+                    this.currentStatus = STATUS.Sucessful;
                 }
-               
-
             }
-            catch (Exception e) {
-                Console.WriteLine("Exception: "+e);
+            catch (Exception e)
+            {
+                //Console.WriteLine("Exception: "+e);
                 this.currentStatus = STATUS.Failed;
             }
         }
