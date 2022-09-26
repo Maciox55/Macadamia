@@ -68,12 +68,12 @@ namespace WinPEImager
 
             imageDetailListView.SmallImageList = new ImageList();
             imageDetailListView.SmallImageList.ColorDepth = ColorDepth.Depth32Bit;
-            imageDetailListView.SmallImageList.ImageSize = new Size(16, 16);
+            imageDetailListView.SmallImageList.ImageSize = new Size(32, 32);
 
-            imageDetailListView.SmallImageList.Images.Add(Image.FromFile("./Assets/Images/icons-png/circle.png"));
-            imageDetailListView.SmallImageList.Images.Add(Image.FromFile("./Assets/Images/icons-png/circle-dotted.png"));
-            imageDetailListView.SmallImageList.Images.Add(Image.FromFile("./Assets/Images/icons-png/circle-check.png"));
-            imageDetailListView.SmallImageList.Images.Add(Image.FromFile("./Assets/Images/icons-png/circle-x.png"));
+            imageDetailListView.SmallImageList.Images.Add(Image.FromFile("./Assets/Images/Resized/circle_32x32.png"));
+            imageDetailListView.SmallImageList.Images.Add(Image.FromFile("./Assets/Images/Resized/circle-dotted_32x32.png"));
+            imageDetailListView.SmallImageList.Images.Add(Image.FromFile("./Assets/Images/Resized/circle-check_32x32.png"));
+            imageDetailListView.SmallImageList.Images.Add(Image.FromFile("./Assets/Images/Resized/circle-x_32x32.png"));
 
         }
 
@@ -89,13 +89,13 @@ namespace WinPEImager
 
 
             ImageList myImageList = new ImageList();
-            myImageList.Images.Add(Image.FromFile("./Assets/Images/icons-png/folders.png"));
-            myImageList.Images.Add(Image.FromFile("./Assets/Images/icons-png/folder.png"));
-            myImageList.Images.Add(Image.FromFile("./Assets/Images/icons-png/checklist.png"));
-            myImageList.Images.Add(Image.FromFile("./Assets/Images/icons-png/file-settings.png"));
-            myImageList.Images.Add(Image.FromFile("./Assets/Images/icons-png/select.png"));
-            myImageList.Images.Add(Image.FromFile("./Assets/Images/icons-png/file.png"));
-            myImageList.Images.Add(Image.FromFile("./Assets/Images/icons-png/app-window.png"));
+            myImageList.Images.Add(Image.FromFile("./Assets/Images/Resized/folders_16x16.png"));
+            myImageList.Images.Add(Image.FromFile("./Assets/Images/Resized/folder_16x16.png"));
+            myImageList.Images.Add(Image.FromFile("./Assets/Images/Resized/checklist_16x16.png"));
+            myImageList.Images.Add(Image.FromFile("./Assets/Images/Resized/file-settings_16x16.png"));
+            myImageList.Images.Add(Image.FromFile("./Assets/Images/Resized/select_16x16.png"));
+            myImageList.Images.Add(Image.FromFile("./Assets/Images/Resized/file_16x16.png"));
+            myImageList.Images.Add(Image.FromFile("./Assets/Images/Resized/app-window_16x16.png"));
 
             fileTree.ImageList = myImageList;
 
@@ -186,8 +186,8 @@ namespace WinPEImager
                                 masterPathLabel.Invoke(new MethodInvoker(delegate { masterPathLabel.Text = "Script Path: " + cnode.dirPath; }));
                                 //Set reference to listview
                                 cnode.image.SetList(imageDetailListView);
-                                 cnode.image.ToList();
-                                 currentSelectedImage = cnode.image;
+                                cnode.image.ToList();
+                                currentSelectedImage = cnode.image;
 
                              }
                          }
@@ -252,9 +252,19 @@ namespace WinPEImager
                 FileInfo[] files = path.GetFiles();
 
                 DirectoryInfo[] subdirs = path.GetDirectories();
+                if (path.GetDirectories().Length == 0)
+                {
+                    node.ImageIndex = 1;
+                    node.SelectedImageIndex = 1;
+                }
+
+
                 foreach (DirectoryInfo subdir in subdirs)
                 {
+                    
+
                     node.Nodes.Add(await MapDirectory(subdir));
+                   
                 }
                 foreach (FileInfo file in files) {
 
