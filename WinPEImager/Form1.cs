@@ -68,7 +68,7 @@ namespace WinPEImager
 
             imageDetailListView.SmallImageList = new ImageList();
             imageDetailListView.SmallImageList.ColorDepth = ColorDepth.Depth32Bit;
-            imageDetailListView.SmallImageList.ImageSize = new Size(32, 32);
+            imageDetailListView.SmallImageList.ImageSize = new Size(24, 24);
 
             imageDetailListView.SmallImageList.Images.Add(Image.FromFile("./Assets/Images/Resized/circle_32x32.png"));
             imageDetailListView.SmallImageList.Images.Add(Image.FromFile("./Assets/Images/Resized/circle-dotted_32x32.png"));
