@@ -36,6 +36,15 @@ namespace WinPEImager.Classes
                 command = "Next APP";
             }
         }
+        public Task(TYPE t,Image i)
+        {
+            parentImage = i;
+            type = t;
+            if (t == TYPE.Next)
+            {
+                command = "Next APP";
+            }
+        }
 
         public Task(string cmd, TYPE t)
         {

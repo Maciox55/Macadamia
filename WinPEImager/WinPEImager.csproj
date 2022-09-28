@@ -2367,9 +2367,13 @@
     <Content Include="Assets\Images\icons-png\zoom-reset.png" />
     <Content Include="Assets\Images\icons-png\zzz.png" />
     <Content Include="Assets\Images\Macadamia.ico" />
+    <Content Include="Assets\Images\Resized\refresh_30x30.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\Images\Resized\select_16x16.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Assets\refresh_30x30.png" />
     <Content Include="Localconfig.xml" />
     <Content Include="disk.txt" />
     <Content Include="Config.xml">

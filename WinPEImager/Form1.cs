@@ -226,6 +226,8 @@ namespace WinPEImager
         {
             try
             {
+                selectedTask = null;
+                taskSelectionLabel.Text = "No Task Selected";
                 await findConfigAsync();
             }
             catch (Exception ex)
@@ -263,10 +265,7 @@ namespace WinPEImager
 
                 foreach (DirectoryInfo subdir in subdirs)
                 {
-                    
-
                     node.Nodes.Add(await MapDirectory(subdir));
-                   
                 }
                 foreach (FileInfo file in files) {
 
@@ -332,24 +331,28 @@ namespace WinPEImager
 
         private void imageDetailListView_MouseClick(object sender, MouseEventArgs e)
         {
-            ListViewItem item = imageDetailListView.SelectedItems[0];
-            selectedTask = (CustomListViewItem)item;
-            Console.WriteLine(selectedTask.task.command);
-
-            taskSelectionLabel.Text = selectedTask.task.command;
-
-            if (e.Button == MouseButtons.Right)
+            try
             {
+                ListViewItem item = imageDetailListView.SelectedItems[0];
+                selectedTask = (CustomListViewItem)item;
+                Console.WriteLine(selectedTask.task.command);
 
-              
-                if (item != null && item.Bounds.Contains(e.Location))
+                taskSelectionLabel.Text = "Task: " + selectedTask.task.command;
+
+                if (e.Button == MouseButtons.Right)
+                {
+                    if (item != null && item.Bounds.Contains(e.Location))
                     {
-                         taskMenu.Show(imageDetailListView,e.Location);
+                        taskMenu.Show(imageDetailListView, e.Location);
                     }
-
-
-   
+                }
             }
+            catch {
+                Console.WriteLine("TETETE");
+                selectedTask = null;
+                taskSelectionLabel.Text = "No Selected Task";
+            }
+            
         }
 
         private async void runTaskItem_Click(object sender, EventArgs e)

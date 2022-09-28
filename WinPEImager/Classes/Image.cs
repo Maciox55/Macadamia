@@ -99,7 +99,7 @@ namespace WinPEImager.Classes
         //Replace imagePath pattern with value within a COMMAND type only, BAT files not supported yet.
         private List<Task> ReplacePath(List<Task> originalTasks)
         {
-
+           
             List<Task> replacedTasks = new List<Task>();
             foreach (Task task in originalTasks)
             {

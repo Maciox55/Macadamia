@@ -51,7 +51,7 @@ namespace WinPEImager.Classes
                     }
                     else if (type == "next")
                     {
-                        tasks.Add(new Task(TYPE.Next));
+                        tasks.Add(new Task(TYPE.Next,image));
                     }
                 }
 
