@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using WinPEImager.Classes;
 
 using AsyncTask = System.Threading.Tasks.Task;
 using WinPEImager.Classes.Enums;
@@ -43,10 +44,9 @@ namespace WinPEImager.Classes
             currentStatus = STATUS.Idle;
         }
 
-        public Task(string cmd, string p, Image pimage, TYPE t)
+        public Task(string cmd, Image pimage, TYPE t)
         {
             command = cmd;
-            path = p;
             type = t;
             parentImage = pimage;
             currentStatus = STATUS.Idle;
@@ -75,7 +75,7 @@ namespace WinPEImager.Classes
         public ListViewItem ToListItem()
         {
 
-            ListViewItem item = new ListViewItem(command, (int)currentStatus);
+            ListViewItem item = new CustomListViewItem(command, (int)currentStatus,this);
             return item;
         }
         public Task AddPath(string p)

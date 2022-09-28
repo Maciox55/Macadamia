@@ -85,6 +85,7 @@
             this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.taskSelectionLabel = new System.Windows.Forms.Label();
             this.leftPanel.SuspendLayout();
             this.consolePanel.SuspendLayout();
             this.consoleInputPanel.SuspendLayout();
@@ -94,6 +95,7 @@
             this.taskControl.SuspendLayout();
             this.rightPanel.SuspendLayout();
             this.listPanel.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.mainPanel.SuspendLayout();
             this.bottomPanel.SuspendLayout();
             this.menuStrip.SuspendLayout();
@@ -337,6 +339,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.taskSelectionLabel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(3, 354);
             this.panel1.Name = "panel1";
@@ -591,6 +594,15 @@
             this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(32, 19);
             this.aboutToolStripMenuItem1.Text = "&About...";
             // 
+            // taskSelectionLabel
+            // 
+            this.taskSelectionLabel.AutoSize = true;
+            this.taskSelectionLabel.Location = new System.Drawing.Point(4, 3);
+            this.taskSelectionLabel.Name = "taskSelectionLabel";
+            this.taskSelectionLabel.Size = new System.Drawing.Size(76, 13);
+            this.taskSelectionLabel.TabIndex = 0;
+            this.taskSelectionLabel.Text = "Selected Task";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -620,6 +632,8 @@
             this.rightPanel.ResumeLayout(false);
             this.rightPanel.PerformLayout();
             this.listPanel.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.mainPanel.ResumeLayout(false);
             this.bottomPanel.ResumeLayout(false);
             this.bottomPanel.PerformLayout();
@@ -686,6 +700,7 @@
         private System.Windows.Forms.ToolStripMenuItem searchToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem1;
+        private System.Windows.Forms.Label taskSelectionLabel;
     }
 
     

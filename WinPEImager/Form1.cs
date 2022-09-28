@@ -28,6 +28,8 @@ namespace WinPEImager
 
         CustomTreeNode clickedNode;
 
+        CustomListViewItem selectedTask;
+
         MenuItem detailsMenuItem = new MenuItem("Details");
         MenuItem editMenuItem = new MenuItem("Edit");
         ContextMenu mnu = new ContextMenu();
@@ -330,23 +332,32 @@ namespace WinPEImager
 
         private void imageDetailListView_MouseClick(object sender, MouseEventArgs e)
         {
+            ListViewItem item = imageDetailListView.SelectedItems[0];
+            selectedTask = (CustomListViewItem)item;
+            Console.WriteLine(selectedTask.task.command);
+
+            taskSelectionLabel.Text = selectedTask.task.command;
+
             if (e.Button == MouseButtons.Right)
             {
-                this.Invoke(new MethodInvoker(delegate
-                {
-                    //TODO: FIX THIS NEXT, BROKEN
-                    //ListView item = (ListView)sender;
-                    //taskMenu.Tag = item.Text;
-                    //taskMenu.Show(imageDetailListView, e.Location);
-                }));
+
+              
+                if (item != null && item.Bounds.Contains(e.Location))
+                    {
+                         taskMenu.Show(imageDetailListView,e.Location);
+                    }
+
+
+   
             }
         }
 
-        private void runTaskItem_Click(object sender, EventArgs e)
+        private async void runTaskItem_Click(object sender, EventArgs e)
         {
-            MenuItem menuitem = (MenuItem)sender;
-            string tag = menuitem.Tag.ToString();
-            Console.WriteLine(tag);
+            if (selectedTask != null)
+            { 
+                selectedTask.task.GetParentImage().StartOne(selectedTask.task);
+            }
         }
     }
 }
