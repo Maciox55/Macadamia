@@ -95,7 +95,7 @@ namespace WinPEImager.Classes
 
         public async AsyncTask Execute()
         {
-
+            
             try
             {
                 if (type != TYPE.Next)
@@ -105,17 +105,20 @@ namespace WinPEImager.Classes
                     {
 
                         this.currentStatus = STATUS.Processing;
+                        parentImage.ToList();
                         sucessful = await AsyncTask.Run(() => CMDR.GetProcess().RunCommand(this));
 
                         if (!sucessful)
                         {
                             this.currentStatus = STATUS.Failed;
+                            parentImage.ToList();
                             //Console.WriteLine("ERRORS: " + error);
                             //Console.WriteLine(this.currentStatus);
                         }
                         else
                         {
                             this.currentStatus = STATUS.Sucessful;
+                            parentImage.ToList();
                             //Console.WriteLine(this.currentStatus);
                         }
                         await AsyncTask.Delay(1000);
@@ -129,12 +132,14 @@ namespace WinPEImager.Classes
                 {
                     Config.Instance().GetNextApp().Run();
                     this.currentStatus = STATUS.Sucessful;
+                    parentImage.ToList();
                 }
             }
             catch (Exception e)
             {
                 //Console.WriteLine("Exception: "+e);
                 this.currentStatus = STATUS.Failed;
+                parentImage.ToList();
             }
         }
     }
