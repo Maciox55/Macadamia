@@ -145,7 +145,12 @@ namespace WinPEImager.Classes
             }
             Console.WriteLine("Files Copied");
         }
-
+        public void Kill()
+        {
+            this.canStart = false;
+            CMDR.GetProcess().Abort();
+            
+        }
         public void ToList()
         {
 

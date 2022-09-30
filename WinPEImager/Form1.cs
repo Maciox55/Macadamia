@@ -228,6 +228,7 @@ namespace WinPEImager
             {
                 selectedTask = null;
                 taskSelectionLabel.Text = "No Task Selected";
+                startButton.Text = "START";
                 await findConfigAsync();
             }
             catch (Exception ex)
@@ -240,16 +241,17 @@ namespace WinPEImager
         {
             if (currentSelectedImage != null)
             {
-                if (currentSelectedImage.canStart == false && currentSelectedImage.started == false)
+                if (currentSelectedImage.canStart == false )
                 {
                     
                     currentSelectedImage.canStart = true;
                     currentSelectedImage.Start();
-                    startButton.Text = "PAUSE";
+                    startButton.Text = "STOP";
 
                 }
                 else {
                     currentSelectedImage.canStart = false;
+                    currentSelectedImage.Kill();
                     startButton.Text = "START";
                 }
 
