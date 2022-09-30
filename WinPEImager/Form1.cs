@@ -240,8 +240,19 @@ namespace WinPEImager
         {
             if (currentSelectedImage != null)
             {
-                currentSelectedImage.canStart = true;
-                currentSelectedImage.Start();
+                if (currentSelectedImage.canStart == false && currentSelectedImage.started == false)
+                {
+                    
+                    currentSelectedImage.canStart = true;
+                    currentSelectedImage.Start();
+                    startButton.Text = "PAUSE";
+
+                }
+                else {
+                    currentSelectedImage.canStart = false;
+                    startButton.Text = "START";
+                }
+
             }
             else {
                 MessageBox.Show("Please select a task config file first.");

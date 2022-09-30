@@ -17,6 +17,7 @@ namespace WinPEImager.Classes
         public string imagePath;
         public List<Task> tasks;
         public bool canStart = false;
+        public bool started = false;
 
 
         private ListView listview;
@@ -64,8 +65,6 @@ namespace WinPEImager.Classes
 
             CopyDirectory(path + @"\Required\", Config.Instance().GetWorkingDir() + @"\Required\", true);
 
-
-
             foreach (Task task in taskList)
             {
                 if (canStart == true)
@@ -78,6 +77,7 @@ namespace WinPEImager.Classes
                     listview.Invoke(new MethodInvoker(delegate { listview.FindItemWithText(task.command).ImageIndex = ((int)task.GetStatus()); }));
                 }
             }
+            started = false;
         }
 
         public async void StartOne(Task task)
