@@ -83,16 +83,15 @@ namespace WinPEImager.Classes
         public async void StartOne(Task task)
         {
 
-                CopyDirectory(path + @"\Required\", Config.Instance().GetWorkingDir() + @"\Required\", true);
+            CopyDirectory(path + @"\Required\", Config.Instance().GetWorkingDir() + @"\Required\", true);
 
-                CMDR.GetProcess().WriteToConsole("========== RUNNING TASK: " + task.command + " ==========");
-                //Call execute the task
-                await task.Execute();
+            CMDR.GetProcess().WriteToConsole("========== RUNNING TASK: " + task.command + " ==========");
+            //Call execute the task
+            await task.Execute();
 
-                CMDR.GetProcess().WriteToConsole("========== TASK " + task.GetStatus() + " ==========");
-                //change the image indes of the task in the list view
-                listview.Invoke(new MethodInvoker(delegate { listview.FindItemWithText(task.command).ImageIndex = ((int)task.GetStatus()); }));
-
+            CMDR.GetProcess().WriteToConsole("========== TASK " + task.GetStatus() + " ==========");
+            //change the image indes of the task in the list view
+            listview.Invoke(new MethodInvoker(delegate { listview.FindItemWithText(task.command).ImageIndex = ((int)task.GetStatus()); }));
 
         }
         //Replace imagePath pattern with value within a COMMAND type only, BAT files not supported yet.

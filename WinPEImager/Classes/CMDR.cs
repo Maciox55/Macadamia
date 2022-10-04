@@ -168,7 +168,6 @@ namespace WinPEImager.Classes
         public void StandaloneCMD()
         {
 
-
             Process proc = new Process();
             proc.StartInfo.FileName = "cmd.exe";
             proc.StartInfo.UseShellExecute = false;
