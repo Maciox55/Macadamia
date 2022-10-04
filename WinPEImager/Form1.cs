@@ -375,5 +375,14 @@ namespace WinPEImager
                 selectedTask.task.GetParentImage().StartOne(selectedTask.task);
             }
         }
+
+        private void notepadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            Process proc = new Process();
+            proc.StartInfo.FileName = "notepad.exe";
+            proc.StartInfo.UseShellExecute = false;
+            proc.Start();
+        }
     }
 }

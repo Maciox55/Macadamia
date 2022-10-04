@@ -33,6 +33,16 @@ namespace WinPEImager.Classes
             process.StartInfo.RedirectStandardInput = true;
             process.StartInfo.RedirectStandardError = true;
 
+            process.EnableRaisingEvents = true;
+            process.Exited += (sender, e) => {
+
+                process.CancelErrorRead();
+                process.CancelOutputRead();
+                
+                process.StandardInput.Flush();
+            
+            };
+
 
             process.ErrorDataReceived += (s, e) =>
             {
@@ -149,11 +159,10 @@ namespace WinPEImager.Classes
             process.CancelOutputRead();
 
 
-
-
             if (values.Count() != 0)
             {
                 Console.WriteLine("ERRORS: " + values.Count());
+
                 return false;
             }
             else
@@ -162,11 +171,11 @@ namespace WinPEImager.Classes
                 return true;
             }
 
-
         }
 
         public void StandaloneCMD()
         {
+
 
             Process proc = new Process();
             proc.StartInfo.FileName = "cmd.exe";
