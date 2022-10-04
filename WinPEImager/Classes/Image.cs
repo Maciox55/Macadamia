@@ -171,5 +171,23 @@ namespace WinPEImager.Classes
             }
 
         }
+
+        public List<ListViewItem> ToListDynamic()
+        {
+            var list = new List<ListViewItem>();
+
+
+                foreach (Task task in this.tasks)
+                {
+                     list.Add(task.ToListItem());
+                    //imageDetailListView.Items.Add(task.ToListItem());
+                }
+
+            return list;
+
+
+
+
+        }
     }
 }

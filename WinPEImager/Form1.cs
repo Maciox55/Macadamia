@@ -63,8 +63,7 @@ namespace WinPEImager
 
             runTaskItem.Click += new EventHandler(runTaskItem_Click);
 
-            //mnu.MenuItems.Add(detailsMenuItem);
-            mnu.MenuItems.Add(editMenuItem);
+            
             detailsMenuItem.Click += new EventHandler(detailMenuItem_Click);
             editMenuItem.Click += new EventHandler(editMenuItem_Click);
 
@@ -125,7 +124,7 @@ namespace WinPEImager
 
         void detailMenuItem_Click(object sender, EventArgs e)
         {
-            Details detailsForm = new Details();
+            Details detailsForm = new Details(currentSelectedImage);
             detailsForm.node = clickedNode;
             detailsForm.Show();
             clickedNode = null;
@@ -158,13 +157,39 @@ namespace WinPEImager
                 //fileTree.SelectedNode = e.Node;
                 try
                  {
+                     mnu.MenuItems.Clear();
+
                      if (e.Node is CustomTreeNode)
                      {
+                         mnu.MenuItems.Add(editMenuItem);
+
+
+                         imageDetailListView.Invoke(new MethodInvoker(delegate { imageDetailListView.Clear(); }));
+
+                         if (e.Node is ScriptNode)
+                         {
+                             mnu.MenuItems.Add(detailsMenuItem);
+
+                             ScriptNode cnode = (ScriptNode)e.Node;
+
+                             //Console.WriteLine(cnode.FullPath);
+                             //Parse XML at the nodes path into an image file
+                             //cImage image = parser.parseImageFromXML(cnode.path);
+                             cnode.image.path = cnode.dirPath;
+                             //Set the master path label with the path of the image file.
+                             masterPathLabel.Invoke(new MethodInvoker(delegate { masterPathLabel.Text = "Script Path: " + cnode.dirPath; }));
+                             //Set reference to listview
+                             cnode.image.SetList(imageDetailListView);
+                             cnode.image.ToList();
+                             currentSelectedImage = cnode.image;
+
+                         }
 
                          if (e.Button == MouseButtons.Right)
                          {
 
                              clickedNode = (CustomTreeNode)e.Node;
+                             
 
                              this.Invoke(new MethodInvoker(delegate
                              {
@@ -174,24 +199,7 @@ namespace WinPEImager
                          }
                          else {
 
-                             imageDetailListView.Invoke(new MethodInvoker(delegate { imageDetailListView.Clear(); }));
-
-                             if (e.Node is ScriptNode)
-                             {
-                                 ScriptNode cnode = (ScriptNode)e.Node;
-
-                                //Console.WriteLine(cnode.FullPath);
-                                //Parse XML at the nodes path into an image file
-                                //cImage image = parser.parseImageFromXML(cnode.path);
-                                cnode.image.path = cnode.dirPath;
-                                //Set the master path label with the path of the image file.
-                                masterPathLabel.Invoke(new MethodInvoker(delegate { masterPathLabel.Text = "Script Path: " + cnode.dirPath; }));
-                                //Set reference to listview
-                                cnode.image.SetList(imageDetailListView);
-                                cnode.image.ToList();
-                                currentSelectedImage = cnode.image;
-
-                             }
+                             
                          }
                      }
                 }

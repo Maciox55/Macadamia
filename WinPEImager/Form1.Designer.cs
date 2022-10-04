@@ -47,9 +47,11 @@
             this.centerPanel = new System.Windows.Forms.Panel();
             this.treeView = new System.Windows.Forms.Panel();
             this.taskControl = new System.Windows.Forms.Panel();
+            this.refreshBtn = new System.Windows.Forms.Button();
             this.rightPanel = new System.Windows.Forms.Panel();
             this.listPanel = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.taskSelectionLabel = new System.Windows.Forms.Label();
             this.tasksLabel = new System.Windows.Forms.Label();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.masterPathLabel = new System.Windows.Forms.Label();
@@ -76,8 +78,6 @@
             this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.taskSelectionLabel = new System.Windows.Forms.Label();
-            this.refreshBtn = new System.Windows.Forms.Button();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -300,6 +300,21 @@
             this.taskControl.Size = new System.Drawing.Size(277, 30);
             this.taskControl.TabIndex = 10;
             // 
+            // refreshBtn
+            // 
+            this.refreshBtn.BackColor = System.Drawing.Color.White;
+            this.refreshBtn.BackgroundImage = global::WinPEImager.Properties.Resources.refresh_30x30;
+            this.refreshBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.refreshBtn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.refreshBtn.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.refreshBtn.Location = new System.Drawing.Point(0, 0);
+            this.refreshBtn.Name = "refreshBtn";
+            this.refreshBtn.Size = new System.Drawing.Size(30, 30);
+            this.refreshBtn.TabIndex = 5;
+            this.toolTip1.SetToolTip(this.refreshBtn, "Refresh and rediscover Autmation Scripts in master directory.");
+            this.refreshBtn.UseVisualStyleBackColor = false;
+            this.refreshBtn.Click += new System.EventHandler(this.refreshBtn_Click);
+            // 
             // rightPanel
             // 
             this.rightPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -331,6 +346,18 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(274, 49);
             this.panel1.TabIndex = 9;
+            // 
+            // taskSelectionLabel
+            // 
+            this.taskSelectionLabel.AutoSize = true;
+            this.taskSelectionLabel.BackColor = System.Drawing.Color.Gainsboro;
+            this.taskSelectionLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.taskSelectionLabel.Location = new System.Drawing.Point(4, 3);
+            this.taskSelectionLabel.Name = "taskSelectionLabel";
+            this.taskSelectionLabel.Size = new System.Drawing.Size(93, 13);
+            this.taskSelectionLabel.TabIndex = 0;
+            this.taskSelectionLabel.Text = "No Selected Task";
+            this.toolTip1.SetToolTip(this.taskSelectionLabel, "Currently selected Automation Script Task");
             // 
             // tasksLabel
             // 
@@ -508,33 +535,6 @@
             this.aboutToolStripMenuItem1.Name = "aboutToolStripMenuItem1";
             this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(32, 19);
             this.aboutToolStripMenuItem1.Text = "&About...";
-            // 
-            // taskSelectionLabel
-            // 
-            this.taskSelectionLabel.AutoSize = true;
-            this.taskSelectionLabel.BackColor = System.Drawing.Color.Gainsboro;
-            this.taskSelectionLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.taskSelectionLabel.Location = new System.Drawing.Point(4, 3);
-            this.taskSelectionLabel.Name = "taskSelectionLabel";
-            this.taskSelectionLabel.Size = new System.Drawing.Size(93, 13);
-            this.taskSelectionLabel.TabIndex = 0;
-            this.taskSelectionLabel.Text = "No Selected Task";
-            this.toolTip1.SetToolTip(this.taskSelectionLabel, "Currently selected Automation Script Task");
-            // 
-            // refreshBtn
-            // 
-            this.refreshBtn.BackColor = System.Drawing.Color.White;
-            this.refreshBtn.BackgroundImage = global::WinPEImager.Properties.Resources.refresh_30x30;
-            this.refreshBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.refreshBtn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.refreshBtn.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.refreshBtn.Location = new System.Drawing.Point(0, 0);
-            this.refreshBtn.Name = "refreshBtn";
-            this.refreshBtn.Size = new System.Drawing.Size(30, 30);
-            this.refreshBtn.TabIndex = 5;
-            this.toolTip1.SetToolTip(this.refreshBtn, "Refresh and rediscover Autmation Scripts in master directory.");
-            this.refreshBtn.UseVisualStyleBackColor = false;
-            this.refreshBtn.Click += new System.EventHandler(this.refreshBtn_Click);
             // 
             // newToolStripMenuItem
             // 
