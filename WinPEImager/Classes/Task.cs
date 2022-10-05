@@ -107,7 +107,7 @@ namespace WinPEImager.Classes
 
                         this.currentStatus = STATUS.Processing;
                         parentImage.ToList();
-                        sucessful = await AsyncTask.Run(() => CMDR.GetProcess().RunCommand(this));
+                        sucessful = await CMDR.GetProcess().RunCommand(this);
 
                         if (!sucessful)
                         {
