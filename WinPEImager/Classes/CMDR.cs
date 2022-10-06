@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,6 +32,16 @@ namespace WinPEImager.Classes
             process.StartInfo.RedirectStandardOutput = true;
             process.StartInfo.RedirectStandardInput = true;
             process.StartInfo.RedirectStandardError = true;
+
+            process.EnableRaisingEvents = true;
+            process.Exited += (sender, e) => {
+
+                process.CancelErrorRead();
+                process.CancelOutputRead();
+                
+                process.StandardInput.Flush();
+            
+            };
 
 
             process.ErrorDataReceived += (s, e) =>
@@ -130,7 +140,9 @@ namespace WinPEImager.Classes
                 //process.StartInfo.WorkingDirectory = Config.Instance().GetWorkingDir() + @"\Required\";
                 //process.StartInfo.Arguments =  task.command;
                 //Console.WriteLine(process.StartInfo.WorkingDirectory);
+
                 process.StartInfo.Arguments = "/C " + "\""+Config.Instance().GetWorkingDir() + @"\Required\" + task.command + "\"";
+
 
 
 
@@ -149,11 +161,10 @@ namespace WinPEImager.Classes
             process.CancelOutputRead();
 
 
-
-
             if (values.Count() != 0)
             {
                 Console.WriteLine("ERRORS: " + values.Count());
+
                 return false;
             }
             else
@@ -162,11 +173,11 @@ namespace WinPEImager.Classes
                 return true;
             }
 
-
         }
 
         public void StandaloneCMD()
         {
+
 
             Process proc = new Process();
             proc.StartInfo.FileName = "cmd.exe";
