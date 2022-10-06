@@ -130,7 +130,7 @@ namespace WinPEImager.Classes
                 //process.StartInfo.WorkingDirectory = Config.Instance().GetWorkingDir() + @"\Required\";
                 //process.StartInfo.Arguments =  task.command;
                 //Console.WriteLine(process.StartInfo.WorkingDirectory);
-                process.StartInfo.Arguments = "/C " + Config.Instance().GetWorkingDir() + @"\Required\" + task.command;
+                process.StartInfo.Arguments = "/C " + "\""+Config.Instance().GetWorkingDir() + @"\Required\" + task.command + "\"";
 
 
 
