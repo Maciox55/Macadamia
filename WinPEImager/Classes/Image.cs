@@ -58,25 +58,43 @@ namespace WinPEImager.Classes
         }
 
         //Start executing the tasks
-        public async void Start()
+        public async Task<bool> Start()
         {
             //temporary list, in case list manipulation will need to happen in the future (proper queue system)
             List<Task> taskList = tasks;
 
             CopyDirectory(path + @"\Required\", Config.Instance().GetWorkingDir() + @"\Required\", true);
 
+            //TODO: I think the tasks start at the same time, therefore the same batch file can run at the same time, if it's too fast.
+            //IE. test 1 starts, then test 2 but test 2 actually still uses old batch file for test 1 from memory.
+            //TODO: add a check to make sure the task is done before continuting
             foreach (Task task in taskList)
             {
+
                 if (canStart == true)
                 {
                     CMDR.GetProcess().WriteToConsole("========== RUNNING TASK: " + task.command + " ==========");
                     //Call execute the task
-                    await task.Execute();
+                    var isDone = await task.Execute();
                     CMDR.GetProcess().WriteToConsole("========== TASK " + task.GetStatus() + " ==========");
-                    //change the image indes of the task in the list view
                     listview.Invoke(new MethodInvoker(delegate { listview.FindItemWithText(task.command).ImageIndex = ((int)task.GetStatus()); }));
+
+                    if (isDone)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                    //change the image indes of the task in the list view
+                }
+                else {
+                    return false;
                 }
             }
+            return false;
             started = false;
         }
 

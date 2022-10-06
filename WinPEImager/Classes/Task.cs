@@ -8,6 +8,7 @@ using WinPEImager.Classes;
 
 using AsyncTask = System.Threading.Tasks.Task;
 using WinPEImager.Classes.Enums;
+using System.Threading.Tasks;
 
 namespace WinPEImager.Classes
 {
@@ -93,7 +94,7 @@ namespace WinPEImager.Classes
             return this;
         }
 
-        public async AsyncTask Execute()
+        public async Task<bool> Execute()
         {
             
             try
@@ -106,7 +107,7 @@ namespace WinPEImager.Classes
 
                         this.currentStatus = STATUS.Processing;
                         parentImage.ToList();
-                        sucessful = await AsyncTask.Run(() => CMDR.GetProcess().RunCommand(this));
+                        sucessful = await CMDR.GetProcess().RunCommand(this);
 
                         if (!sucessful)
                         {
@@ -126,6 +127,7 @@ namespace WinPEImager.Classes
                     else
                     {
                         MessageBox.Show("Task: " + this.command + " Has already been executed");
+                        return false;
                     }
                 }
                 else
@@ -134,12 +136,14 @@ namespace WinPEImager.Classes
                     this.currentStatus = STATUS.Sucessful;
                     parentImage.ToList();
                 }
+                return true;
             }
             catch (Exception e)
             {
                 //Console.WriteLine("Exception: "+e);
                 this.currentStatus = STATUS.Failed;
                 parentImage.ToList();
+                return true;
             }
         }
     }

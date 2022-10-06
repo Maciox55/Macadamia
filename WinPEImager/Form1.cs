@@ -237,7 +237,7 @@ namespace WinPEImager
             }
         }
 
-        private void startButton_Click(object sender, EventArgs e)
+        private async void startButton_Click(object sender, EventArgs e)
         {
             if (currentSelectedImage != null)
             {
@@ -245,7 +245,7 @@ namespace WinPEImager
                 {
                     
                     currentSelectedImage.canStart = true;
-                    currentSelectedImage.Start();
+                    await currentSelectedImage.Start();
                     startButton.Text = "STOP";
 
                 }
@@ -374,6 +374,15 @@ namespace WinPEImager
             { 
                 selectedTask.task.GetParentImage().StartOne(selectedTask.task);
             }
+        }
+
+        private void notepadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            Process proc = new Process();
+            proc.StartInfo.FileName = "notepad.exe";
+            proc.StartInfo.UseShellExecute = false;
+            proc.Start();
         }
     }
 }
