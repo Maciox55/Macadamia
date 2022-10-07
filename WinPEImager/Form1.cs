@@ -142,6 +142,7 @@ namespace WinPEImager
 
         }
 
+
         void nextAppMenuItem_Click(object sender, EventArgs e)
         {
            
@@ -179,16 +180,17 @@ namespace WinPEImager
                              if (e.Node is ScriptNode)
                              {
                                  ScriptNode cnode = (ScriptNode)e.Node;
-
-                                //Console.WriteLine(cnode.FullPath);
-                                //Parse XML at the nodes path into an image file
-                                //cImage image = parser.parseImageFromXML(cnode.path);
-                                cnode.image.path = cnode.dirPath;
+                                 startButton.Invoke(new MethodInvoker(delegate { startButton.Text = "START"; }));
+                                 //Console.WriteLine(cnode.FullPath);
+                                 //Parse XML at the nodes path into an image file
+                                 //cImage image = parser.parseImageFromXML(cnode.path);
+                                 cnode.image.path = cnode.dirPath;
                                 //Set the master path label with the path of the image file.
                                 masterPathLabel.Invoke(new MethodInvoker(delegate { masterPathLabel.Text = "Script Path: " + cnode.dirPath; }));
                                 //Set reference to listview
                                 cnode.image.SetList(imageDetailListView);
                                 cnode.image.ToList();
+                                 cnode.image.SetForm(this);
                                 currentSelectedImage = cnode.image;
 
                              }

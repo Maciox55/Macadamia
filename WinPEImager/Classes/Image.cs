@@ -19,7 +19,7 @@ namespace WinPEImager.Classes
         public bool canStart = false;
         public bool started = false;
 
-
+        private Form1 form;
         private ListView listview;
 
         public Image(string imageLoc)
@@ -51,7 +51,10 @@ namespace WinPEImager.Classes
         {
             tasks[index].SetStatus(newStatus);
         }
-
+        public void SetForm(Form1 f)
+        {
+            this.form = f;
+        }
         public void SetList(ListView lv)
         {
             this.listview = lv;
@@ -77,7 +80,9 @@ namespace WinPEImager.Classes
                     listview.Invoke(new MethodInvoker(delegate { listview.FindItemWithText(task.command).ImageIndex = ((int)task.GetStatus()); }));
                 }
             }
+            form.startButton.Text = "START";
             started = false;
+            
         }
 
         public async void StartOne(Task task)
