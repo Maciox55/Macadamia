@@ -16,7 +16,7 @@ Macadamia can execute third party applications as well, either manually or at th
 Due to Macadamia being specially developed to suit problems at my current employer, features are being implemented and extended as they are needed and are constantly iterated on. 
   
 
-![Macadamia Demo Screenshot](https://github.com/Maciox55/Macadamia/blob/master/Images/DemoScreenshot2.jpg)
+![Macadamia Demo Screenshot](https://github.com/Maciox55/Macadamia/blob/master/Images/DemoScreenshot2.png)
 
   
 
