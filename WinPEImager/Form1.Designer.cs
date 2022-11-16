@@ -204,6 +204,7 @@
             this.cmdInputField.Name = "cmdInputField";
             this.cmdInputField.Size = new System.Drawing.Size(339, 20);
             this.cmdInputField.TabIndex = 2;
+            this.cmdInputField.KeyDown += new System.Windows.Forms.KeyEventHandler(this.inputBox_KeyDown);
             // 
             // panel2
             // 

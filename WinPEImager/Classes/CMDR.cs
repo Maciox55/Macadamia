@@ -121,9 +121,8 @@ namespace WinPEImager.Classes
                 //process.StartInfo.WorkingDirectory = @"C:\";
                 process.StartInfo.Arguments = "/C " + task.command;
 
-
-
             }
+
             if (task.GetTaskType() == TYPE.Bat)
             {
                 //process.StartInfo.FileName = "cmd.exe";
@@ -132,9 +131,8 @@ namespace WinPEImager.Classes
                 //Console.WriteLine(process.StartInfo.WorkingDirectory);
                 process.StartInfo.Arguments = "/C " + "\""+Config.Instance().GetWorkingDir() + @"\Required\" + task.command + "\"";
 
-
-
             }
+
             process.Start();
             process.BeginErrorReadLine();
             process.BeginOutputReadLine();

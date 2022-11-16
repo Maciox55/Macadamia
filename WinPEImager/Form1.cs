@@ -321,6 +321,7 @@ namespace WinPEImager
         private void cmdInputSubmitButton_Click(object sender, EventArgs e)
         {
             CMDR.GetProcess().Write(cmdInputField.Text);
+            cmdInputField.Text = "";
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -375,6 +376,18 @@ namespace WinPEImager
             if (selectedTask != null)
             { 
                 selectedTask.task.GetParentImage().StartOne(selectedTask.task);
+            }
+        }
+
+        private void inputBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmdInputSubmitButton.PerformClick();
+                cmdInputField.Text = "";
+                // these last two lines will stop the beep sound
+                e.SuppressKeyPress = true;
+                e.Handled = true;
             }
         }
     }
