@@ -364,7 +364,7 @@ namespace WinPEImager
                 }
             }
             catch {
-                Console.WriteLine("TETETE");
+
                 selectedTask = null;
                 taskSelectionLabel.Text = "No Selected Task";
             }
