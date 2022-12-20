@@ -19,8 +19,8 @@ Due to Macadamia being specially developed to suit problems at my current employ
 ![Macadamia Demo Screenshot](https://github.com/Maciox55/Macadamia/blob/master/Images/DemoScreenshot2.png)
 
   
+.NET Framework 4.7.2
 
-  
 
 ## How does it work?
 Here is a rundown on how Macadamia works :
